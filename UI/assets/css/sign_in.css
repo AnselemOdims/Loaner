@@ -1,0 +1,19 @@
+@import url("./sign_up.css");
+@import url("./modal.css");
+
+
+@media screen and (max-width: 600px){
+.banner-sec {
+   min-height: 527px
+}
+.container-item {
+    height: 526px
+}
+.container-item h1 {
+    padding: 40px 30px 10px;
+}
+.form-button {
+    margin-top: 40px
+}
+
+}
