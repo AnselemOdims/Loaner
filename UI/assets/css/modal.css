@@ -1,0 +1,99 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto;
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 0 20px 20px;
+    border: 0px solid #888;
+    width: 70%;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    bottom: 95px;
+}
+.modal-content h2 {
+    font-size: 18px;
+    padding: 10px;
+    line-height: 30px;
+}
+form label,
+.h-11 {
+    font-size: 14px;
+}
+.close {
+    color: #3c4859;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.md-con {
+    padding: 0;
+    border-radius: 4px;
+    width: 50%;
+    height: 185px;
+    top: 10px;
+}
+.md-del {
+    height: 120px;
+    width: 70%;
+}
+.md-suc {
+    height: 50px;
+    overflow: hidden;
+}
+.modal-body {
+    display: flex;
+    justify-content: center;
+}
+.md-btn {
+    border: solid 2px #fbb03b;
+    margin: 10px;
+    font-size: 10px;
+    padding: 10px;
+    border-radius: 2px;
+    width: 12%;
+    text-align: center;
+}
+.md-btn:hover {
+    border: solid 2px red;
+}
+.md-btn1 {
+    background: #4066cb;
+    border: solid 0;
+}
+.md-btn1:hover {
+    background: blue;
+    border: none;
+}
+.md-btn a {
+    color: #fbb03b;
+}
+.md-btn a:hover {
+    color: red;
+}
+.md-btn1 a,
+.md-btn1 a:hover {
+    color: #fff;
+}
+.modal-header span {
+    color: #4066cb
+}
