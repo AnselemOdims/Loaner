@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./assets/css/sign_up.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+</head>
+<body>
+        <header>
+            <div class="banner">
+                <nav class="my-nav">
+                    <div class="nav-header">
+                        <a href=""><i class="fas fa-landmark"></i> Loaner </a>
+                    </div>
+                      <div class="nav-sub" id="sub_nav">
+                        <a href="index.html"><div class="nav-item">Home <br></div></a>
+                        <a href="sign_up.html"><div class="nav-item actives">Register</div></a>
+                        <a href="sign_in.html"><div class="nav-item">Login</div></a>
+
+                        <button id='openBtn' class="menu-close" >
+                            <div class='bar top'></div>
+                            <div class='bar middle'></div>
+                            <div class='bar bottom'></div>
+                        </button> 
+                <div id="mySidebar" class="sidebar">
+                   
+                    <a href="index.html"><div class="link-item">Home</div></a>
+                    <a href="sign_in.html"><div class="link-item">Login</div></a>
+
+                </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+        <div class= "wrapper">
+           <div class='banner-sec'>
+                <div class="welcome-phrase">
+                    <div class="container">
+                        <div class="container-item">
+                            <h1>Register With Us</h1>
+                            <hr class="h-22">
+                            <form action="./client.html">
+                                <div class="form-groups">
+                                    <label for="first_name">First Name</label>
+                                        <input required 
+                                        class="form-controls" 
+                                        type="text" name="first_name" 
+                                        value="" autocomplete="off"
+                                        onkeyup="this.setAttribute('value', this.value)";
+                                        />
+                                </div>
+                                <div class="form-groups">
+                                    <label for="last_name">Last Name</label>
+                                    <input required class="form-controls" 
+                                    type="text" name="last_name" 
+                                    value="" autocomplete="off"
+                                    onkeyup="this.setAttribute('value', this.value)";
+                                    />
+                                </div>
+                                <div class="form-groups">
+                                    <label for="email">Email</label>
+                                    <input required class="form-controls" 
+                                    type="email" name="email" 
+                                    value="" autocomplete="off"
+                                    onkeyup="this.setAttribute('value', this.value)"
+                                    />
+                                </div>
+                                <div class="form-groups">
+                                    <label for="phone_no">Phone No.</label>
+                                    <input required class="form-controls"
+                                     type="number" name="phone_no"
+                                     value="" autocomplete="off"
+                                      onkeyup="this.setAttribute('value', this.value)"
+                                      />
+                                </div>
+                                <div class="form-groups">
+                                    <label for="password">Password</label>
+                                    <input required class="form-controls"
+                                    id ="passWord" 
+                                    type="password" name="password" 
+                                    value="" autocomplete="off"
+                                    onkeyup="this.setAttribute('value', this.value)"
+                                    />
+                                </div>
+                                <div class="form-groups">
+                                    <label for="confirmpassword">Confirm Password</label>
+                                    <input required class="form-controls"
+                                    id="confirmPassword" 
+                                    type="password" name="confirmpassword" 
+                                    value="" autocomplete="off"
+                                    onkeyup="this.setAttribute('value', this.value)"
+                                    />
+                                </div>
+                                <div class="form-groups">
+                                    <input class="form-btn" type="submit" value="SIGN UP">
+                                </div>
+                            </form>
+                            <p>Already have an account? <a href="sign_in.html">Login<a/></p>
+                        </div>
+                    </div>
+                       
+                </div>
+            </div>
+       </div>
+    </main>
+    <footer class="my-footer text-center">
+        <p>&copy; 2019 Loaner Limited</p>
+    </footer>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

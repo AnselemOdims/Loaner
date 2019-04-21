@@ -1,0 +1,161 @@
+@import url("./index.css");
+@import url('./forms.css');
+
+body{
+    margin: 0;
+    font-family: Raleway;
+    overflow-x: auto
+}
+a{
+    text-decoration: none;
+}
+.banner-sec {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff
+}
+main {
+    background: linear-gradient(185deg, #4066CB 85%, #fff calc(85% + 2px));
+}
+.nav-sub {
+    flex: 1
+}
+.welcome-phrase{
+    padding: 50px 0;
+    width: 43%;
+    margin: 0 0 0 0;
+}
+
+.container-item{
+  border: solid 0 ;
+  border-radius: 14px 0 14px 0;
+  box-shadow: 0 7px 12px #5c5959;
+  width: 100%;
+  background: rgba(255, 255, 255, 0)
+  /* height: 400px */
+}
+.container-item p{
+    padding: 3px 30px;
+    color: #494d52
+}
+.container-item p a{
+    color: #494d52;
+    font-size: 13px
+}
+.container-item h1 {
+    padding: 3px 30px;
+    font-size: 25px
+}
+
+input:invalid {
+    border-color: #900;
+    /* background: #fdd */
+}
+input:valid {
+    border-color: green
+}
+input:focus:invalid {
+    outline: none
+}
+.error {
+    width : 90%;
+    margin-top: 5px;
+    padding: 0;
+    font-size: 14px;
+    color: white;
+    background: rgba(153, 0, 0, 0.644);
+    border-radius: 3px;
+    box-sizing: border-box
+}
+.error.active {
+    padding: 0.3em
+}
+.sidebar {
+    height: 0;
+}
+
+.container-item p a:hover {
+    color:blue
+}
+
+/* for small screens */
+@media screen and (max-width: 600px){
+    .container-item {
+        width: 232%;
+
+    }
+    .banner-sec {
+        background-image: none
+    }
+    .welcome-phrase {
+        padding: 0
+    }
+    .form-button {
+        margin-top: 30px
+    }
+}
+
+/* For large screens */
+@media screen and (min-width: 2000px){
+    .nav-header {
+        flex: 4;
+        margin-top: 30px
+    }
+    .my-nav {
+        height: 130px
+    }
+    .banner-sec {
+        margin-top: 80px
+    }
+    .nav-item, .nav-header a, .fa-landmark {
+        font-size: 50px
+    }
+    .nav-sub {
+        margin-right: 70px;
+        flex: 1.2;
+    }
+    .container-item {
+        min-height: 80vh
+    }
+    .container-item h1 {
+        padding: 20px 30px;
+        font-size: 65px;
+    }
+    .form-group label {
+        padding: 100px 12px 3px 12px;
+        font-size: 48px;
+    }
+    .form-group input:not([type="submit"])[value=""] {
+        height: 45px;
+        transition: height 0.3s;
+    }
+    .form-group input:not([type="submit"]):focus,
+.form-group input:not([type="submit"]):active,
+.form-group input:not([type="submit"]):not([value=""]) {
+    height: 70px;
+    outline: none;
+    transition: height 0.3s;
+}
+    .h-22 {
+        border-width: 2.5px
+    }
+    input.form-controls {
+        border-bottom: solid 4px #071E55
+    }
+    .form-button {
+        font-size: 50px;
+        margin-top: 90px;
+    }
+    .welcome-phrase p{
+        font-size: 45px
+    }
+    .container-item p a {
+        font-size: 37px;
+    }
+    .contain {
+        min-height: 50vh
+    }
+    
+}
