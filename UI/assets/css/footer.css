@@ -1,0 +1,19 @@
+.my-footer {
+    background: #fff;
+    color: #405263;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+.my-footer p {
+    margin: 5px;
+}
+
+@media screen and (min-width: 2000px) {
+    .my-footer {
+        height: 50px;
+        font-size: 40px;
+    }
+}
