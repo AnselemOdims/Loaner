@@ -1,0 +1,863 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400, 300, 100, 500);
+
+.igFrameBar {
+    width: 400px;
+    height: 350px;
+    /* position: absolute; */
+    background: #fbb03b;
+    margin: 20% auto 0px auto;
+    transform: translate(0, -50%);
+    top: 80px;
+}
+
+.igFrameBar:before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+}
+
+.igFrameBar:after {
+    content: '';
+    width: 100%;
+    height: 50%;
+    background: transparent;
+    position: absolute;
+    top: 25%;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.igData {
+    width: 20px;
+    position: absolute;
+    bottom: 1px;
+    margin: 0px 0px 0px 0px;
+    z-index: 99;
+    float: left;
+}
+
+
+.igData1 {
+    background: #9baec8;
+    height: 0px;
+    left: 26.3636363636px;
+    -webkit-animation: showBar1 1.2s 0.1s forwards;
+    -moz-animation: showBar1 1.2s 0.1s forwards;
+    animation: showBar1 1.2s 0.1s forwards;
+}
+
+.igData2 {
+    background: #d9e1e8;
+    height: 0px;
+    left: 62.7272727273px;
+    -webkit-animation: showBar2 1.2s 0.2s forwards;
+    -moz-animation: showBar2 1.2s 0.2s forwards;
+    animation: showBar2 1.2s 0.2s forwards;
+}
+
+.igData3 {
+    background: #2b90d9;
+    height: 0px;
+    left: 99.0909090909px;
+    -webkit-animation: showBar3 1.2s 0.3s forwards;
+    -moz-animation: showBar3 1.2s 0.3s forwards;
+    animation: showBar3 1.2s 0.3s forwards;
+}
+
+.igData4 {
+    background: #8ec0e4;
+    height: 0px;
+    left: 135.4545454545px;
+    -webkit-animation: showBar4 1.2s 0.4s forwards;
+    -moz-animation: showBar4 1.2s 0.4s forwards;
+    animation: showBar4 1.2s 0.4s forwards;
+}
+
+.igData5 {
+    background: #cadbe9;
+    height: 0px;
+    left: 171.8181818182px;
+    -webkit-animation: showBar5 1.2s 0.5s forwards;
+    -moz-animation: showBar5 1.2s 0.5s forwards;
+    animation: showBar5 1.2s 0.5s forwards;
+}
+
+.igData6 {
+    background: #6aafe6;
+    height: 0px;
+    left: 208.1818181818px;
+    -webkit-animation: showBar6 1.2s 0.6s forwards;
+    -moz-animation: showBar6 1.2s 0.6s forwards;
+    animation: showBar6 1.2s 0.6s forwards;
+}
+
+.igData7 {
+    background: #d6ecfa;
+    height: 0px;
+    left: 244.5454545455px;
+    -webkit-animation: showBar7 1.2s 0.7s forwards;
+    -moz-animation: showBar7 1.2s 0.7s forwards;
+    animation: showBar7 1.2s 0.7s forwards;
+}
+
+.igData8 {
+    background: #a5dff9;
+    height: 0px;
+    left: 280.9090909091px;
+    -webkit-animation: showBar8 1.2s 0.8s forwards;
+    -moz-animation: showBar8 1.2s 0.8s forwards;
+    animation: showBar8 1.2s 0.8s forwards;
+}
+
+.igData9 {
+    background: #dae9f4;
+    height: 0px;
+    left: 317.2727272727px;
+    -webkit-animation: showBar9 1.2s 0.9s forwards;
+    -moz-animation: showBar9 1.2s 0.9s forwards;
+    animation: showBar9 1.2s 0.9s forwards;
+}
+
+.igData10 {
+    background: #d3e0f7;
+    height: 0px;
+    left: 353.6363636364px;
+    -webkit-animation: showBar10 1.2s 1s forwards;
+    -moz-animation: showBar10 1.2s 1s forwards;
+    animation: showBar10 1.2s 1s forwards;
+}
+
+.data1 {
+    left: 20px;
+    width: 50px;
+    -webkit-animation: showBar11 1.2s 0.8s forwards;
+    -moz-animation: showBar11 1.2s 0.8s forwards;
+    animation: showBar11 1.2s 0.8s forwards;
+}
+.data2 {
+    left: 80px;
+    width: 50px;
+    -webkit-animation: showBar12 1.2s 0.8s forwards;
+    -moz-animation: showBar12 1.2s 0.8s forwards;
+    animation: showBar12 1.2s 0.8s forwards;
+}
+.data3 {
+    left: 142px;
+    width: 50px;
+    -webkit-animation: showBar13 1.2s 0.8s forwards;
+    -moz-animation: showBar13 1.2s 0.8s forwards;
+    animation: showBar13 1.2s 0.8s forwards;
+}
+.data4 {
+    left: 200px;
+    width: 50px;
+    -webkit-animation: showBar14 1.2s 0.8s forwards;
+    -moz-animation: showBar14 1.2s 0.8s forwards;
+    animation: showBar14 1.2s 0.8s forwards;
+}
+.data5 {
+    left: 260px;
+    width: 50px;
+    -webkit-animation: showBar15 1.2s 0.8s forwards;
+    -moz-animation: showBar15 1.2s 0.8s forwards;
+    animation: showBar15 1.2s 0.8s forwards;
+}
+.data6 {
+    left: 330px;
+    width: 50px;
+    -webkit-animation: showBar16 1.2s 0.8s forwards;
+    -moz-animation: showBar16 1.2s 0.8s forwards;
+    animation: showBar16 1.2s 0.8s forwards;
+}
+.igData:before {
+    position: absolute;
+    top: -16px;
+    font-size: 12px;
+    color: #071e55;
+    font-family: Raleway;
+    font-weight: 300;
+}
+
+.igData1:before {
+    content: '50';
+}
+
+.igData2:before {
+    content: '40';
+}
+
+.igData3:before {
+    content: '70';
+}
+
+.igData4:before {
+    content: '22';
+}
+
+.igData5:before {
+    content: '35';
+}
+
+.igData6:before {
+    content: '40';
+}
+
+.igData7:before {
+    content: '25';
+}
+
+.igData8:before {
+    content: '36';
+}
+
+.igData9:before {
+    content: '88';
+}
+
+.igData10:before {
+    content: '62';
+}
+
+.igData:after {
+    position: absolute;
+    bottom: -55px;
+    transform: rotate(30deg);
+    color: #071e55;
+    font-size: 15px;
+    text-align: left;
+    font-family: 'roboto';
+    font-weight: 300;
+    width: 150px;
+}
+
+.igData1:after {
+    content: 'January';
+}
+
+.igData2:after {
+    content: 'February';
+}
+
+.igData3:after {
+    content: 'March';
+}
+
+.igData4:after {
+    content: 'April';
+}
+
+.igData5:after {
+    content: 'May';
+}
+
+.igData6:after {
+    content: 'June';
+}
+
+.igData7:after {
+    content: 'July';
+}
+
+.igData8:after {
+    content: 'August';
+}
+
+.igData9:after {
+    content: 'September';
+}
+
+.igData10:after {
+    content: 'October';
+}
+.data1:after {
+    content: 'Fixed Rate';
+}
+.data2:after {
+    content: 'Variable Rate';
+}
+.data3:after {
+    content: 'Co-Sign Loan';
+}
+.data4:after {
+    content: 'Payday Loans';
+}
+.data5:after {
+    content: 'Pawnshop Loans';
+}
+.data6:after {
+    content: 'Personal L.O.C';
+}
+.data1:before {
+    content: '40';
+}
+.data2:before {
+    content: '55';
+}
+.data3:before {
+    content: '25';
+}
+.data4:before {
+    content: '10';
+}
+.data5:before {
+    content: '30';
+}
+.data6:before {
+    content: '20';
+}
+.data1:before, .data2:before, .data3:before, .data4:before, .data5:before, .data6:before {
+    color: #071e55;
+    padding-left: 15px
+}
+.data1:after, .data2:after, .data3:after, .data4:after, .data5:after, .data6:after {
+    color: #071e55;
+    font-size: 15px
+}
+@-webkit-keyframes showBar1 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 50%;
+    }
+}
+@-webkit-keyframes showBar2 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 40%;
+    }
+}
+@-webkit-keyframes showBar3 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 70%;
+    }
+}
+@-webkit-keyframes showBar4 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 22%;
+    }
+}
+@-webkit-keyframes showBar5 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 35%;
+    }
+}
+@-webkit-keyframes showBar6 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 40%;
+    }
+}
+@-webkit-keyframes showBar7 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 85%;
+    }
+}
+@-webkit-keyframes showBar8 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 36%;
+    }
+}
+@-webkit-keyframes showBar9 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 88%;
+    }
+}
+@-webkit-keyframes showBar10 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 62%;
+    }
+}
+@-moz-keyframes showBar1 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 50%;
+    }
+}
+@-moz-keyframes showBar2 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 40%;
+    }
+}
+@-moz-keyframes showBar3 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 70%;
+    }
+}
+@-moz-keyframes showBar4 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 22%;
+    }
+}
+@-moz-keyframes showBar5 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 35%;
+    }
+}
+@-moz-keyframes showBar6 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 40%;
+    }
+}
+@-moz-keyframes showBar7 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 85%;
+    }
+}
+@-moz-keyframes showBar8 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 36%;
+    }
+}
+@-moz-keyframes showBar9 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 88%;
+    }
+}
+@-moz-keyframes showBar10 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 62%;
+    }
+}
+@keyframes showBar1 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 50%;
+    }
+}
+@keyframes showBar2 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 40%;
+    }
+}
+@keyframes showBar3 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 70%;
+    }
+}
+@keyframes showBar4 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 22%;
+    }
+}
+@keyframes showBar5 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 35%;
+    }
+}
+@keyframes showBar6 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 40%;
+    }
+}
+@keyframes showBar7 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 85%;
+    }
+}
+@keyframes showBar8 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 36%;
+    }
+}
+@keyframes showBar9 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 88%;
+    }
+}
+@keyframes showBar10 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 62%;
+    }
+}
+@-webkit-keyframes showBar11 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 82%;
+    }
+}
+@-webkit-keyframes showBar12 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 90%;
+    }
+}
+@-webkit-keyframes showBar13 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 55%;
+    }
+}
+@-webkit-keyframes showBar14 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 20%;
+    }
+}
+@-webkit-keyframes showBar15 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 67%;
+    }
+}
+@-webkit-keyframes showBar16 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 24%;
+    }
+}
+@-moz-keyframes showBar11 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 82%;
+    }
+}
+@-moz-keyframes showBar12 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 90%;
+    }
+}
+@-moz-keyframes showBar13 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 55%;
+    }
+}
+@-moz-keyframes showBar14 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 20%;
+    }
+}
+@-moz-keyframes showBar15 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 67%;
+    }
+}
+@-moz-keyframes showBar16 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 24%;
+    }
+}
+@keyframes showBar11 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 82%;
+    }
+}
+@keyframes showBar12 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 90%;
+    }
+}
+@keyframes showBar13 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 55%;
+    }
+}
+@keyframes showBar14 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 20%;
+    }
+}
+@keyframes showBar15 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 67%;
+    }
+}
+@keyframes showBar16 {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 24%;
+    }
+}
+@media screen and (max-width: 736px) {
+    
+    .chart {
+        width: 94%;
+    }
+    .igFrameBar {
+        width: 290px;
+        height: 300px;
+        margin: 25% 3px 0 3px;
+    }
+    .ch-1 {
+        margin-top: 150px;
+    }
+    .igData {
+        width: 23px;
+    }
+    .igData:before,
+    .igData:after {
+        font-size: 10px;
+    }
+    .igData1 {
+        left: 5px;
+    }
+    .igData2 {
+        left: 35px;
+    }
+    .igData3 {
+        left: 63px;
+    }
+    .igData4 {
+        left: 90px;
+    }
+    .igData5 {
+        left: 117px;
+    }
+    .igData6 {
+        left: 144px;
+    }
+    .igData7 {
+        left: 169px;
+    }
+    .igData8 {
+        left: 194px;
+    }
+    .igData9 {
+        left: 221px;
+    }
+    .igData10 {
+        left: 251px;
+    }
+    .data1,
+    .data2,
+    .data3,
+    .data3,
+    .data4,
+    .data5,
+    .data6 {
+        width: 35px;
+    }
+    .data1 {
+        left: 10px;
+    }
+    .data2 {
+        left: 55px;
+    }
+    .data3 {
+        left: 105px;
+    }
+    .data4 {
+        left: 155px;
+    }
+    .data5 {
+        left: 205px;
+    }
+    .data6 {
+        left: 250px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    
+    .chart {
+        width: 94%;
+    }
+    .igFrameBar {
+        width: 95%;
+        height: 600px;
+        margin: 19% 13px 0 30px;
+    }
+    .ch-1 {
+        margin-top: 150px;
+    }
+    .igData {
+        width: 80px;
+    }
+    .igData:before,
+    .igData:after {
+        font-size: 35px;
+        padding-left: 20px
+    }
+    .igData:before{
+        /* padding-left: 50px */
+    }
+    .igData1 {
+        left: 50px;
+    }
+    .igData2 {
+        left: 170px;
+    }
+    .igData3 {
+        left: 270px;
+    }
+    .igData4 {
+        left: 370px;
+    }
+    .igData5 {
+        left: 470px;
+    }
+    .igData6 {
+        left: 570px;
+    }
+    .igData7 {
+        left: 670px;
+    }
+    .igData8 {
+        left: 770px;
+    }
+    .igData9 {
+        left: 870px;
+    }
+    .igData10 {
+        left: 960px;
+    }
+    .data1,
+    .data2,
+    .data3,
+    .data3,
+    .data4,
+    .data5,
+    .data6 {
+        width: 150px;
+    }
+    .data1 {
+        left: 30px;
+    }
+    .data2 {
+        left: 200px;
+    }
+    .data3 {
+        left: 380px;
+    }
+    .data4 {
+        left: 560px;
+    }
+    .data5 {
+        left: 740px;
+    }
+    .data6 {
+        left: 910px;
+    }
+}
