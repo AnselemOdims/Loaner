@@ -64,6 +64,23 @@ span5.addEventListener('click', () => {
 cancel1.addEventListener('click', () => {
     modal5.style.display = 'none'
 })
+window.addEventListener('click', (event)=>{
+    if(event.target === modal1){
+        modal1.style.display = 'none'
+    }
+    else if(event.target === modal2){
+        modal3.style.display = 'none'
+    }
+    else if(event.target === modal3){
+        modal3.style.display = 'none'
+    }
+    else if(event.target === modal4){
+        modal4.style.display = 'none'
+    }
+    else if(event.target === modal5){
+        modal5.style.display = 'none'
+    }
+})
 let slider1 = document.getElementById('myRange1')
 let output1 = document.getElementById('amount1')
 let slider2 = document.getElementById('myRange2')
