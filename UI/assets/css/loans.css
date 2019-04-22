@@ -1,0 +1,124 @@
+@import url('./tables.css');
+@import url('./dashboard.css');
+@import url('./modal.css');
+
+
+.order-details {
+    margin: 73px 0 30px;
+}
+
+.banner-button {
+    margin: 0 0 0 10px ;
+    height: 25px;
+    font-size: 13px;
+    width: 45%;
+    padding: 10px 50px  30px 20px;
+    text-align: center;
+    box-shadow: 0 7px 10px #fff
+}
+.banner-button {
+   box-shadow: 0 7px 12px grey
+}
+.banner-button:hover {
+    background: #fbb03b
+}
+.table-wrapper {
+    margin: 0 auto;
+    width: 100%
+}
+table td {
+    font-size: 13px;
+    text-align: center
+}
+table th, .bttn2, .bttn3 {
+    font-size: 15px
+}
+table th:hover {
+    background: #4066cb
+}
+.ad-11, .h-44, .modal-header .green, .green{
+    color: #5fdf09;
+    font-weight: bold
+}
+.h-44, .h-55 {
+    margin-left: 150px;
+    text-transform: uppercase
+}
+.rd-11, .modal-header .red, .red {
+    color: red;
+    font-weight: bold
+}
+.pd-11, .h-55 {
+    color: rgb(223, 223, 61);
+    font-weight: bold
+}
+.modal-body {
+    flex-direction: column
+}
+.md-details {
+    display: flex;
+    justify-content: space-around
+}
+.md-con {
+    width: 45%;
+    height: unset;
+    margin-top: -10px
+}
+.md {
+    width: 80%;
+    text-align: center
+}
+.modal {
+    padding-top: unset
+}
+.h-33{
+    border-width: 0.1px;
+    width: 88%;
+    margin: 0 auto;
+    padding: 0
+}
+.modal-content h2{
+    font-size: 16px;
+    padding-left: 10px;
+    line-height: 16px;
+    color: #071e55
+}
+.modal-content p, .fa-window-close, .fa-clipboard-check{
+    font-size: 12px;
+    padding: 0;
+    color: #071e55
+}
+.bttn1 {
+    margin: 13px 0 13px 150px;
+    text-align: center
+}
+select {
+    width: 110px;
+    border: solid 1px #4066cb;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #071e55
+}
+select:focus {
+    outline: none
+}
+.btn-flex {
+    display: flex;
+    justify-content: center;
+    margin: 15px 
+}
+.bttn2{
+    background: #fff;
+    border: solid 1px red;
+    color: red
+}
+.bttn2:hover{
+    background: red;
+    color: #fff
+}
+.bttn6 {
+    margin: 0 400px 0 0;
+    width: 90px;
+    text-align: center;
+    padding-bottom: 40px
+}
