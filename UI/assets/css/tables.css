@@ -18,7 +18,7 @@
     color: green;
 }
 .table-wrapper {
-    overflow-x: hidden;
+    overflow-x: auto;
     padding-bottom: 35px;
 }
 
