@@ -1,0 +1,365 @@
+@import url('./index.css');
+@import url('./chart.css');
+/* @import url('./client.css'); */
+
+.dashboard-wrapper {
+    background: #4066cb;
+}
+.nav-header {
+    flex: 13;
+}
+.admin-icons {
+    display: flex;
+    justify-content: space-between;
+}
+.card-header {
+    font-size: 13px;
+    color: #071e55;
+}
+.icon-btn {
+    margin: 15px;
+    border-radius: 50%;
+    border: solid 0px #fff;
+    width: 30px;
+    height: 30px;
+    color: #4066cb;
+    cursor: pointer;
+}
+.icon-btn:focus {
+    outline: none;
+}
+.icon-btn .badge {
+    position: absolute;
+    bottom: 33px;
+    padding: 3px 3px;
+    border-radius: 50%;
+    background-color: #fbb03b;
+    color: white;
+    font-size: 7px;
+}
+.icon-btn .fas {
+    font-size: 16px;
+    padding: 0;
+}
+.icon-btn .fas:hover {
+    font-size: 18px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+.side-nav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #4066cb;
+    overflow-x: hidden;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 350px */
+    text-align: center;
+    color: #fff;
+    justify-content: center;
+    align-items: center
+}
+
+.side-links a {
+    padding: 23px 8px 23px 10px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #4066cb;
+    display: block;
+    background: #fff;
+}
+.side {
+    background: none;
+    padding: none;
+    margin: 0;
+    color: #fff;
+    font-size: 13px;
+}
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: green;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.side-links a:hover {
+    color: #f1f1f1;
+    background: #fbb03b;
+}
+.side:hover {
+    color: #fbb03b;
+    background: #4066cb;
+}
+img {
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    border: solid 0 #fff;
+    margin-top: 30px;
+}
+.side-links {
+    margin: 30px 0 0 0;
+}
+.main-content {
+    margin: 65px 0 45px 207px;
+    font-size: 16px;
+    padding: 0px 10px;
+    border: solid 3px #fff;
+    width: 81%;
+    background: #fff;
+    box-shadow: 0 10px 12px #5c5959;
+    min-height: 100vh;
+    -webkit-animation: pop-in 0.7s ease-out;
+    animation: pop-in 0.7s ease-out;
+}
+
+.card-flex {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.cards {
+    border: solid 1px #fff;
+    background: #fff;
+    box-shadow: 0 7px 12px #5c5959;
+    margin: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    /* height: 200px */
+}
+.cards:hover {
+    box-shadow: 0 7px 12px grey;
+}
+.cd-33 {
+    box-shadow: none;
+    font-size: 12px;
+    background: #fff;
+    border: none;
+    color: #071e55;
+    width: 60%;
+    height: 120px;
+    margin: 20px;
+    border-radius: 3px;
+}
+.fa-bullhorn,
+.fa-check-square,
+.fa-window-close,
+.fa-sync-alt {
+    font-size: 35px;
+    color: #4066cb;
+    margin: 30px 10px 0 0;
+}
+.side-links .fa-bullhorn {
+    font-size: 18px;
+    color: #4066cb;
+    margin: 0;
+}
+.cards h3 {
+    /* background: rgb(224, 219, 219); */
+    line-height: 30px;
+    font-size: 14px;
+    margin-left: 10px;
+    width: 95%;
+    color: #071e55;
+}
+.cards h3 span,
+.cards h3 i {
+    font-size: 25px;
+    color: #4066cb;
+}
+.cash-flex {
+    display: flex;
+    justify-content: space-between;
+}
+hr {
+    color: #071e55;
+    box-sizing: content-box;
+    height: 1px;
+    font-weight: bold;
+    width: 98%;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+.cards h1 {
+    font-size: 17px;
+    color: #4066cb;
+}
+.cards h2 {
+    font-size: 14px;
+    color: #4066cb;
+}
+.card-info {
+    display: flex;
+}
+.chart {
+    height: 320px;
+    width: 46%;
+    margin-top: 60px;
+}
+.chart h3 {
+    background: #fff;
+    text-align: center;
+}
+
+@media screen and (max-width: 736px) {
+    .side-nav {
+        width: unset;
+        position: unset;
+    }
+    .side-nav a {
+        font-size: 18px;
+    }
+    .nav-header {
+        flex: 4;
+    }
+    .main-content {
+        margin: 5px;
+        width: 90%;
+    }
+    .cards {
+        height: 280px;
+    }
+    .card-flex {
+        flex-direction: column;
+    }
+    .chart {
+        width: 94%;
+    }
+    .nav-header a {
+        font-size: 18px;
+    }
+}
+
+/* for large screens */
+@media screen and (min-width: 1025px) {
+    body {
+        overflow-x: auto;
+    }
+}
+@media screen and (min-width: 2000px) {
+    .my-nav {
+        padding: 26px 30px;
+    }
+    .main-content {
+        width: 90%;
+        margin: 65px 0 45px 500px;
+    }
+    .side-nav {
+        width: 493px;
+    }
+    .card-flex {
+        width: 99%;
+    }
+    .cards {
+        height: 750px;
+    }
+    .ch-2 {
+        height: 750px;
+        width: 541px;
+    }
+
+    .card-info {
+        margin-bottom: 430px;
+        font-size: 30px;
+    }
+    .cards h1 {
+        font-size: 64px;
+        margin-bottom: 120px;
+    }
+    .cards h2 {
+        font-size: 34px;
+    }
+    .cards h3 {
+        font-size: 52px;
+    }
+    .fa-bullhorn,
+    .fa-check-square,
+    .fa-window-close,
+    .fa-sync-alt {
+        font-size: 86px;
+    }
+    .card-header {
+        font-size: 40px;
+    }
+    .cards h3 span,
+    .cards h3 i {
+        font-size: 60px;
+    }
+    img {
+        height: 260px;
+        width: 206px;
+        margin-top: 275px;
+    }
+    .side-nav h3,
+    p {
+        margin-top: 90px;
+        font-size: 48px;
+    }
+    .side {
+        font-size: 33px;
+    }
+    .dot {
+        width: 20px;
+        height: 20px;
+    }
+    .side-links {
+        height: 500px;
+        margin: 60px 0 0 0;
+    }
+    .side-links a {
+        font-size: 40px;
+        padding: 101px 8px 100px 8px;
+    }
+    .icon-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 18px;
+    }
+    .icon-btn .fas {
+        font-size: 50px;
+    }
+    .icon-btn .badge {
+        font-size: 25px;
+    }
+}
