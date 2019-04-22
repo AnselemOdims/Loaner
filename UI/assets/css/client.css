@@ -1,0 +1,483 @@
+@import url('./dashboard.css');
+@import url('./sign_up.css');
+@import url('./modal.css');
+@import url('./tables.css');
+
+
+body {
+    overflow-x: auto
+}
+.dashboard-wrapper {
+    background: #4066cb;
+    
+}
+.dot {
+    /* border: solid 1px green; */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: green;
+    display: inline-block;
+    margin-right: 5px;
+}
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 15px 0 10px;
+    font-size: 14px;
+}
+.details span {
+    margin: 8px 0 5px;
+}
+.side-nav a {
+    padding: 0;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    display: block;
+    background: none;
+    border: solid 1px #fbb03b;
+    padding: 5px;
+    border-radius: 2px;
+    margin: 30px 30px 10px;
+}
+
+.card-wrapper {
+    width: 98%;
+    margin: 0 auto;
+    border: solid 0;
+    box-shadow: 0 7px 12px #5c5959;
+    background: #fbb03b;
+}
+.card-wrapper p {
+    font-size: 14px;
+}
+.card-header {
+    color: #071e55;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.cards {
+    box-shadow: 0 5px 8px #5c5959;
+}
+.cards h3 {
+    padding: 10px 10px 0;
+    color: #071e55;
+}
+.h-22 {
+    color: #071e55;
+    box-sizing: content-box;
+    height: 1px;
+    font-weight: bold;
+    width: 98%;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 0.5px; 
+}
+
+.banner-button {
+    margin: 10px 0 5px 10px;
+    box-shadow: none;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 2px;
+}
+
+.banner-button:hover {
+    background: #fbb03b;
+}
+
+.form-flex {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+.select-flex {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+input.form-controls {
+    width: 120%;
+    padding: 0;
+    margin-right: 80px;
+}
+/* .select-flex {
+    display: flex
+} */
+.styled-select {
+    height: 29px;
+    overflow: hidden;
+    width: 330px;
+    margin: 10px 0 12px 60px;
+    background-color: #4066cb;
+}
+.styled-select select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 29px;
+    padding: 5px;
+    width: 330px;
+    color: #fff;
+}
+.h-11 {
+    margin: 20px 135px 0 0;
+}
+.h-12 {
+    margin: 20px 90px 0 0;
+}
+.h-13 {
+    margin: 20px 165px 0 0;
+}
+.semi-square {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.styled-select select option {
+    background-color: #fbb03b;
+}
+.form-button {
+    background: #4066cb;
+    margin: 5px 0 0 60px;
+    height: 28px;
+    font-size: 14px;
+    text-align: center;
+    width: 90%;
+}
+.slidecontainer {
+    width: 100%;
+    margin: 10px 0 0 170px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 75%;
+    height: 10px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    border-radius: 2px;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 14px;
+    background: #4066cb;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 14px;
+    background: #4066cb;
+    cursor: pointer;
+}
+
+.sidebar {
+    width: 0;
+    height: 90%;
+    left: 5px;
+    position: fixed;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar h3,
+.sidebar p {
+    font-size: 13px;
+    margin: -18px 0 50px 30px;
+}
+a.side {
+    font-size: 13px;
+    border: solid 1px #fbb03b;
+    width: 80px;
+    height: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+@media screen and (max-width: 736px) {
+    .details {
+        margin: 0px 0 0 19px;
+        font-size: 11px;
+    }
+    .side-nav {
+        width: unset;
+        position: unset;
+    }
+    .side-nav a {
+        margin: -15px 30px 10px 49px;
+        width: 50%;
+    }
+    .sidebar {
+        width: 0;
+    }
+    .sidebar a {
+        font-size: 13px;
+        padding: 8px;
+    }
+    img {
+        margin: 62px 0 0px 50px;
+        height: 80px;
+    }
+    .banner-button {
+        width: 60%;
+        height: 50px;
+    }
+    a#del-btn {
+        margin: 10px 0 0 55px;
+    }
+    .main-content {
+        margin: 62px 0 36px 5px;
+        width: 90%;
+    }
+    .cards {
+        height: unset;
+    }
+    .card-flex {
+        flex-direction: column;
+    }
+    .cards h3,
+    .align-center {
+        font-size: 15px;
+        color: #071e55;
+    }
+    .cards p {
+        font-size: 13px;
+    }
+    .card-header {
+        font-size: 9px;
+    }
+    .openbtn {
+        margin: 8px 0 0 4px;
+        padding: 3px 9px;
+    }
+    header h4 {
+        font-size: 11px;
+    }
+    .nav-sub {
+        flex: 3;
+    }
+    .modal-content {
+        width: 90%;
+        min-height: 100vh;
+    }
+    .modal-content h2 {
+        font-size: 11px;
+        padding: 0px;
+        line-height: 18px;
+    }
+    .form-flex {
+        width: 85%;
+    }
+    input.form-controls {
+        width: 100%;
+    }
+    form label,
+    .h-11 {
+        font-size: 10px;
+    }
+    .styled-select {
+        width: 130px;
+    }
+    .h-13 {
+        margin: 20px 20px 0 0;
+    }
+    .select-flex {
+        width: 60%;
+    }
+    .h-11 {
+        margin: 20px 58px 0 0;
+    }
+    .styled-select select option {
+        width: 130px;
+    }
+    .styled-select select {
+        width: 130px;
+        font-size: 12px;
+    }
+    .slidecontainer {
+        margin: 10px 0 0 95px;
+    }
+    .form-button {
+        margin: 5px 0 0 28px;
+        font-size: 12px;
+        width: 84%;
+    }
+    .md-con {
+        min-height: 12vh;
+        height: 112px;
+    }
+    .md-suc {
+        min-height: 6vh;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    body {
+        overflow-x: auto;
+    }
+    .side-nav {
+        width: 480px;
+    }
+    .side-nav h3,
+    p {
+        margin-top: 0px;
+    }
+    .card-wrapper p {
+        font-size: 35px;
+    }
+    .banner-button {
+        padding: 40px 40px 70px;
+        font-size: 46px;
+        text-align: center;
+    }
+    .nav-sub {
+        flex: 1;
+    }
+    .my-nav {
+        height: 160px;
+    }
+    .main-content {
+        width: 90%;
+        margin: 171px 0 110px 500px;
+    }
+    .card-header {
+        font-size: 40px;
+    }
+    .nav-sub h4,
+    .icon-btn {
+        font-size: 40px;
+    }
+
+    .icon-btn .badge {
+        bottom: 84px;
+    }
+    .card-wrapper h3 {
+        font-size: 47px;
+    }
+    .side-nav a {
+        font-size: 48px;
+        padding: 22px;
+    }
+    .details {
+        margin: 105px 0 123px;
+        font-size: 40px;
+    }
+    .modal {
+        height: 100%;
+    }
+    .modal-content {
+        width: 93%;
+        min-height: 50vh;
+    }
+    .modal-content h2 {
+        font-size: 53px;
+        padding: 15px;
+    }
+    .close {
+        font-size: 90px;
+    }
+    .form-groups input:not([type='submit'])[value=''] {
+        width: 143%;
+        border-bottom: solid 2px #071e55;
+    }
+    form label,
+    .h-11 {
+        font-size: 50px;
+    }
+    .form-flex {
+        margin: 50px 0;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-groups input:not([type='submit'])[value=''] {
+        height: 40px;
+        transition: height 0.3s;
+    }
+
+    .form-groups input:not([type='submit']):focus,
+    .form-groups input:not([type='submit']):active,
+    .form-groups input:not([type='submit']):not([value='']) {
+        height: 80px;
+        outline: none;
+        transition: height 0.3s;
+    }
+    input.form-controls {
+        font-size: 50px;
+    }
+    .h-11 {
+        margin: 20px 293px 0 0;
+    }
+    .styled-select {
+        height: 80px;
+        width: 490px;
+    }
+    .styled-select select {
+        border: none;
+        font-size: 40px;
+        height: 80px;
+        /* padding: 10px; */
+        width: 490px;
+    }
+    .styled-select select option {
+        width: 10px;
+        height: 80px;
+        font-size: 12px;
+    }
+    .slider {
+        height: 30px;
+    }
+    .slider::-webkit-slider-thumb {
+        appearance: none;
+        width: 60px;
+        height: 55px;
+
+        cursor: pointer;
+    }
+    .form-button {
+        font-size: 53px;
+        height: 125px;
+        width: 88%;
+    }
+    .md-con,
+    .md-suc {
+        width: 93%;
+        min-height: 16vh;
+    }
+    .md-con h2 {
+        font-size: 45px;
+    }
+    .md-btn {
+        font-size: 52px;
+        cursor: pointer;
+    }
+}
+
+
