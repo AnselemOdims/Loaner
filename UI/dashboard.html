@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="assets/css/dashboard.css" />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <header>
+            <div class="banner">
+                <nav class="my-nav">
+                    <div class="nav-header">
+                        <a href=""><i class="fas fa-landmark"></i> Loaner</a>
+                    </div>
+                    <div class="nav-sub" id="sub_nav">
+                        <div class="admin-icons">
+                            <button class="icon-btn" onclick="openNav()">
+                                <span><i class="fas fa-envelope"></i></span
+                                ><span class="badge">12</span>
+                            </button>
+                            <button class="icon-btn" onclick="openNav()">
+                                <span><i class="fas fa-bell"></i></span
+                                ><span class="badge">11</span>
+                            </button>
+                            <button class="icon-btn" onclick="openNav()">
+                                <span><i class="fas fa-flag"></i></span
+                                ><span class="badge">10</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="dashboard-wrapper" id="side-flex">
+        <div class="side-nav">
+            <div class="image">
+                <img
+                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads01&accessoriesType=Prescription01&hairColor=Black&facialHairType=BeardLight&facialHairColor=Black&clotheType=Hoodie&clotheColor=Blue02&eyeType=Default&eyebrowType=Default&mouthType=Smile&skinColor=Brown"
+                />
+            </div>
+            <h3>Admin</h3>
+            <p><span class="dot"></span>Online</p>
+            <p>
+                <a href="./sign_in.html" class="side">Logout</a>
+            </p>
+            <div class="side-links">
+                <a href="#about"
+                    ><div class="link active">
+                        <i class="fas fa-chalkboard"></i> Dashboard
+                    </div></a
+                >
+
+                <a href="./loan-apps.html"
+                    ><div class="link">
+                        <i class="fas fa-bullhorn"></i> Loan Requests
+                    </div></a
+                >
+                <a href="./loan-status.html"
+                    ><div class="link">
+                        <i class="fas fa-layer-group"></i> Loan Status
+                    </div></a
+                >
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="card-header">
+                <h2>Thursday, 28th February, 2019</h2>
+            </div>
+            <div class="card-flex">
+                <div class="cards ch-2">
+                    <div class="card-info">
+                        <div class="cd-33">
+                            <h1>TOTAL REQUESTS</h1>
+                            <h2>180 LOAN APPLICATIONS</h2>
+                        </div>
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <hr class="h-22" />
+                    <h3 class="cash-flex">
+                        <i class="fas fa-cash-register"></i
+                        ><span>&#8358;7,830,000</span>
+                    </h3>
+                </div>
+                <div class="cards ch-2">
+                    <div class="card-info">
+                        <div class="cd-33">
+                            <h1>APPROVED REQUESTS</h1>
+                            <h2>85 LOAN APPLICATIONS</h2>
+                        </div>
+                        <i class="fas fa-check-square"></i>
+                    </div>
+                    <hr class="h-22" />
+                    <h3 class="cash-flex">
+                        <i class="fas fa-cash-register"></i
+                        ><span>&#8358;3,340,000</span>
+                    </h3>
+                </div>
+                <div class="cards ch-2">
+                    <div class="card-info">
+                        <div class="cd-33">
+                            <h1>REJECTED REQUESTS</h1>
+                            <h2>35 LOAN APPLICATIONS</h2>
+                        </div>
+                        <i class="fas fa-window-close"></i>
+                    </div>
+                    <hr class="h-22" />
+                    <h3 class="cash-flex">
+                        <i class="fas fa-cash-register"></i>
+                        <span>&#8358;1,170,000</span>
+                    </h3>
+                </div>
+                <div class="cards ch-2">
+                    <div class="card-info">
+                        <div class="cd-33">
+                            <h1>PENDING REQUESTS</h1>
+                            <h2>60 LOAN APPLICATIONS</h2>
+                        </div>
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <hr class="h-22" />
+                    <h3 class="cash-flex">
+                        <i class="fas fa-cash-register"></i
+                        ><span>&#8358;3,320,000</span>
+                    </h3>
+                </div>
+            </div>
+
+            <div class="card-flex">
+                <div class="cards chart ch-1">
+                    <h3>LOAN REQUESTS ACTIVITY</h3>
+                    <hr />
+                    <div class="igFrameBar">
+                        <div class="igData igData1 data1"></div>
+                        <div class="igData igData2 data2"></div>
+                        <div class="igData igData3 data3"></div>
+                        <div class="igData igData4 data4"></div>
+                        <div class="igData igData5 data5"></div>
+                        <div class="igData igData6 data6"></div>
+                    </div>
+                </div>
+                <div class="cards chart">
+                    <h3>MONTHLY REQUESTS ACTIVITY</h3>
+                    <hr />
+                    <div class="igFrameBar">
+                        <div class="igData igData1"></div>
+                        <div class="igData igData2"></div>
+                        <div class="igData igData3"></div>
+                        <div class="igData igData4"></div>
+                        <div class="igData igData5"></div>
+                        <div class="igData igData6"></div>
+                        <div class="igData igData7"></div>
+                        <div class="igData igData8"></div>
+                        <div class="igData igData9"></div>
+                        <div class="igData igData10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <footer class="my-footer text-center">
+            <p>&copy; 2019 Loaner Limited</p>
+        </footer>
+        <script src="assets/js/index.js"></script>
+    </body>
+</html>
