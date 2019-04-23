@@ -1,0 +1,32 @@
+{
+  "name": "loaner",
+  "version": "1.0.0",
+  "description": "Loaner is an online lending platform that provides short term soft loans to individuals. This\r helps solve problems of financial inclusion as a way to alleviate poverty and empower low\r income earners.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "loaner",
+    "loan",
+    "quick",
+    "credit",
+    "lending",
+    "Andela",
+    "ADC",
+    "challenge"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnselemOdims/Loaner.git"
+  },
+  "author": "Anselem Odimegwu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AnselemOdims/Loaner/issues"
+  },
+  "homepage": "https://github.com/AnselemOdims/Loaner#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
