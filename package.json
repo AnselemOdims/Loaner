@@ -4,6 +4,8 @@
   "description": "Loaner is an online lending platform that provides short term soft loans to individuals. This\r helps solve problems of financial inclusion as a way to alleviate poverty and empower low\r income earners.",
   "main": "server.js",
   "scripts": {
+    "dev-start": "nodemon --exec babel-node server.js",
+    "lint": "eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -30,8 +32,13 @@
     "express": "^4.16.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.17.2"
+    "eslint-plugin-import": "^2.17.2",
+    "nodemon": "^1.18.11"
   }
 }
