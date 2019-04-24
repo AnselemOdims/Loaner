@@ -7,7 +7,8 @@
     "start": "babel-node server.js",
     "dev-start": "nodemon --exec babel-node server.js",
     "lint": "eslint ./server --fix",
-    "test": "nyc mocha --require @babel/register  ./server/tests/ --timeout 10000 --exit"
+    "test": "nyc mocha --require @babel/register  ./server/tests/ --timeout 10000 --exit",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [
     "loaner",
@@ -44,6 +45,7 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
     "mocha": "^6.1.4",
-    "nodemon": "^1.18.11"
+    "nodemon": "^1.18.11",
+    "nyc": "^14.0.0"
   }
 }
