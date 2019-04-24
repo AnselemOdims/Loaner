@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
-
 import express from 'express';
 import bodyParser from 'body-parser';
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
-/*eslint-disable no-restricted-globals*/
+/* eslint-disable no-restricted-globals */
 
 // open side navigation on small screens
 const _top = document.querySelector('.top');
