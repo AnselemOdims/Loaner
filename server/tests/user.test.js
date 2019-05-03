@@ -258,3 +258,112 @@ describe('POST Sign Up Authentication', () => {
       });
   });
 });
+
+// Login Tests
+describe('POST Login Aunthentication', ()=> {
+  it('should login a user if details are correct', (done)=> {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'anthony@gmail.com',
+        password: '12345678',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.equal('Login Successful!');
+        done(err);
+      });
+  })
+  it('should return error if the email is empty', (done)=> {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: '',
+        password: '12345678',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('The email you provided is not valid');
+        done(err);
+      });
+  })
+  it('should return error if the password is empty', (done)=> {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'anthony@gmail.com',
+        password: '',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('You have to provide a password');
+        done(err);
+      });
+  })
+  it('should return error if the password is not up to 8 characters', (done)=> {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'anthony@gmail.com',
+        password: '12345',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Password length must be 8 characters and above');
+        done(err);
+      });
+  })
+  it('should return error if the email is invalid', (done)=> {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'anthony*gmail#com',
+        password: '12345',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('The email you provided is not valid');
+        done(err);
+      });
+  })
+  it('should return error if the provided password in incorrect', (done)=> {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'anthony@gmail.com',
+        password: '123452816',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Sorry, the email/password you provided is incorrect');
+        done(err);
+      });
+  })
+  it('should return error if its not a registered user', (done)=> {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'john@gmail.com',
+        password: '123452816',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Sorry, the email/password you provided is incorrect');
+        done(err);
+      });
+  })
+})

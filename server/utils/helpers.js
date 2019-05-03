@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 dotenv.config();
 
 const secretKey = process.env.SECRET_KEY;
+const adminPassword = process.env.ADMIN_PASSWORD;
 
 /**
  * @class Helpers
@@ -20,6 +21,27 @@ class Helpers {
   static async hashPassword(password) {
     const hashed = await bcrypt.hash(password, 10);
     return hashed;
+  }
+
+  /**
+   * @method adminPassword
+   * @description Hashes the Admin password using bcrypt
+   * @returns {srting} - Hashed password
+   */
+  static adminPassword() {
+    const hashed = bcrypt.hashSync(adminPassword, 10);
+    return hashed;
+  }
+
+  /**
+   * @method verifyPassword
+   * @description Verifies request password against hashed user password
+   * @param {string} password - The request password
+   * @param {string} hash - The hashed password
+   */
+  static async verifyPassword(password, hash) {
+    const verified = await bcrypt.compare(password, hash);
+    return verified;
   }
 
   /**

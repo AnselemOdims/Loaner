@@ -12,7 +12,7 @@ class UserValidation {
    * @decription Validates New User Inputs
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
-   * @param {object} next - The Next Function
+   * @param {function} next - The Next Function
    */
   static async validateRegisterDetails(req, res, next) {
     const validate = await Helpers.validate();
@@ -40,7 +40,7 @@ class UserValidation {
    * @description Validates The email and password Details
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
-   * @param {object} next - The Next Function
+   * @param {function} next - The Next Function
    */
   static async validateDetails(req, res, next) {
     const validate = await Helpers.validate();
@@ -64,7 +64,7 @@ class UserValidation {
    * @description Validates Already Existing User
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
-   * @param {object} next - The Next Function
+   * @param {function} next - The Next Function
    */
   static async validateExistingUser(req, res, next) {
     let error;
@@ -75,6 +75,26 @@ class UserValidation {
     }
     if (error) {
       return res.status(409).json({ status: 409, error });
+    }
+    return next();
+  }
+
+  /**
+   * @method validateLogin
+   * @description Validates the login details
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @param {function} next - The next function
+   */
+  static async validateLogin(req, res, next) {
+    const { email, password } = req.body;
+    const users = await User.findByMail(email);
+    if (!users) {
+      return res.status(400).json({ status: 400, error: 'Sorry, the email/password you provided is incorrect' });
+    }
+    const verifyPassword = await Helpers.verifyPassword(password, users.password);
+    if (!verifyPassword) {
+      return res.status(400).json({ status: 400, error: 'Sorry, the email/password you provided is incorrect' });
     }
     return next();
   }

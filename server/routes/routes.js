@@ -12,5 +12,10 @@ router.post(
   UserValidation.validateDetails,
   UserController.userRegister,
 );
-
+router.post(
+  '/auth/login',
+  UserValidation.validateDetails,
+  UserValidation.validateLogin,
+  UserController.userLogin,
+);
 export default router;
