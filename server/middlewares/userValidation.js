@@ -117,8 +117,7 @@ class UserValidation {
       error = 'The email you provided is not valid';
     } else if (!user) {
       error = 'No User with that email';
-    }
-    else if (!arr.includes(status)) {
+    } else if (!arr.includes(status)) {
       error = 'The status can either be verified or unverified';
     }
     if (error) {

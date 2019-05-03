@@ -23,7 +23,6 @@ class AuthenticateUser {
       return res.status(500).json({ status: 500, error: 'Failed to authenticate token' });
     }
     const { isAdmin } = decoded.payload;
-    console.log(isAdmin)
     if (isAdmin === false) {
       return res.status(403).json({
         status: 403,

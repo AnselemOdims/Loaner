@@ -21,7 +21,7 @@ class User {
   /**
    * @method createUser
    * @description A model for creating new users
-   * @returns The created user information
+   * @returns {object} - The created user information
    */
   async createUser(data) {
     const {
@@ -44,15 +44,36 @@ class User {
     return userInfo;
   }
 
+  /**
+   * @method findByMail
+   * @description - method for finding a user by their email
+   * @returns {object} - The user that matches that passed email
+   */
   async findByMail(mail) {
     const user = this.users.find(user => user.email === mail);
     return user;
   }
 
+  /**
+   * @method verify
+   * @description - method used to verify the user
+   * @param {string} mail - The User's email
+   * @param {string} data - The Request status
+   * @returns {object} - The verified user
+   */
   async verify(mail, data) {
     const user = await this.findByMail(mail);
     user.status = data;
     return user;
+  }
+
+  /**
+   * @method getAll
+   * @description - method to get all users
+   * @returns {object} - All users
+   */
+  async getAll() {
+    return this.users;
   }
 }
 
