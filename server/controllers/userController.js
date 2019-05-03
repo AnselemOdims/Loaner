@@ -45,6 +45,24 @@ class UserController {
       data: user,
     });
   }
+
+  /**
+   * @method verifyUser
+   * @description Verifies the user
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} -JSON API Response
+   */
+  static async verifyUser(req, res) {
+    const { email } = req.params;
+    const { status } = req.body;
+    const verifiedUser = await User.verify(email, status);
+    return res.status(200).json({
+      status: 200,
+      message: 'User Verification Successful!',
+      data: verifiedUser,
+    });
+  }
 }
 
 export default UserController;

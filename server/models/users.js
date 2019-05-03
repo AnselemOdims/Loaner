@@ -48,6 +48,12 @@ class User {
     const user = this.users.find(user => user.email === mail);
     return user;
   }
+
+  async verify(mail, data) {
+    const user = await this.findByMail(mail);
+    user.status = data;
+    return user;
+  }
 }
 
 export default new User();

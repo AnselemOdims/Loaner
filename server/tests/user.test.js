@@ -2,11 +2,15 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../../server';
+import dotenv from 'dotenv';
 
 chai.use(chaiHttp);
 
-const { expect } = chai;
+dotenv.config();
 
+const { expect } = chai;
+const adminPassword = process.env.ADMIN_PASSWORD;
+let userToken;
 // Handle Sign Up
 describe('POST Sign Up Authentication', () => {
   it('should register a new user if details are correct', (done) => {
@@ -260,8 +264,8 @@ describe('POST Sign Up Authentication', () => {
 });
 
 // Login Tests
-describe('POST Login Aunthentication', ()=> {
-  it('should login a user if details are correct', (done)=> {
+describe('POST Login Aunthentication', () => {
+  it('should login a user if details are correct', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
@@ -270,13 +274,14 @@ describe('POST Login Aunthentication', ()=> {
         password: '12345678',
       })
       .end((err, res) => {
+        userToken = res.body.token;
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
         expect(res.body.message).to.equal('Login Successful!');
         done(err);
       });
-  })
-  it('should return error if the email is empty', (done)=> {
+  });
+  it('should return error if the email is empty', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
@@ -290,8 +295,8 @@ describe('POST Login Aunthentication', ()=> {
         expect(res.body.error).to.equal('The email you provided is not valid');
         done(err);
       });
-  })
-  it('should return error if the password is empty', (done)=> {
+  });
+  it('should return error if the password is empty', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
@@ -305,8 +310,8 @@ describe('POST Login Aunthentication', ()=> {
         expect(res.body.error).to.equal('You have to provide a password');
         done(err);
       });
-  })
-  it('should return error if the password is not up to 8 characters', (done)=> {
+  });
+  it('should return error if the password is not up to 8 characters', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
@@ -320,8 +325,8 @@ describe('POST Login Aunthentication', ()=> {
         expect(res.body.error).to.equal('Password length must be 8 characters and above');
         done(err);
       });
-  })
-  it('should return error if the email is invalid', (done)=> {
+  });
+  it('should return error if the email is invalid', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
@@ -335,8 +340,8 @@ describe('POST Login Aunthentication', ()=> {
         expect(res.body.error).to.equal('The email you provided is not valid');
         done(err);
       });
-  })
-  it('should return error if the provided password in incorrect', (done)=> {
+  });
+  it('should return error if the provided password in incorrect', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
@@ -350,8 +355,8 @@ describe('POST Login Aunthentication', ()=> {
         expect(res.body.error).to.equal('Sorry, the email/password you provided is incorrect');
         done(err);
       });
-  })
-  it('should return error if its not a registered user', (done)=> {
+  });
+  it('should return error if its not a registered user', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
@@ -365,5 +370,109 @@ describe('POST Login Aunthentication', ()=> {
         expect(res.body.error).to.equal('Sorry, the email/password you provided is incorrect');
         done(err);
       });
-  })
-})
+  });
+});
+
+describe('PATCH User status', () => {
+  let adminToken;
+  before((done) => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({ email: 'bayo@admin.com', password: `${adminPassword}` })
+      .end((err, res) => {
+        adminToken = res.body.token;
+        done(err);
+      });
+  });
+  it('should return the verified user if details are correct', (done) => {
+    chai
+      .request(app)
+      .patch('/api/v1/anthony@gmail.com/verify')
+      .set('x-access-token', `${adminToken}`)
+      .send({ status: 'verified' })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.be.equal('User Verification Successful!');
+        expect(res.body.data.status).to.be.equal('verified');
+        done(err);
+      });
+  });
+  it('should return error if authorization header is incorrect', (done) => {
+    chai
+      .request(app)
+      .patch('/api/v1/anthony@gmail.com/verify')
+      .set('x-accss-toke', `${adminToken}`)
+      .send({ status: 'verified' })
+      .end((err, res) => {
+        expect(res).to.have.status(401);
+        expect(res.body.status).to.be.equal(401);
+        expect(res.body.error).to.be.equal('No token provided');
+        done(err);
+      });
+  });
+  it('should return error if authorization token is empty', (done) => {
+    chai
+      .request(app)
+      .patch('/api/v1/anthony@gmail.com/verify')
+      .set('x-access-token', '')
+      .send({ status: 'verified' })
+      .end((err, res) => {
+        expect(res).to.have.status(401);
+        expect(res.body.status).to.be.equal(401);
+        expect(res.body.error).to.be.equal('No token provided');
+        done(err);
+      });
+  });
+  it('should return error if a token is not authentic is passed', (done) => {
+    chai
+      .request(app)
+      .patch('/api/v1/anthony@gmail.com/verify')
+      .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6InjeyRYB57')
+      .send({ status: 'verified' })
+      .end((err, res) => {
+        expect(res).to.have.status(500);
+        expect(res.body.status).to.be.equal(500);
+        expect(res.body.error).to.be.equal('Failed to authenticate token');
+        done(err);
+      });
+  });
+  it('should return error if email is not valid', (done) => {
+    chai
+      .request(app)
+      .patch('/api/v1//verify')
+      .set('x-access-token', `${adminToken}`)
+      .send({ status: 'verified' })
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done(err);
+      });
+  });
+  it('should return error if user does not exist', (done) => {
+    chai
+      .request(app)
+      .patch('/api/v1/anthon@gmail.com/verify')
+      .set('x-access-token', `${adminToken}`)
+      .send({ status: 'verified' })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('No User with that email');
+        done(err);
+      });
+  });
+  it('should return error if user does not exist', (done) => {
+    chai
+      .request(app)
+      .patch('/api/v1/anthony@gmail.com/verify')
+      .set('x-access-token', `${adminToken}`)
+      .send({ status: 'verif' })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('The status can either be verified or unverified');
+        done(err);
+      });
+  });
+});

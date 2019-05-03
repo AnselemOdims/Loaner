@@ -98,6 +98,34 @@ class UserValidation {
     }
     return next();
   }
+
+  /**
+   * @method validateStatus
+   * @description Validates the request status body
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @param {function} next - The Next Function
+   */
+  static async validateStatus(req, res, next) {
+    let error;
+    const validate = await Helpers.validate();
+    const { email } = await req.params;
+    const { status } = await req.body;
+    const arr = ['verified', 'unverified'];
+    const user = await User.findByMail(email);
+    if (!email || !validate.email.test(email)) {
+      error = 'The email you provided is not valid';
+    } else if (!user) {
+      error = 'No User with that email';
+    }
+    else if (!arr.includes(status)) {
+      error = 'The status can either be verified or unverified';
+    }
+    if (error) {
+      return res.status(400).json({ status: 400, error });
+    }
+    return next();
+  }
 }
 
 export default UserValidation;
