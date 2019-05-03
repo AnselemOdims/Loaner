@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../../server';
 import dotenv from 'dotenv';
+import app from '../../server';
 
 chai.use(chaiHttp);
 
@@ -10,7 +10,7 @@ dotenv.config();
 
 const { expect } = chai;
 const adminPassword = process.env.ADMIN_PASSWORD;
-let userToken;
+
 // Handle Sign Up
 describe('POST Sign Up Authentication', () => {
   it('should register a new user if details are correct', (done) => {
@@ -274,7 +274,6 @@ describe('POST Login Aunthentication', () => {
         password: '12345678',
       })
       .end((err, res) => {
-        userToken = res.body.token;
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
         expect(res.body.message).to.equal('Login Successful!');
@@ -472,6 +471,18 @@ describe('PATCH User status', () => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
         expect(res.body.error).to.be.equal('The status can either be verified or unverified');
+        done(err);
+      });
+  });
+  it('should return all users in the database', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.be.equal('All Users');
         done(err);
       });
   });

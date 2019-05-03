@@ -26,7 +26,7 @@ class Helpers {
   /**
    * @method adminPassword
    * @description Hashes the Admin password using bcrypt
-   * @returns {srting} - Hashed password
+   * @returns {string} - Hashed password
    */
   static adminPassword() {
     const hashed = bcrypt.hashSync(adminPassword, 10);

@@ -25,4 +25,5 @@ router.patch(
   UserValidation.validateStatus,
   UserController.verifyUser,
 );
+router.get('/users', AuthenticateUser.verifyAdmin, UserController.getUsers);
 export default router;

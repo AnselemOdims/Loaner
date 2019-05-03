@@ -63,6 +63,18 @@ class UserController {
       data: verifiedUser,
     });
   }
+
+  /**
+   * @method getUsers
+   * @description - Gets all users
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} - All users
+   */
+  static async getUsers(req, res) {
+    const users = await User.getAll();
+    return res.status(200).json({ status: 200, message: 'All Users', data: users });
+  }
 }
 
 export default UserController;
