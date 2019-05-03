@@ -68,6 +68,23 @@ class Helpers {
     return token;
   }
 
+  /**
+   * @method verifyToken
+   * @description Verifies the user token
+   * @param {string} token - The generated token
+   * @returns {object} - The decoded payload
+   */
+  static async verifyToken(token) {
+    let decoded = {};
+    try {
+      decoded.payload = await jwt.verify(token, secretKey);
+    } catch (error) {
+      decoded = {
+        error: error.message,
+      };
+    }
+    return decoded;
+  }
 }
 
 export default Helpers;

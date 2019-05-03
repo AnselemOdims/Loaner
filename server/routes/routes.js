@@ -1,6 +1,7 @@
 import express from 'express';
 import UserController from '../controllers/userController';
 import UserValidation from '../middlewares/userValidation';
+import AuthenticateUser from '../middlewares/auth';
 
 const router = express.Router();
 
@@ -17,5 +18,11 @@ router.post(
   UserValidation.validateDetails,
   UserValidation.validateLogin,
   UserController.userLogin,
+);
+router.patch(
+  '/:email/verify',
+  AuthenticateUser.verifyAdmin,
+  UserValidation.validateStatus,
+  UserController.verifyUser,
 );
 export default router;
