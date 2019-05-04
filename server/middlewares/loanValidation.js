@@ -31,6 +31,21 @@ class loanValidation {
     }
     return next();
   }
+
+  /**
+   * @method validateId
+   * @description - Validates the request Id
+   * @param {object} req - The Request Object 
+   * @param {object} res - The Response Object
+   * @param {function} next - The next function
+   */
+  static async validateId(req, res, next) {
+    const { id } = await req.params;
+    if (Number.isNaN(Number(id))) {
+      return res.status(400).json({ status: 400, error: 'Wrong Id Value Passed' });
+    }
+    return next();
+  }
 }
 
 export default loanValidation;
