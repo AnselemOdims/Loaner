@@ -42,6 +42,16 @@ class Loan {
     this.loans.push(loan);
     return loan;
   }
+
+  /**
+   * @method getAll
+   * @description - Retrieves all users
+   * @returns {object} - All loan applications
+   */
+  async getAll() {
+    const loans = await this.loans;
+    return loans;
+  }
 }
 
 export default new Loan();

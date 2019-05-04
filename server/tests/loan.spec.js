@@ -11,7 +11,7 @@ const { expect } = chai;
 const adminPassword = process.env.ADMIN_PASSWORD;
 let adminToken;
 
-// Loan Applications
+// POST Loan Applications
 describe('POST Loan Apllications', () => {
   let userToken;
   before((done) => {
@@ -158,3 +158,57 @@ describe('POST Loan Apllications', () => {
       });
   });
 });
+
+//GET All Loan Applications
+describe('GET All Loans', ()=> {
+  before((done) => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'bayo@admin.com',
+        password: '1234567890',
+      })
+      .end((err, res) => {
+        adminToken = res.body.token;
+        done(err);
+      });
+  });
+
+  it('should get all loan applications', (done)=> {
+    chai
+      .request(app)
+      .get('/api/v1/loans')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.be.equal('All Loan Appliations');
+        done(err);
+      })
+  })
+  it('should return error if no token is provided', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/loans')
+      .set('x-access-token', '')
+      .end((err, res) => {
+        expect(res).to.have.status(401);
+        expect(res.body.status).to.be.equal(401);
+        expect(res.body.error).to.be.equal('No token provided');
+        done(err);
+      });
+  });
+  it('should return error if wrong token is provided', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/loans')
+      .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6InjeyRYB57')
+      .end((err, res) => {
+        expect(res).to.have.status(500);
+        expect(res.body.status).to.be.equal(500);
+        expect(res.body.error).to.be.equal('Failed to authenticate token');
+        done(err);
+      });
+  });  
+})

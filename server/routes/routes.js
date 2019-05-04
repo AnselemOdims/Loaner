@@ -36,4 +36,5 @@ router.post(
   LoanValidation.validateInputs,
   LoanController.createLoans,
 );
+router.get('/loans', AuthenticateUser.verifyAdmin, LoanController.retrieveLoans);
 export default router;
