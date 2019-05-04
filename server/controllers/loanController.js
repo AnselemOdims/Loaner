@@ -30,6 +30,18 @@ class loanController {
     const loans = await Loans.getAll();
     return res.status(200).json({ status: 200, message: 'All Loan Appliations', data: loans });
   }
+
+  /**
+   * @method getLoan
+   * @description - Retrieve a specific loan
+   * @param {object} - The Request Object
+   * @param {object} - The Response Object
+   */
+  static async getLoan(req, res) {
+    const { id } = req.params;
+    const loan = await Loans.getOne(Number(id));
+    return res.status(200).json({ status: 200, data: loan });
+  }
 }
 
 export default loanController;
