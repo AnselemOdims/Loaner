@@ -46,6 +46,22 @@ class loanValidation {
     }
     return next();
   }
+
+  /**
+   * @method validateStatus
+   * @description - Validates the request status
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @param {function } next - the next function
+   */
+  static async validateStatus(req, res, next) {
+    const { status } = await req.body;
+    const values = [ 'approved', 'rejected'];
+    if ( !values.includes(status)) {
+      return res.status(400).json({ status: 400, error: 'Wrong status value passed' });
+    }
+    return next();
+  }
 }
 
 export default loanValidation;

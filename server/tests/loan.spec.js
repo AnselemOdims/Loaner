@@ -235,3 +235,46 @@ describe('GET All Loans', ()=> {
       });
   });
 })
+
+// Approve/Reject Route
+describe('PATCH Loan Status', ()=> {
+  it('should update status if input is correct', (done)=> {
+    chai
+      .request(app)
+      .patch('/api/v1/loans/1')
+      .set('x-access-token', `${adminToken}`)
+      .send({ status: 'approved' })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.be.equal('Updated Loan Application');
+        done(err);
+      });
+  });
+  it('should return error if id is not a number', (done)=> {
+    chai
+      .request(app)
+      .patch('/api/v1/loans/w')
+      .set('x-access-token', `${adminToken}`)
+      .send({ status: 'approved' })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Wrong Id Value Passed');
+        done(err);
+      });
+  });
+  it('should return error if status is not approved or rejected', (done)=> {
+    chai
+      .request(app)
+      .patch('/api/v1/loans/1')
+      .set('x-access-token', `${adminToken}`)
+      .send({ status: 'not-approved' })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Wrong status value passed');
+        done(err);
+      });
+  });
+})

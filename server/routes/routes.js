@@ -43,4 +43,11 @@ router.get(
   LoanValidation.validateId,
   LoanController.getLoan,
 );
+router.patch(
+  '/loans/:id',
+  AuthenticateUser.verifyAdmin,
+  LoanValidation.validateId,
+  LoanValidation.validateStatus,
+  LoanController.updateStatus,
+);
 export default router;

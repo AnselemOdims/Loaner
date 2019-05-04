@@ -42,6 +42,20 @@ class loanController {
     const loan = await Loans.getOne(Number(id));
     return res.status(200).json({ status: 200, data: loan });
   }
+
+  /**
+   * @method updateStatus
+   * @description - Updates the status to approved or rejected
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} - JSON API Response
+   */
+  static async updateStatus(req, res) {
+    const { id } = req.params;
+    const { status } = req.body;
+    const loan = await Loans.updateStatus(Number(id), status);
+    return res.status(200).json({ status: 200, message:'Updated Loan Application', data: loan });
+  }
 }
 
 export default loanController;

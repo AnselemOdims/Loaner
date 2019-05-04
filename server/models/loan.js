@@ -62,6 +62,19 @@ class Loan {
     const loaner = await this.loans.find(loan => loan.loanId === id);
     return loaner;
   }
+
+  /**
+   * @method updateStatus
+   * @description - Updates loan status
+   * @param {Number} id - The Loan ID
+   * @param {object} data - The  Loan Status
+   * @returns {object} - The Updated Loan
+   */
+  async updateStatus(id, data) {
+    const loan = await this.getOne(id);
+    loan.status = data;
+    return loan;
+  }
 }
 
 export default new Loan();
