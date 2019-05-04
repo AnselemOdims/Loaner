@@ -2,6 +2,8 @@ import express from 'express';
 import UserController from '../controllers/userController';
 import UserValidation from '../middlewares/userValidation';
 import AuthenticateUser from '../middlewares/auth';
+import LoanController from '../controllers/loanController';
+import LoanValidation from '../middlewares/loanValidation';
 
 const router = express.Router();
 
@@ -26,4 +28,12 @@ router.patch(
   UserController.verifyUser,
 );
 router.get('/users', AuthenticateUser.verifyAdmin, UserController.getUsers);
+
+// Loan Routes
+router.post(
+  '/loans',
+  AuthenticateUser.verifyUser,
+  LoanValidation.validateInputs,
+  LoanController.createLoans,
+);
 export default router;
