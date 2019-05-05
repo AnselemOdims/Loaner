@@ -36,7 +36,14 @@ router.post(
   LoanValidation.validateInputs,
   LoanController.createLoans,
 );
-router.get('/loans', AuthenticateUser.verifyAdmin, LoanController.retrieveLoans);
+
+router.get(
+  '/loans',
+  AuthenticateUser.verifyAdmin, 
+  LoanValidation.validateQuery, 
+  LoanValidation.validateLoans, 
+  LoanController.retrieveLoans
+);
 router.get(
   '/loans/:id',
   AuthenticateUser.verifyAdmin,

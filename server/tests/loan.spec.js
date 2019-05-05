@@ -320,3 +320,43 @@ describe('PUT Repaid', () => {
       });
   });
 });
+
+// GET Approved Loans
+describe('GET Approved Loans', () => {
+  it('should get loans that are approved and fully repaid', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/loans?status=approved&repaid=true')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.be.equal('All fully repaid loans');
+        done(err);
+      });
+  });
+  it('should return error if status is not approved', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/loans?status=rejected&repaid=true')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('This endpoint can only return approved loans');
+        done(err);
+      });
+  });
+  it('should return error if status is not approved', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/loans?status=approved&repaid=not-true')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Repaid value can only be true');
+        done(err);
+      });
+  });
+})
