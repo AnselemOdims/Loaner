@@ -85,7 +85,25 @@ describe('POST Loan Apllications', () => {
         done(err);
       });
   });
-  it('should return error if no tenor is provided', (done) => {
+  it('should return error if tenor is greater than 12', (done) => {
+    const values = {
+      tenor: 15,
+      amount: 50000,
+      balance: 1,
+    };
+    chai
+      .request(app)
+      .post('/api/v1/loans')
+      .set('x-access-token', `${userToken}`)
+      .send(values)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Loan tenor can not be more than 12 months');
+        done(err);
+      });
+  });
+  it('should return error if any of the value is not a number', (done) => {
     const values = {
       tenor: '',
       amount: 50000,
@@ -99,61 +117,7 @@ describe('POST Loan Apllications', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('A loan tenor has to be specified');
-        done(err);
-      });
-  });
-  it('should return error if no amount is provided', (done) => {
-    const values = {
-      tenor: '12',
-      amount: '',
-      balance: 1,
-    };
-    chai
-      .request(app)
-      .post('/api/v1/loans')
-      .set('x-access-token', `${userToken}`)
-      .send(values)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('A loan amount has to be specified');
-        done(err);
-      });
-  });
-  it('should return error if a non-number value is passed', (done) => {
-    const values = {
-      tenor: 'w',
-      amount: '50000',
-      balance: 1,
-    };
-    chai
-      .request(app)
-      .post('/api/v1/loans')
-      .set('x-access-token', `${userToken}`)
-      .send(values)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('Values have to be in a number format');
-        done(err);
-      });
-  });
-  it('should return error if tenor is greater than 12', (done) => {
-    const values = {
-      tenor: '15',
-      amount: '50000',
-      balance: 1,
-    };
-    chai
-      .request(app)
-      .post('/api/v1/loans')
-      .set('x-access-token', `${userToken}`)
-      .send(values)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('Loan tenor can not be more than 12 months');
+        expect(res.body.error).to.be.equal('Values must be in a number format');
         done(err);
       });
   });
@@ -183,7 +147,7 @@ describe('GET All Loans', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
-        expect(res.body.message).to.be.equal('All Loan Appliations');
+        expect(res.body.message).to.be.equal('All Loan Applications');
         done(err);
       });
   });
@@ -231,6 +195,18 @@ describe('GET All Loans', () => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
         expect(res.body.error).to.be.equal('Wrong Id Value Passed');
+        done(err);
+      });
+  });
+  it('should return error if load with that Id can not be found', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/loans/3')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('No loan with that Id');
         done(err);
       });
   });
@@ -358,4 +334,46 @@ describe('GET Approved Loans', () => {
         done(err);
       });
   });
+})
+
+describe('POST Repayment Record', () => {
+  it('should create a loan repayment record if input is correct', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/loans/1/repayment')
+      .set('x-access-token', `${adminToken}`)
+      .send({ paidAmount: 20000 })
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body.status).to.be.equal(201);
+        expect(res.body.message).to.be.equal('Loan repayment record created succesfully');
+        done(err);
+      });
+  })
+  it('should return error if paid amount is not a number', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/loans/1/repayment')
+      .set('x-access-token', `${adminToken}`)
+      .send({ paidAmount: 'w' })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Paid amount must be in a number format');
+        done(err);
+      });
+  })
+  it('should return error if no paid amount', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/loans/1/repayment')
+      .set('x-access-token', `${adminToken}`)
+      .send({ paidAmount: '' })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Paid amount has to specified');
+        done(err);
+      });
+  })
 })

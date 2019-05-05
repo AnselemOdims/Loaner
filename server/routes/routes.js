@@ -4,6 +4,7 @@ import UserValidation from '../middlewares/userValidation';
 import AuthenticateUser from '../middlewares/auth';
 import LoanController from '../controllers/loanController';
 import LoanValidation from '../middlewares/loanValidation';
+import Repayments from '../controllers/repaymentController';
 
 const router = express.Router();
 
@@ -64,4 +65,12 @@ router.put(
   LoanValidation.validateRepaid,
   LoanController.updatePayment,
 );
+router.post(
+  '/loans/:id/repayment',
+  AuthenticateUser.verifyAdmin,
+  LoanValidation.validateId,
+  LoanValidation.validateRepayment, 
+  Repayments.createRepayment,
+);
+
 export default router;
