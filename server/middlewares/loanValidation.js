@@ -1,4 +1,4 @@
-
+import Loans from '../models/loan';
 /**
  * @class loanValidation
  * @description - specifies which method is used to validate routes
@@ -70,11 +70,48 @@ class loanValidation {
    * @param {object} res - The Response Object
    * @param {function} next - The next function
    */
-  static async validateRepaid(req, res, next) {
+  static async validateRepaid(req, res, next) { 
     const { repaid } = await req.body;
     const arr = [false, true];
     if (!arr.includes(repaid)) {
       return res.status(400).json({ status: 400, error: 'Wrong value passed' });
+    }
+    return next();
+  }
+
+  static async validateLoans(req, res, next) {
+    if (req.url.includes('?')) {
+      const loans = await Loans.getAll();
+      const { status, repaid } = req.query;
+      const filters = {
+        status,
+        repaid,
+      };
+      const filterKeys = Object.keys(filters);
+      const loan = loans.filter(eachobj => filterKeys.every((eachKey) => {
+        if (!filters[eachKey].length) return false;
+        return filters[eachKey].includes(eachobj[eachKey]);
+      }));
+      if (loan.length === 0) {
+        return res.status(400).json({ status: 400, error: 'No value in database matches the request' });
+      }
+      if (repaid === 'true') {
+        return res.status(200).json({ status: 200, message: 'All fully repaid loans', data: loan });
+      }
+    }
+    return next();
+  }
+
+  static async validateQuery(req, res, next) {
+    if (req.url.includes('?')) {
+      const { status, repaid } = req.query;
+      const values = ['true']
+      if (status !== 'approved') {
+        return res.status(400).json({ status: 400, error: 'This endpoint can only return approved loans' });
+      }
+      if (!values.includes(repaid)) {
+        return res.status(400).json({ status: 400, error: 'Repaid value can only be true' });
+      }
     }
     return next();
   }
