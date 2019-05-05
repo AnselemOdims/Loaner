@@ -159,8 +159,8 @@ describe('POST Loan Apllications', () => {
   });
 });
 
-//GET All Loan Applications
-describe('GET All Loans', ()=> {
+// GET All Loan Applications
+describe('GET All Loans', () => {
   before((done) => {
     chai
       .request(app)
@@ -175,7 +175,7 @@ describe('GET All Loans', ()=> {
       });
   });
 
-  it('should get all loan applications', (done)=> {
+  it('should get all loan applications', (done) => {
     chai
       .request(app)
       .get('/api/v1/loans')
@@ -185,8 +185,8 @@ describe('GET All Loans', ()=> {
         expect(res.body.status).to.be.equal(200);
         expect(res.body.message).to.be.equal('All Loan Appliations');
         done(err);
-      })
-  })
+      });
+  });
   it('should return error if no token is provided', (done) => {
     chai
       .request(app)
@@ -221,7 +221,7 @@ describe('GET All Loans', ()=> {
         expect(res.body.status).to.be.equal(200);
         done(err);
       });
-  }); 
+  });
   it('should return error if id is not a number', (done) => {
     chai
       .request(app)
@@ -234,11 +234,11 @@ describe('GET All Loans', ()=> {
         done(err);
       });
   });
-})
+});
 
 // Approve/Reject Route
-describe('PATCH Loan Status', ()=> {
-  it('should update status if input is correct', (done)=> {
+describe('PATCH Loan Status', () => {
+  it('should update status if input is correct', (done) => {
     chai
       .request(app)
       .patch('/api/v1/loans/1')
@@ -251,7 +251,7 @@ describe('PATCH Loan Status', ()=> {
         done(err);
       });
   });
-  it('should return error if id is not a number', (done)=> {
+  it('should return error if id is not a number', (done) => {
     chai
       .request(app)
       .patch('/api/v1/loans/w')
@@ -264,7 +264,7 @@ describe('PATCH Loan Status', ()=> {
         done(err);
       });
   });
-  it('should return error if status is not approved or rejected', (done)=> {
+  it('should return error if status is not approved or rejected', (done) => {
     chai
       .request(app)
       .patch('/api/v1/loans/1')
@@ -277,4 +277,46 @@ describe('PATCH Loan Status', ()=> {
         done(err);
       });
   });
-})
+});
+
+// PUT Repaid route
+describe('PUT Repaid', () => {
+  it('should update the repaid if input is correct', (done) => {
+    chai
+      .request(app)
+      .put('/api/v1/loans/1')
+      .set('x-access-token', `${adminToken}`)
+      .send({ repaid: true })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        done(err);
+      });
+  });
+  it('should return error if id is not a number', (done) => {
+    chai
+      .request(app)
+      .put('/api/v1/loans/w')
+      .set('x-access-token', `${adminToken}`)
+      .send({ repaid: true })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Wrong Id Value Passed');
+        done(err);
+      });
+  });
+  it('should return error if status is not approved or rejected', (done) => {
+    chai
+      .request(app)
+      .put('/api/v1/loans/1')
+      .set('x-access-token', `${adminToken}`)
+      .send({ repaid: 'not-true' })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Wrong value passed');
+        done(err);
+      });
+  });
+});
