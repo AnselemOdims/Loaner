@@ -75,6 +75,19 @@ class Loan {
     loan.status = data;
     return loan;
   }
+
+  /**
+   * @method updatePay
+   * @description - Updates the loan repaid
+   * @param {Number} id - The Loan Id
+   * @param {object} data - The Repaid value
+   * @return {object} - The Updated Loan
+   */
+  async updatePay(id, data) {
+    const loan = await this.getOne(id);
+    loan.repaid = data;
+    return loan;
+  }
 }
 
 export default new Loan();

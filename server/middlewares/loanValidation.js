@@ -35,7 +35,7 @@ class loanValidation {
   /**
    * @method validateId
    * @description - Validates the request Id
-   * @param {object} req - The Request Object 
+   * @param {object} req - The Request Object
    * @param {object} res - The Response Object
    * @param {function} next - The next function
    */
@@ -56,9 +56,25 @@ class loanValidation {
    */
   static async validateStatus(req, res, next) {
     const { status } = await req.body;
-    const values = [ 'approved', 'rejected'];
-    if ( !values.includes(status)) {
+    const values = ['approved', 'rejected'];
+    if (!values.includes(status)) {
       return res.status(400).json({ status: 400, error: 'Wrong status value passed' });
+    }
+    return next();
+  }
+
+  /**
+   * @method validateRepaid
+   * @description - Validates the repaid status of the loan
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @param {function} next - The next function
+   */
+  static async validateRepaid(req, res, next) {
+    const { repaid } = await req.body;
+    const arr = [false, true];
+    if (!arr.includes(repaid)) {
+      return res.status(400).json({ status: 400, error: 'Wrong value passed' });
     }
     return next();
   }

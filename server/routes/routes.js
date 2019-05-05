@@ -50,4 +50,11 @@ router.patch(
   LoanValidation.validateStatus,
   LoanController.updateStatus,
 );
+router.put(
+  '/loans/:id',
+  AuthenticateUser.verifyAdmin,
+  LoanValidation.validateId,
+  LoanValidation.validateRepaid,
+  LoanController.updatePayment,
+);
 export default router;
