@@ -95,9 +95,7 @@ class loanValidation {
       if (loan.length === 0) {
         return res.status(400).json({ status: 400, error: 'No value in database matches the request' });
       }
-      if (repaid === 'true') {
-        return res.status(200).json({ status: 200, message: 'All fully repaid loans', data: loan });
-      }
+      return res.status(200).json({ status: 200, data: loan });
     }
     return next();
   }
@@ -105,12 +103,12 @@ class loanValidation {
   static async validateQuery(req, res, next) {
     if (req.url.includes('?')) {
       const { status, repaid } = req.query;
-      const values = ['true']
+      const values = ['true', 'false'];
       if (status !== 'approved') {
         return res.status(400).json({ status: 400, error: 'This endpoint can only return approved loans' });
       }
       if (!values.includes(repaid)) {
-        return res.status(400).json({ status: 400, error: 'Repaid value can only be true' });
+        return res.status(400).json({ status: 400, error: 'Repaid value can only be true or false' });
       }
     }
     return next();

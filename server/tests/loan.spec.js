@@ -331,7 +331,6 @@ describe('GET Approved Loans', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
-        expect(res.body.message).to.be.equal('All fully repaid loans');
         done(err);
       });
   });
@@ -355,7 +354,7 @@ describe('GET Approved Loans', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('Repaid value can only be true');
+        expect(res.body.error).to.be.equal('Repaid value can only be true or false');
         done(err);
       });
   });
