@@ -16,15 +16,9 @@ class loanValidation {
     const { tenor, amount, balance } = await req.body;
     const values = [tenor, amount, balance];
     for (let i = 0; i < values.length; i++) {
-      if (Number.isNaN(Number(values[i]))) {
-        return res.status(400).json({ status: 400, error: 'Values have to be in a number format' });
+      if (typeof (values[i]) !== 'number') {
+        return res.status(400).json({ status: 400, error: 'Values must be in a number format' });
       }
-    }
-    if (!tenor) {
-      return res.status(400).json({ status: 400, error: 'A loan tenor has to be specified' });
-    }
-    if (!amount) {
-      return res.status(400).json({ status: 400, error: 'A loan amount has to be specified' });
     }
     if (tenor > 12) {
       return res.status(400).json({ status: 400, error: 'Loan tenor can not be more than 12 months' });
@@ -41,9 +35,14 @@ class loanValidation {
    */
   static async validateId(req, res, next) {
     const { id } = await req.params;
+    const loan = await Loans.getOne(Number(id));
     if (Number.isNaN(Number(id))) {
       return res.status(400).json({ status: 400, error: 'Wrong Id Value Passed' });
     }
+    if (!loan) {
+      return res.status(400).json({ status: 400, error: 'No loan with that Id' });
+    }
+
     return next();
   }
 
@@ -79,6 +78,13 @@ class loanValidation {
     return next();
   }
 
+  /**
+   * @method validateLoans
+   * @description - Validates the loans url
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @param {function} next - The next function
+   */
   static async validateLoans(req, res, next) {
     if (req.url.includes('?')) {
       const loans = await Loans.getAll();
@@ -100,6 +106,13 @@ class loanValidation {
     return next();
   }
 
+  /**
+   * @method validateQuery
+   * @description - Validates the query values
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @param {function} next - The next function
+   */
   static async validateQuery(req, res, next) {
     if (req.url.includes('?')) {
       const { status, repaid } = req.query;
@@ -113,6 +126,25 @@ class loanValidation {
     }
     return next();
   }
+
+  /**
+   * @method validateRepayment
+   * @description - Validates the repayment
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @param {function} next - The next function
+   */
+  static async validateRepayment(req, res, next) {
+    const { paidAmount } = req.body;
+    if (Number.isNaN(Number(paidAmount))) {
+      return res.status(400).json({ status: 400, error: 'Paid amount must be in a number format' });
+    }
+    if (!paidAmount) {
+      return res.status(400).json({ status: 400, error: 'Paid amount has to specified' });
+    }
+    return next();
+  }
+
 }
 
 export default loanValidation;

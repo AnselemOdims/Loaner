@@ -28,7 +28,7 @@ class loanController {
    */
   static async retrieveLoans(req, res) {
     const loans = await Loans.getAll();
-    return res.status(200).json({ status: 200, message: 'All Loan Appliations', data: loans });
+    return res.status(200).json({ status: 200, message: 'All Loan Applications', data: loans });
   }
 
   /**

@@ -23,7 +23,8 @@ class Loan {
     const { id, firstName, lastName } = user;
     const { tenor, amount, balance } = data;
     const interest = 0.05 * amount;
-    const monthlyInstallment = (amount + interest) / tenor;
+    const sum = amount + interest;
+    const monthlyInstallment = sum / tenor;
     const loan = {
       loanId: this.loans.length + 1,
       userId: id,
