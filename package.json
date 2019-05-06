@@ -1,0 +1,61 @@
+{
+  "name": "loaner",
+  "version": "1.0.0",
+  "description": "Loaner is an online lending platform that provides short term soft loans to individuals. This\r helps solve problems of financial inclusion as a way to alleviate poverty and empower low\r income earners.",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node server.js",
+    "dev-start": "nodemon --exec babel-node server.js",
+    "lint": "eslint ./server --fix",
+    "test": "nyc mocha --require @babel/register  ./server/tests/ --timeout 10000 --exit",
+    "nyc": "nyc --reporter=lcov npm run test && nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc npm test"
+  },
+  "engines": {
+    "node": "10.13.0"
+  },
+  "keywords": [
+    "loaner",
+    "loan",
+    "quick",
+    "credit",
+    "lending",
+    "Andela",
+    "ADC",
+    "challenge"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnselemOdims/Loaner.git"
+  },
+  "author": "Anselem Odimegwu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AnselemOdims/Loaner/issues"
+  },
+  "homepage": "https://github.com/AnselemOdims/Loaner#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/register": "^7.4.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "coveralls": "^3.0.3",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "mocha": "^6.1.4",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nodemon": "^1.18.11",
+    "nyc": "^14.0.0"
+  }
+}
