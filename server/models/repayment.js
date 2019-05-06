@@ -30,9 +30,21 @@ class Repayments {
       monthlyInstallment,
       interest,
       paidAmount,
-      balance
+      balance,
     }
     this.repayments.push(repayment);
+    return repayment;
+  }
+
+  /**
+   * @method getOne
+   * @param {Number} id - The Repayment Id
+   * @returns {object} - The Specific repayment record 
+   */
+  async getOne(id) {
+    const loan = await LoanModel.loans.find(loans => loans.loanId === id);
+    const { loanId } = loan;
+    const repayment = await this.repayments.find(record => record.loanId === loanId);
     return repayment;
   }
 }

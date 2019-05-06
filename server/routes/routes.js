@@ -5,6 +5,7 @@ import AuthenticateUser from '../middlewares/auth';
 import LoanController from '../controllers/loanController';
 import LoanValidation from '../middlewares/loanValidation';
 import Repayments from '../controllers/repaymentController';
+import RepaymentValidation from '../middlewares/repaymentValidation';
 
 const router = express.Router();
 
@@ -69,8 +70,14 @@ router.post(
   '/loans/:id/repayment',
   AuthenticateUser.verifyAdmin,
   LoanValidation.validateId,
-  LoanValidation.validateRepayment, 
+  RepaymentValidation.validateRepayment, 
   Repayments.createRepayment,
 );
-
+router.get(
+  '/loans/:id/repayments', 
+  AuthenticateUser.verifyUser,
+  LoanValidation.validateId,
+  RepaymentValidation.validateRecord, 
+  Repayments.getRepayment,
+);
 export default router;

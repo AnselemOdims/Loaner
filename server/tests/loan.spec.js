@@ -10,10 +10,9 @@ dotenv.config();
 const { expect } = chai;
 const adminPassword = process.env.ADMIN_PASSWORD;
 let adminToken;
-
+let userToken;
 // POST Loan Applications
-describe('POST Loan Apllications', () => {
-  let userToken;
+describe('POST Loan Apllications', () => { 
   before((done) => {
     chai
       .request(app)
@@ -336,6 +335,7 @@ describe('GET Approved Loans', () => {
   });
 })
 
+// POST Repayment Record
 describe('POST Repayment Record', () => {
   it('should create a loan repayment record if input is correct', (done) => {
     chai
@@ -376,4 +376,19 @@ describe('POST Repayment Record', () => {
         done(err);
       });
   })
+})
+
+// GET Loan Repayment Record
+describe('GET Loan Repayment Record', () => {
+  it('should retrieve loan repayment record', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/loans/1/repayments')
+      .set('x-access-token', `${userToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        done(err);
+      });
+  });
 })
