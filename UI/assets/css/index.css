@@ -43,10 +43,10 @@ a {
     min-height: 2px;
 }
 .banner-sec {
-    background-image: url(../img/4F77FD85-12DF-45A8-B7EC-0E992A1C5A81.JPEG);
+    background-image: url(../img/undraw_savings_hjfl.png);
     background-repeat: no-repeat;
     background-position: top right;
-    background-size: 450px 550px;
+    background-size: 650px 550px;
     min-height: 710px
 }
 .banner h1 {
@@ -253,6 +253,12 @@ a {
 .testimonies {
     background: linear-gradient(185deg, #4065cb49 92%, #fff calc(92% + 2px));
 }
+.estimate {
+    background-image: url(../img/undraw_agreement_aajr.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 650px 550px;
+}
 .calc-inputs {
     display: flex;
     flex-direction: column;
@@ -260,12 +266,13 @@ a {
     margin: 20px auto;
     border-radius: 4px;
     box-shadow: 3px 11px 28px grey;
-    background:  rgba(0, 0, 0, 0.5)
+    background:  rgba(0, 0, 0, 0.2)
 }
 .calc-inputs label {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #fff
 }
 .inp-11{
     width: 60%;
@@ -322,7 +329,7 @@ a {
 }
 .reason-img img {
     width: 100%;
-    height: 85%;
+    height: 200px;
 }
 .reason-img:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -403,7 +410,8 @@ a {
 .icon {
     display: none;
 }
- 
+
+
 /* For small screens */
 @media screen and (max-width: 740px) {
     body {
@@ -512,15 +520,15 @@ a {
         height: 767px;
     }
     .reason-wrapper {
-        width: 95%;
+        width: 101%;
     }
     .reason-img {
-        height: 440px;
+        height: 250px;
         width: 57%;
     }
     .reason-img img {
-        height: 70%;
-        width: 185px
+        height: 200px;
+        width: 90%
     }
     .img-card {
         width: 105%;

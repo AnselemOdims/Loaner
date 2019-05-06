@@ -92,6 +92,33 @@ table th:hover {
     margin: 13px 0 13px 150px;
     text-align: center
 }
+.transaction {
+    display: flex;
+    flex-direction: column
+}
+.inputs {
+    height: 50px;
+    width: 60%
+}
+.result {
+    height: 50px;
+    width: 60%;
+    border: solid 1px #071e55;
+    margin: 0 auto;
+    border-radius: 3px;
+    background: #fff
+}
+.rp-11 {
+    font-size: 18px
+}
+.calc-inputs {
+    width: 90%
+}
+.payment-img {
+    margin-left: 130px; 
+    width: 60%; 
+    height: 90px"
+}
 select {
     width: 110px;
     border: solid 1px #4066cb;
@@ -121,4 +148,10 @@ select:focus {
     width: 90px;
     text-align: center;
     padding-bottom: 40px
+}
+
+@media screen and (max-width: 820px) {
+    body {
+        overflow-x: auto
+    }
 }
