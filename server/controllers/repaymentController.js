@@ -22,7 +22,7 @@ class RepaymentController {
 
   /**
    * @method getRepayment
-   * @description - Gets a specific repayment record
+   * @description - Gets a specific repayment Record
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
    * @returns {object} - JSON API Response
