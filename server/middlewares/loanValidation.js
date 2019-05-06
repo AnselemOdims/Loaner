@@ -126,25 +126,6 @@ class loanValidation {
     }
     return next();
   }
-
-  /**
-   * @method validateRepayment
-   * @description - Validates the repayment
-   * @param {object} req - The Request Object
-   * @param {object} res - The Response Object
-   * @param {function} next - The next function
-   */
-  static async validateRepayment(req, res, next) {
-    const { paidAmount } = req.body;
-    if (Number.isNaN(Number(paidAmount))) {
-      return res.status(400).json({ status: 400, error: 'Paid amount must be in a number format' });
-    }
-    if (!paidAmount) {
-      return res.status(400).json({ status: 400, error: 'Paid amount has to specified' });
-    }
-    return next();
-  }
-
 }
 
 export default loanValidation;

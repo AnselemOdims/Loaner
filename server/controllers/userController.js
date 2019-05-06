@@ -37,7 +37,8 @@ class UserController {
   static async userLogin(req, res) {
     const { email } = await req.body;
     const user = await User.findByMail(email);
-    const userToken = await Helpers.generateToken({ user });
+    const { id, isAdmin } = user;
+    const userToken = await Helpers.generateToken({ id, email, isAdmin });
     return res.status(200).json({
       status: 200,
       token: userToken,
