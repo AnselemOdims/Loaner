@@ -10,6 +10,9 @@
     "test": "nyc mocha --require @babel/register  ./server/tests/ --timeout 10000 --exit",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
+  "engines": {
+    "node": "10.13.0"
+  },
   "keywords": [
     "loaner",
     "loan",
