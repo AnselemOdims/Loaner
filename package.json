@@ -8,7 +8,8 @@
     "dev-start": "nodemon --exec babel-node server.js",
     "lint": "eslint ./server --fix",
     "test": "nyc mocha --require @babel/register  ./server/tests/ --timeout 10000 --exit",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "nyc": "nyc --reporter=lcov npm run test && nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc npm test"
   },
   "engines": {
     "node": "10.13.0"

@@ -5,7 +5,7 @@ import router from './server/routes/routes';
 
 const app = express();
 // Set the server port
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(
