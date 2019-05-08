@@ -1,7 +1,8 @@
 # Loaner
 
 [![npm version](https://badge.fury.io/js/express.svg)](https://badge.fury.io/js/express)
-[![Build Status](https://travis-ci.org/AnselemOdims/Loaner.svg?branch=develop)](https://travis-ci.org/AnselemOdims/Loaner)  [![Coverage Status](https://coveralls.io/repos/github/AnselemOdims/Loaner/badge.svg?branch=develop)](https://coveralls.io/github/AnselemOdims/Loaner?branch=develop)
+[![Build Status](https://travis-ci.org/AnselemOdims/Loaner.svg?branch=develop)](https://travis-ci.org/AnselemOdims/Loaner) 
+[![Coverage Status](https://coveralls.io/repos/github/AnselemOdims/Loaner/badge.svg)](https://coveralls.io/github/AnselemOdims/Loaner)
 [![Maintainability](https://api.codeclimate.com/v1/badges/31f2930d0fe4fa791126/maintainability)](https://codeclimate.com/github/AnselemOdims/Loaner/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/31f2930d0fe4fa791126/test_coverage)](https://codeclimate.com/github/AnselemOdims/Loaner/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
