@@ -16,10 +16,10 @@ before_script:
 script:
   - "npm run test"
 
-aafter_script:
+after_script:
   - npm run coveralls
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  
+
 notifications:
   email: false
 
