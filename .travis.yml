@@ -4,6 +4,9 @@ env:
 language: node_js
 node_js: 
   - "stable"
+
+dist: trusty
+
 cache:
   directories:
     - "node_modules"
@@ -14,6 +17,7 @@ before_script:
 
 script:
   - "npm run nyc"
+
 aafter_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 notifications:
