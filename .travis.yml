@@ -5,8 +5,6 @@ language: node_js
 node_js: 
   - "stable"
 
-dist: trusty
-
 cache:
   directories:
     - "node_modules"
@@ -16,10 +14,12 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - "npm run nyc"
+  - "npm run test"
 
 aafter_script:
+  - npm run coveralls
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  
 notifications:
   email: false
 
