@@ -7,9 +7,8 @@
     "start": "babel-node server.js",
     "dev-start": "nodemon --exec babel-node server.js",
     "lint": "eslint ./server --fix",
-    "test": "nyc mocha --require @babel/register  ./server/tests/ --timeout 10000 --exit",
-    "nyc": "nyc --reporter=lcov npm run test && nyc report --reporter=text-lcov | coveralls",
-    "coverage": "nyc npm test"
+    "test": "nyc --reporter=lcov --reporter=text mocha ./server/tests/**.js --require @babel/register --exit",
+    "coveralls": "nyc --reporter=lcov --reporter=text mocha ./server/tests/**.js --require @babel/register --exit --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rn -rf ./coverage"
   },
   "engines": {
     "node": "10.13.0"

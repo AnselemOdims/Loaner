@@ -22,10 +22,10 @@ describe('Handle incoming homepage requests', () => {
   it('should return a 404 for all invalid  routes', (done) => {
     chai
       .request(app)
-      .post('/api/v1')
+      .post('/api/v1/auth/signup%')
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body.message).to.be.equal(
+        expect(res.body.error).to.be.equal(
           'Sorry, such endpoint does not exist',
         );
         done(err);
