@@ -20,14 +20,13 @@ class Loan {
   async createLoans(data, payload) {
     const { email } = payload;
     const user = await UserModel.users.find(user => user.email === email);
-    const { id, firstName, lastName } = user;
-    const { tenor, amount, balance } = data;
+    const { firstName, lastName } = user;
+    const { tenor, amount } = data;
     const interest = 0.05 * amount;
-    const sum = amount + interest;
-    const monthlyInstallment = sum / tenor;
+    const balance = amount + interest;
+    const monthlyInstallment = balance / tenor;
     const loan = {
       loanId: this.loans.length + 1,
-      userId: id,
       firstName,
       lastName,
       email,
@@ -60,8 +59,8 @@ class Loan {
    * @returns {object} - The Specific loan
    */
   async getOne(id) {
-    const loaner = await this.loans.find(loan => loan.loanId === id);
-    return loaner;
+    const loan = await this.loans.find(loans => loans.loanId === id);
+    return loan;
   }
 
   /**
@@ -74,19 +73,6 @@ class Loan {
   async updateStatus(id, data) {
     const loan = await this.getOne(id);
     loan.status = data;
-    return loan;
-  }
-
-  /**
-   * @method updatePay
-   * @description - Updates the loan repaid
-   * @param {Number} id - The Loan Id
-   * @param {object} data - The Repaid value
-   * @return {object} - The Updated Loan
-   */
-  async updatePay(id, data) {
-    const loan = await this.getOne(id);
-    loan.repaid = data;
     return loan;
   }
 }

@@ -30,7 +30,7 @@ class loanController {
     const loans = await Loans.getAll();
     return res.status(200).json({ status: 200, message: 'All Loan Applications', data: loans });
   }
-
+ 
   /**
    * @method getLoan
    * @description - Retrieve a specific loan
@@ -55,20 +55,6 @@ class loanController {
     const { status } = req.body;
     const loan = await Loans.updateStatus(Number(id), status);
     return res.status(200).json({ status: 200, message: 'Updated Loan Application', data: loan });
-  }
-
-  /**
-   * @method updatePayment
-   * @description - Updates the repaid status of the loan
-   * @param {object} - The Request Object
-   * @param {object} - The Response Object
-   * @returns {object} - JSON API Response
-   */
-  static async updatePayment(req, res) {
-    const { id } = req.params;
-    const { repaid } = req.body;
-    const loan = await Loans.updatePay(Number(id), repaid);
-    return res.status(200).json({ status: 200, data: loan });
   }
 }
 

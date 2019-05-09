@@ -21,9 +21,11 @@ class UserController {
     const userToken = await Helpers.generateToken({ id, email, isAdmin });
     return res.status(201).json({
       status: 201,
-      token: userToken,
       message: 'User Registration Successful!',
-      data: user,
+      data: {
+        token: userToken,
+        user,
+      }
     });
   }
 
@@ -41,9 +43,11 @@ class UserController {
     const userToken = await Helpers.generateToken({ id, email, isAdmin });
     return res.status(200).json({
       status: 200,
-      token: userToken,
       message: 'Login Successful!',
-      data: user,
+      data: {
+        token: userToken,
+        user,
+      }
     });
   }
 

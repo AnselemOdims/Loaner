@@ -32,3 +32,16 @@ describe('Handle incoming homepage requests', () => {
       });
   });
 });
+
+describe('Handle incoming versioned homepage requests', () => {
+  it('should return 200 and success message for the /api/v1 route', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.message).to.equal('Welcome to Loaner API Version 1');
+        done(err);
+      });
+  });
+});

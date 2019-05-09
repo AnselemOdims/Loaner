@@ -71,6 +71,25 @@ describe('POST Sign Up Authentication', () => {
         done(err);
       });
   });
+  it('should return error if firstname is less than 3 characters', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        firstName: 'od',
+        lastName: 'Anwuka',
+        email: 'anthony@gmail.com',
+        password: '12345678',
+        address: '3 Demurin Street, Ketu',
+        phoneNumber: '07045678932',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Firstname can not be less than 3 alphabetic characters');
+        done(err);
+      });
+  });
   it('should return error if user tries registering with an empty lastname', (done) => {
     chai
       .request(app)
@@ -87,6 +106,25 @@ describe('POST Sign Up Authentication', () => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
         expect(res.body.error).to.equal('A valid lastname must be included');
+        done(err);
+      });
+  });
+  it('should return error if lastname is less than 3 characters', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        firstName: 'Anthony',
+        lastName: 'An',
+        email: 'anthony@gmail.com',
+        password: '12345678',
+        address: '3 Demurin Street, Ketu',
+        phoneNumber: '07045678932',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Lastname can not be less than 3 alphabetic characters');
         done(err);
       });
   });
@@ -380,7 +418,7 @@ describe('PATCH User status', () => {
       .post('/api/v1/auth/login')
       .send({ email: 'bayo@admin.com', password: `${adminPassword}` })
       .end((err, res) => {
-        adminToken = res.body.token;
+        adminToken = res.body.data.token;
         done(err);
       });
   });
