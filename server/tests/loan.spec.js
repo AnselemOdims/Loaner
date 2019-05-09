@@ -268,7 +268,7 @@ describe('GET All Loans', () => {
   it('should return error if load with that Id can not be found', (done) => {
     chai
       .request(app)
-      .get('/api/v1/loans/3')
+      .get('/api/v1/loans/4')
       .set('x-access-token', `${adminToken}`)
       .end((err, res) => {
         expect(res).to.have.status(400);
