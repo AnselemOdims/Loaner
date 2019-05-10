@@ -22,9 +22,13 @@ class UserValidation {
     } = await req.body;
     if (!firstName || !validate.name.test(firstName)) {
       error = 'A valid firstname must be included';
+    } else if (firstName.length < 3 ) {
+      error = 'Firstname can not be less than 3 alphabetic characters';
     } else if (!lastName || !validate.name.test(lastName)) {
       error = 'A valid lastname must be included';
-    } else if (!address) {
+    } else if (lastName.length < 3 ) {
+      error = 'Lastname can not be less than 3 alphabetic characters';
+    } else if (!address || !validate.address.test(address)) {
       error = 'A valid address must be included';
     } else if (!phoneNumber || !validate.phonenumber.test(phoneNumber)) {
       error = 'A valid phonenumber must be included';

@@ -20,17 +20,16 @@ class Repayments {
   async create(id, data) {
     const loan = await LoanModel.loans.find(loans => loans.loanId === id);
     const { paidAmount } = data; 
-    const { loanId, amount, monthlyInstallment, interest } = loan;
-    const balance = (amount + interest) - paidAmount;   
+    loan.balance -= paidAmount;   
     const repayment = {
       id: this.repayments.length + 1,
-      loanId,
-      createdOn: new Date,
-      amount,
-      monthlyInstallment,
-      interest,
+      loanId: loan.loanId,
+      createdOn: new Date(),
+      amount: loan.amount,
+      monthlyInstallment: loan.monthlyInstallment,
+      interest: loan.interest,
       paidAmount,
-      balance,
+      balance: loan.balance,
     }
     this.repayments.push(repayment);
     return repayment;

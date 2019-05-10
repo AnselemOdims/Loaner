@@ -1,4 +1,5 @@
 import Repayments from '../models/repayment';
+import LoanModel from '../models/loan';
 
 /**
  * @class RepaymentController
@@ -16,7 +17,11 @@ class RepaymentController {
   static async createRepayment(req, res) {
     const { id } = req.params;
     const { body } = req;
+    const loan = await LoanModel.loans.find(loans => loans.loanId === Number(id));
     const repayment = await Repayments.create(Number(id), body);
+    if (loan.balance === 0) {
+      loan.repaid = true;
+    }
     return res.status(201).json({ status: 201, message: 'Loan repayment record created succesfully', data: repayment })
   }
 
