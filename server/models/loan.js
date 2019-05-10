@@ -19,7 +19,7 @@ class Loan {
    */
   async createLoans(data, payload) {
     const { email } = payload;
-    const user = await UserModel.users.find(user => user.email === email);
+    const user = await UserModel.findByMail(email);
     const { firstName, lastName } = user;
     const { tenor, amount } = data;
     const interest = 0.05 * amount;
@@ -59,7 +59,7 @@ class Loan {
    * @returns {object} - The Specific loan
    */
   async getOne(id) {
-    const loan = await this.loans.find(loans => loans.loanId === id);
+    const loan = await this.loans.find(({ loanId }) => loanId === id);
     return loan;
   }
 

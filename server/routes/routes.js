@@ -42,6 +42,14 @@ router.patch(
 // Route to get all Users
 router.get('/users', AuthenticateUser.verifyAdmin, UserController.getUsers);
 
+// Route to get a single User
+router.get(
+  '/users/:id', 
+  AuthenticateUser.verifyAdmin, 
+  UserValidation.validateId, 
+  UserController.getAUser,
+);
+
 // Route to create a new loan application
 router.post(
   '/loans',

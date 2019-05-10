@@ -46,11 +46,22 @@ class User {
 
   /**
    * @method findByMail
-   * @description - method for finding a user by their email
+   * @description - method for finding a user by email
    * @returns {object} - The user that matches that passed email
    */
   async findByMail(mail) {
-    const user = this.users.find(user => user.email === mail);
+    const user = this.users.find(({ email }) => email === mail);
+    return user;
+  }
+
+  /**
+   * @method findById
+   * @description - Method for getting a User from by Id
+   * @param {Number} value - The User's id
+   * @returns {bject} - The User with the Id
+   */
+  async findById(value) {
+    const user = this.users.find(({ id }) => id === value);
     return user;
   }
 
