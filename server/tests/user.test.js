@@ -10,6 +10,7 @@ dotenv.config();
 
 const { expect } = chai;
 const adminPassword = process.env.ADMIN_PASSWORD;
+let adminToken;
 
 // Handle Sign Up
 describe('POST Sign Up Authentication', () => {
@@ -268,7 +269,7 @@ describe('POST Sign Up Authentication', () => {
       .send({
         firstName: 'Anthony',
         lastName: 'Anwuka',
-        email: 'anthony1gmail.com',
+        email: 'anthony#gmail#com',
         password: '12345678',
         address: '3 Demurin Street, Ketu',
         phoneNumber: '07045678932',
@@ -411,7 +412,6 @@ describe('POST Login Aunthentication', () => {
 });
 
 describe('PATCH User status', () => {
-  let adminToken;
   before((done) => {
     chai
       .request(app)
@@ -521,6 +521,45 @@ describe('PATCH User status', () => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
         expect(res.body.message).to.be.equal('All Users');
+        done(err);
+      });
+  });
+});
+
+describe('GET A Single User', () => {
+  it('should return user if inputs are correct', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users/1')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.equal('User Retrieved');
+        done(err);
+      });
+  });
+  it('should return error if id is user is not found', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users/5')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('No User with that Id in the database');
+        done(err);
+      });
+  });
+  it('should return error if id is not a number', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users/w')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Wrong Id Value Passed');
         done(err);
       });
   });
