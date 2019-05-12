@@ -40,7 +40,7 @@ class loanController {
   static async getLoan(req, res) {
     const { id } = req.params;
     const loan = await Loans.getOne(Number(id));
-    return res.status(200).json({ status: 200, data: loan });
+    return res.status(200).json({ status: 200, message: 'Loan Retrieved Successfully', data: loan });
   }
 
   /**
