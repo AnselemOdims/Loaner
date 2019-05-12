@@ -80,7 +80,7 @@ class UserController {
     const users = await User.getAll();
     return res.status(200).json({ 
       status: 200, 
-      message: 'All Users', 
+      message: 'Users Retrieved Successfully!', 
       data: users, 
     });
   }
@@ -97,7 +97,7 @@ class UserController {
     const user = await User.findById(Number(id));
     return res.status(200).json({ 
       status: 200, 
-      message: 'User Retrieved', 
+      message: 'User Retrieved Successfully!', 
       data: user, 
     });
   }

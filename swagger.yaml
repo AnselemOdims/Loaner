@@ -1,0 +1,834 @@
+---
+swagger: '2.0'
+host: "https://credit-loaner.herokuapp.com"
+basePath: "/api/v1/docs"
+schemes:
+- https
+- http
+info:
+  version: 1.0.0
+  title: "Loaner API V1"
+  description: "An  online lending platform that provides short term soft loans to
+    individuals. This helps solve problems of financial inclusion as a way to alleviate
+    poverty"
+  contact:
+    email: anselemodims@gmail.com
+consumes:
+- application/x-www-form-urlencoded
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: x-access-token
+    in: header
+paths:
+  "/auth/signup":
+    post:
+      tags:
+      - Authentication
+      description: Creates an account for a new user
+      summary: User sign up
+      operationId: ApiV1AuthSignupPost
+      deprecated: false
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: user
+        description: The user object
+        schema:
+          type: object
+          required:
+          - firstName
+          - lastName
+          - email
+          - password
+          - address
+          properties:
+            firstName:
+              type: string
+            lastName:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            address:
+              type: string
+      responses:
+        '201':
+          description: User Registration Successful!
+          schema:
+            "$ref": "#/definitions/userSignupResponse"
+          headers: {}
+        '409':
+          description: User with the email already exists
+          schema:
+            "$ref": "#/definitions/userExists"
+        '400':
+          description: Bad request
+          schema:
+            "$ref": "#/definitions/badRequest"
+  "/auth/login":
+    post:
+      tags:
+      - Authentication
+      description: Logs into an account of existing user
+      summary: User sign in
+      operationId: ApiV1AuthSigninPost
+      deprecated: false
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: userLogin
+        description: The user object
+        schema:
+          type: object
+          required:
+          - password
+          - address
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+      responses:
+        '200':
+          description: Login Successful!
+          schema:
+            "$ref": "#/definitions/userSignupResponse"
+          headers: {}
+        '400':
+          description: Bad request
+          schema:
+            "$ref": "#/definitions/badRequest"
+  "/loans":
+    post:
+      tags:
+      - User
+      security:
+      - Bearer: []
+      description: Creates a loan application for user
+      summary: Create a loan application
+      operationId: ApiV1LoanApply
+      deprecated: false
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: Loan details
+        description: Details for the new loans
+        schema:
+          type: object
+          required:
+          - amount
+          - tenor
+          properties:
+            amount:
+              type: number
+            tenor:
+              type: integer
+      responses:
+        '201':
+          description: Loan Application Created Successfully!
+          schema:
+            "$ref": "#/definitions/newLoanApplication"
+          headers: {}
+        '400':
+          description: Bad request
+          schema:
+            "$ref": "#/definitions/badRequest"
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+    get:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: View a list of all user loans.
+      summary: Get all user loan details
+      operationId: ApiV1GetAllLoan
+      deprecated: false
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: All Loan Applications
+          schema:
+            "$ref": "#/definitions/newLoanData"
+          headers: {}
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+  "/users":
+    get:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: View a list of all Users.
+      summary: Get all Users and their details
+      operationId: ApiV1GetAllUsers
+      deprecated: false
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Users Retrieved Successfully
+          schema:
+            "$ref": "#/definitions/getuserResponse"
+          headers: {}
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+  "/users/{id}":
+    get:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: View a specific User.
+      summary: Get a specific User details
+      operationId: ApiV1GetAUser
+      deprecated: false
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: User Retrieved Successfully
+          schema:
+            "$ref": "#/definitions/getuserResponse"
+          headers: {}
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+  "/loans/{id}":
+    patch:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: Change the user loan status
+      summary: Change loan status
+      operationId: ApiV1StatusUpdate
+      deprecated: false
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: integer
+        description: The id of the loan to be updated
+      - in: body
+        name: status
+        description: Status for the loan to be updated
+        schema:
+          type: object
+          required:
+          - status
+          properties:
+            status:
+              type: string
+      responses:
+        '200':
+          description: Updated Loan Application
+          schema:
+            "$ref": "#/definitions/approveRejectLoan"
+          headers: {}
+        '400':
+          description: Bad request
+          schema:
+            "$ref": "#/definitions/badRequest"
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+        '403':
+          description: Access token does not have the required scope
+          schema:
+            "$ref": "#/definitions/forbiddenError"
+    get:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: Get a specific loan data
+      summary: Get loan data
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: integer
+        description: The loan admin wants to get
+      responses:
+        '200':
+          description: Loan Retrieved Successfully
+          schema:
+            "$ref": "#/definitions/newLoanData"
+          headers: {}
+        '400':
+          description: Bad request
+          schema:
+            "$ref": "#/definitions/badRequest"
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+        '403':
+          description: Access token does not have the required scope
+          schema:
+            "$ref": "#/definitions/forbiddenError"
+  "/loans/{id}/repayment":
+    post:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: Post a repayment in favour of client
+      summary: Admin post user's paid amount
+      deprecated: false
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: integer
+        description: The loan to post the paid amount
+      - in: body
+        name: transaction details
+        description: The Amount client paid
+        schema:
+          type: object
+          required:
+          - paidAmount
+          properties:
+            amount:
+              type: number
+      responses:
+        '201':
+          description: Loan repayment record created succesfully
+          schema:
+            "$ref": "#/definitions/loanRepayment"
+          headers: {}
+        '400':
+          description: Bad request
+          schema:
+            "$ref": "#/definitions/badRequest"
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+        '403':
+          description: Access token does not have the required scope
+          schema:
+            "$ref": "#/definitions/forbiddenError"
+    get:
+      tags:
+      - User
+      security:
+      - Bearer: []
+      description: Get user repayment history
+      summary: Get all user repayments for specific loan
+      operationId: ApiV1getRepayments
+      deprecated: false
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: integer
+        description: The loan repayment history to get
+      responses:
+        '200':
+          description: Loan Repayment History
+          schema:
+            "$ref": "#/definitions/getRepayments"
+          headers: {}
+        '400':
+          description: Bad request
+          schema:
+            "$ref": "#/definitions/badRequest"
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+  "/loans/status=approved&&repaid=true":
+    get:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: View history of loans that are repaid
+      summary: View all repaid loans
+      operationId: ApiV1viewRepaidLoans
+      deprecated: false
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Repaid loans retrieved successfully
+          schema:
+            "$ref": "#/definitions/getCurrentLoans"
+          headers: {}
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+        '400':
+          description: No loan matches the given request
+          schema:
+            "$ref": "#/definitions/userNotFound"
+  "/loans/status=approved&&repaid=false":
+    get:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: View history of loans that are not repaid
+      summary: View all current loans
+      operationId: ApiV1viewcurrentLoans
+      deprecated: false
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Current loans retrieved successfully
+          schema:
+            "$ref": "#/definitions/getCurrentLoans"
+          headers: {}
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+        '400':
+          description: No loan matches the given request
+          schema:
+            "$ref": "#/definitions/userNotFound"
+  "/users/{user-email-address}/verify":
+    patch:
+      tags:
+      - Admin
+      security:
+      - Bearer: []
+      description: Verify user account
+      summary: Verify user on confirmation of home/work address
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: user-email-address
+        required: true
+        type: string
+        description: The email of the user whose accounts admin wants to verify
+      responses:
+        '200':
+          description: User Verification Successful!
+          schema:
+            "$ref": "#/definitions/userSignupResponse"
+          headers: {}
+        '401':
+          description: Authentication error
+          schema:
+            "$ref": "#/definitions/UnauthorizedError"
+        '400':
+          description: No User with that email
+          schema:
+            "$ref": "#/definitions/userNotFound"
+definitions:
+  userSignupResponse:
+    title: userSignupResponse
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+      data:
+        type: array
+        items:
+          "$ref": "#/definitions/signUp"
+  signUp:
+    title: signUp
+    type: object
+    properties:
+      token:
+        type: string
+      id:
+        type: number
+        format: int64
+      firstname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      address:
+        type: string
+      status:
+        type: string
+      isadmin:
+        type: boolean
+  userExists:
+    title: userExists
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+        example: 409
+      error:
+        type: string
+  userNotFound:
+    title: userNotFound
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+        example: 404
+      error:
+        type: string
+  badRequest:
+    title: badRequest
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+        example: 400
+      error:
+        type: string
+  UnauthorizedError:
+    title: noAuth
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+        example: 401
+      error:
+        type: string
+  forbiddenError:
+    title: forbidden
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+        example: 403
+      error:
+        type: string
+  newLoanApplication:
+    title: newLoanApplication
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+        example: 201
+      data:
+        type: array
+        items:
+          "$ref": "#/definitions/newLoanData"
+  newLoanData:
+    title: newLoanData
+    type: object
+    properties:
+      loanId:
+        type: number
+        format: int64
+        example: 5
+      firstname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      amount:
+        type: number
+        format: float
+        example: 50000
+      tenor:
+        type: number
+        format: integer
+        example: 12
+      paymentInstallment:
+        type: number
+        format: float
+        example: 4375
+      status:
+        type: string
+      balance:
+        type: number
+        format: float
+        example: 52500
+      interest:
+        type: number
+        format: float
+        example: 2500
+  approveRejectLoan:
+    title: approve/RejectLoan
+    type: object
+    properties:
+      loanId:
+        type: string
+        format: integer
+        example: 1
+      loanAmount:
+        type: number
+        format: float
+        example: 50000
+      tenor:
+        type: number
+        format: integer
+        example: 12
+      status:
+        type: string
+        example: approve or reject
+      monthlyInstallment:
+        type: number
+        format: float
+        example: 4375
+      interest:
+        type: number
+        format: float
+        example: 2500
+  loanRepayment:
+    title: post repayment transaction
+    type: object
+    properties:
+      id:
+        type: number
+        format: int64
+        example: 1
+      loanId:
+        type: string
+        format: int64
+        example: 1
+      createdOn:
+        type: string
+        format: date-time
+        example: '2017-07-21T17:32:28Z'
+      Amount:
+        type: number
+        format: float
+        example: 50000
+      monthlyInstallments:
+        type: number
+        format: float
+        example: 4375
+      paidAmount:
+        type: number
+        format: float
+        example: 10000
+      balance:
+        type: number
+        format: float
+        example: 42500
+  getCurrentLoans:
+    title: Get loans not repaid
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+        example: 200
+      data:
+        type: array
+        items:
+          "$ref": "#/definitions/currentloans"
+  currentloans:
+    title: Get current Loans
+    type: object
+    properties:
+      Id:
+        type: number
+        format: int64
+        example: 1
+      user:
+        type: string
+        example: smaple@mail.com
+      createdOn:
+        type: string
+        format: date-time
+        example: '2017-07-21T17:32:28Z'
+      status:
+        type: string
+      repaid:
+        type: boolean
+        example: false
+      tenor:
+        type: number
+        format: int64
+        example: 12
+      amount:
+        type: number
+        format: float
+        example: 50000
+      paymentInstallment:
+        type: number
+        format: float
+        example: 4375
+      balance:
+        type: number
+        format: float
+        example: 52500
+      interest:
+        type: number
+        format: float
+        example: 2500
+  getRepayments:
+    title: View repayment history
+    type: object
+    properties:
+      status:
+        type: number
+        format: int64
+        example: 200
+      data:
+        type: array
+        items:
+          "$ref": "#/definitions/repayments"
+  repayments:
+      title: User Repayments
+      type: object
+      properties:
+        id:
+          type: number
+          format: int64
+          example: 1
+        loanId:
+          type: string
+          format: int64
+          example: 1
+        createdOn:
+          type: string
+          format: date-time
+          example: '2017-07-21T17:32:28Z'
+        Amount:
+          type: number
+          format: float
+          example: 50000
+        monthlyInstallments:
+          type: number
+          format: float
+          example: 4375
+        paidAmount:
+          type: number
+          format: float
+          example: 10000
+        balance:
+          type: number
+          format: float
+          example: 42500
+  getLoans:
+      title: Get All loans
+      type: object
+      properties:
+        status:
+          type: number
+          format: int64
+          example: 200
+        data:
+          type: array
+          items:
+            "$ref": "#/definitions/newLoanData"
+  loans:
+    title: User loans
+    type: object
+    properties:
+      id:
+        type: number
+        format: int64
+        example: 1
+      user:
+        type: email
+        example: smaple@mail.com
+      createdOn:
+        type: string
+        format: date-time
+        example: '2017-07-21T17:32:28Z'
+      status:
+        type: string
+      repaid:
+        type: boolean
+        example: true or false
+      tenor:
+        type: number
+        format: int64
+        example: 12
+      amount:
+        type: number
+        format: float
+        example: 50000
+      paymentInstallment:
+        type: number
+        format: float
+        example: 4375
+      balance:
+        type: number
+        format: float
+        example: 52500
+      interest:
+        type: number
+        format: float
+        example: 2500
+  getuserResponse:
+    type: object
+    required:
+    - status
+    - data
+    properties:
+      status:
+        type: integer
+      data:
+        type: object
+        required:
+        - id
+        - email
+        - firstName
+        - lastName
+        - address
+        - status
+        - isAdmin
+        properties:
+          id:
+            type: integer
+          email:
+            type: string
+          firstName:
+            type: string
+          lastName:
+            type: string
+          address:
+            type: string
+          status:
+            type: string
+          isAdmin:
+            type: string

@@ -520,7 +520,7 @@ describe('PATCH User status', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
-        expect(res.body.message).to.be.equal('All Users');
+        expect(res.body.message).to.be.equal('Users Retrieved Successfully!');
         done(err);
       });
   });
@@ -535,7 +535,7 @@ describe('GET A Single User', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
-        expect(res.body.message).to.equal('User Retrieved');
+        expect(res.body.message).to.equal('User Retrieved Successfully!');
         done(err);
       });
   });

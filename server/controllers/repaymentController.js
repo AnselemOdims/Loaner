@@ -35,7 +35,7 @@ class RepaymentController {
   static async getRepayment(req, res) {
     const { id } = req.params;
     const repayment = await Repayments.getOne(Number(id));
-    return res.status(200).json({ status: 200, data: repayment });
+    return res.status(200).json({ status: 200, message: 'Loan Repayment History', data: repayment });
   }
 }
 
