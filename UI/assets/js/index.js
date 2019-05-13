@@ -23,13 +23,13 @@ window.addEventListener('load', () => {
     mobileBtn.addEventListener('click', () => {
       if (mobileBtn.classList.contains('menu-close')) {
         mobileBtn.classList.remove('menu-close');
-        sidebar.style.height = '50%';
+        sidebar.style.width = '250px';
         _top.style.transform = 'rotate(-.125turn)';
         _middle.style.visibility = 'hidden';
         _bottom.style.transform = 'rotate(.125turn)';
       } else {
         mobileBtn.classList.add('menu-close');
-        sidebar.style.height = '0';
+        sidebar.style.width = '0';
         _top.style.transform = 'none';
         _middle.style.visibility = 'visible';
         _bottom.style.transform = 'none';
@@ -61,7 +61,7 @@ window.addEventListener('load', () => {
       }
       const amount = (Math.pow((0.05 / y + 1), y)) * x;
       const sum = amount.toFixed(2);
-      result.innerHTML = `<p style='text-align:center; font-size: 27px'> &#8358;${sum}</p>`;
+      result.innerHTML = `<p style='text-align:center; font-size: 18px'> &#8358;${sum}</p>`;
     });
   }
 });

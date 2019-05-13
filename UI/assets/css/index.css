@@ -25,7 +25,7 @@ body {
 main {
     max-width: 100%;
     margin: 65px 7px 30px;
-    background:#4066cb;
+    background:#fff;
     border: solid 0 #fff;
     overflow-x: hidden;
 }
@@ -42,12 +42,16 @@ a {
 .banner {
     min-height: 2px;
 }
-.banner-sec {
-    background-image: url(../img/undraw_savings_hjfl.png);
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 650px 550px;
-    min-height: 710px
+.banner-sec {   
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%
+}
+.banner-img img {
+    height: 500px;
+    width: 550px
 }
 .banner h1 {
     font-family: Raleway;
@@ -58,21 +62,22 @@ a {
     font-size: 32px;
 }
 .sidebar {
-    height: 0;
-    width: 100%;
+    height: 60%;
+    width: 0;
     position: fixed;
     z-index: 1;
-    top: 60px;
-    right: 5px;
+    top: 0px;
+    right: 0px;
     background-color: #4066cb;
     overflow-x: hidden;
     transition: 0.5s;
     font-family: Raleway;
-    text-align: center
-    /* padding-right: 61px; */
+    text-align: center;
 }
 
-
+.menu-close {
+    display: none;
+}
 .fa-bars:before {
     content: '\f0c9';
     font-size: 24px;
@@ -103,7 +108,7 @@ a {
     color: #0b2d72;
 }
 .banner-button {
-    margin: 50px 0 0 50px;
+    margin: 50px 0 0 10px;
     font-family: Raleway;
     color: #fff;
     line-height: 1.4em;
@@ -114,7 +119,7 @@ a {
     border-radius: 5px;
     width: 30%;
     height: 60px;
-    font-size: 25px;
+    font-size: 23px;
 }
 .welcome-phrase a {
     color: #0b2d72;
@@ -140,28 +145,23 @@ a {
 .welcome-phrase {
     padding-top: 0px;
     width: 60%;
-    margin: 50px 0 0 0px;
     -webkit-animation: pop-in 0.7s ease-out;
     animation: pop-in 0.7s ease-out;
 }
 .welcome-phrase h1 {
     font-family: Raleway;
     color: #071e55;
+    line-height: 22px;
 }
 .welcome-phrase p {
     font-size: 16px;
     line-height: 30px;
     vertical-align: baseline;
     letter-spacing: normal;
+    text-align: justify
 }
 .fa-credit-card, .fa-building, .fa-fax {
     font-size: 50px;
-}
-.star {
-    display: flex;
-    color: gold;
-    margin: 0 auto;
-    padding-top: 10px
 }
 @-webkit-keyframes pop-in {
     0% {
@@ -212,7 +212,7 @@ a {
 
 .phrase {
     display: flex;
-    margin: 120px 0 0 50px;
+    margin: 0 0 0 10px;
     flex-direction: column;
 }
 
@@ -225,22 +225,30 @@ a {
 }
 .info-wrapper {
     margin-top: 50px;
-    background: linear-gradient(8deg, #fbb13b 88%, #fff calc(88% + 2px));
+    background: linear-gradient(8deg, #f8e9ce 88%, #fff calc(88% + 2px));
     color: #fff;
 }
 .info-image {
     border: solid 0 #fff;
-    border-radius: 3px;
+    border-radius: 6px;
     margin: 20px;
-    padding: 20px;
-    box-shadow: 0 0 4px #d2d2d2;
+    padding: 7px;
     background: #fff;
-    color: #0b2d72;
-    
+    color: #0b2d72;   
+}
+.info-image h1, .info-image p {
+    margin: 7px;
+    line-height: 20px;
+}
+.info-image:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .info-image img {
     height: 50px;
     width: 50px
+}
+.info-image p {
+  text-align: justify
 }
 .inf {
     display:flex;
@@ -250,37 +258,52 @@ a {
     box-shadow: none;
     margin: 0
 }
+.inf:hover {
+    box-shadow: none
+}
 .testimonies {
     background: linear-gradient(185deg, #4065cb49 92%, #fff calc(92% + 2px));
 }
 .estimate {
-    background-image: url(../img/undraw_agreement_aajr.png);
-    background-repeat: no-repeat;
-    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-size: 650px 550px;
+}
+.estimate img {
+    width: 40%;
+    height: 40%
 }
 .calc-inputs {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 110%;
+    height: 70%;
     margin: 20px auto;
     border-radius: 4px;
-    box-shadow: 3px 11px 28px grey;
-    background:  rgba(0, 0, 0, 0.2)
+    background: rgba(255, 255, 255, 0);
+    border: solid 0 #fff;
+    box-shadow: 2px 4px 4px grey;
+}
+.calc-inputs:hover {
+   box-shadow: 3px 11px 28px grey;
+}
+.calc-inputs h1 {
+    font-size: 16px
 }
 .calc-inputs label {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #fff
+    color: #071e55
 }
 .inp-11{
     width: 60%;
-    margin: 30px auto;
-    height: 50px;
+    margin: 10px auto;
+    height: 30px;
     border-radius: 3px;
     border: solid 1px #071e55;
-    font-size: 25px;
+    font-size: 18px;
     text-align: center
 }
 .inp-11:focus {
@@ -300,7 +323,7 @@ a {
    background: #fbb03b
 }
 .result {
-    height: 70px;
+    height: 40px;
     width: 60%;
     border: solid 1px #071e55;
     margin: 0 auto;
@@ -322,20 +345,23 @@ a {
     height: 50%;
     margin: 0 15px;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 6px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19)
 }
 .reason-img img {
     width: 100%;
     height: 200px;
 }
+.reason-img h3 {
+    text-align: center;
+    color: #071E55
+}
 .reason-img:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .name {
-    margin: 0;
+    margin: 0 auto;
     font-weight: bolder;
     padding: 0
 }
@@ -348,7 +374,8 @@ a {
     flex-direction: column;
 }
 .article p{
-    line-height: 22px
+    line-height: 22px;
+    text-align: justify
 }
 .bttn {
     width: 60%;
@@ -360,7 +387,7 @@ a {
     display: flex;
     width: 90%;
     margin: 0 auto;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 .main h1,
@@ -399,8 +426,14 @@ a {
 .item {
     margin-left: 180px;
 }
-.fas,
-.fab {
+.reason-img .star {
+    display: flex;
+    color: gold;
+    margin: 0 auto;
+    padding-top: 10px;
+    text-align: center
+}
+.fas{
     font-size: 20px;
 }
 .contacts-items p {
@@ -410,24 +443,34 @@ a {
 .icon {
     display: none;
 }
-
-
+.socials {
+    display: flex;
+}
+.social-link {
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 24px
+}
+.fab:hover, .socials .fas:hover{
+    font-size: 28px
+}
 /* For small screens */
-@media screen and (max-width: 740px) {
-    body {
-        background: linear-gradient(185deg, #4066cb 95%, #fff calc(95% + 2px));
+@media screen and (max-width: 755px) {
+   .banner-sec {
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
     }
-
-    .banner-sec {
-        background-position: bottom right;
-        background-size: 332px 300px;
-        min-height: 546px;
+    .banner-img img {
+        height: 300px;
+        width: 300px
     }
     #openBtn {
         display: inline-block;
     }
     .menu-close {
         background-color: transparent;
+        display: block
     }
     .bar {
         width: 1.4rem;
@@ -455,6 +498,7 @@ a {
     }
     .sidebar {
         padding-top: 15px;
+        margin-top: 58px;
     }
     .sidebar a {
         font-size: 18px;
@@ -479,17 +523,24 @@ a {
         color: #071e55;
     }
     .banner-button {
-        margin: 112px 0 0 10px;
-        width: 49%;
+        margin: 2px 0 26px 10px;
+        width: 50%;
         height: 48px;
         font-size: 20px;
         box-shadow: 0 10px 22px #5c5959;
+    }
+    .estimate img {
+        width: 54%
     }
     .container {
         width: 50%;
         /* flex-wrap: wrap; */
         flex-direction: column;
         width: 100%;
+    }
+    .container-item {
+        justify-content: center;
+        align-items: center
     }
     .container h3,
     .reason-img h3,
@@ -504,12 +555,11 @@ a {
     }
     .info-wrapper {
         margin: 0;
-        background: linear-gradient(8deg, #fbb03b 97%, #fff calc(97% + 2px));
+        background: linear-gradient(8deg, #f8e9ce 97%, #fff calc(97% + 2px));
     }
     .info-image {
         width: 76%;
         flex-direction: column;
-    
     }
     .info-image img {
         height: 40px;
@@ -517,7 +567,7 @@ a {
         margin: 15px;
     }
     .reason {
-        height: 767px;
+        height: 450px;
     }
     .reason-wrapper {
         width: 101%;
@@ -531,7 +581,7 @@ a {
         width: 90%
     }
     .img-card {
-        width: 105%;
+        width: 95%;
         height: 50%;
         margin-top: 10px
     }
@@ -542,7 +592,7 @@ a {
         margin: 0
     }
     .bttn {
-        margin: 20px 0 0 0;
+        margin: 0;
         width: 60% !important;
         font-size: 17px;
     }
@@ -550,6 +600,8 @@ a {
         width: 90%;
         flex-direction: column;
         justify-content: space-around;
+        justify-content: center;
+        align-items: center
     }
     .contacts-items p {
         line-height: 22px;
@@ -570,14 +622,24 @@ a {
     }
 }
 
-/* For small screens */
+/* For large screens */
+@media screen and (max-width: 940px) {
+    .banner-button {
+        width: unset
+    }
+}
+@media screen and (min-width: 1440px) {
+    .banner-sec {
+        min-height: 55vh;
+    }
+}
 @media screen and (min-width: 2000px) {
     body {
         overflow-x: auto;
     }
 
     .banner-sec {
-        min-height: 48vh;
+        min-height: 55vh;
         background-size: 1200px 800px;
     }
     .wrapper {
