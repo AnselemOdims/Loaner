@@ -1,7 +1,7 @@
 .my-footer {
     background: #fff;
     color: #405263;
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
