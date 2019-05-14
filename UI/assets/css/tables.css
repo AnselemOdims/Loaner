@@ -1,10 +1,9 @@
 .order-details {
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 80%;
     border: solid 0;
-    /* padding: 10px; */
-    box-shadow: 0 2px 4px grey;
+    box-shadow: 0 0 1px grey;
     margin: 0 auto;
 }
 .order-details h2 {
@@ -28,7 +27,7 @@ table {
     border-collapse: collapse;
     background-color: rgba(255, 255, 255, 0.9);
     margin-top: 60px;
-    width: 85%;
+    width: 80%;
     margin: 0 auto;
 }
 table thead {

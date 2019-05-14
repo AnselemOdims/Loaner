@@ -18,7 +18,11 @@
             <div class="banner">
                 <nav class="my-nav">
                     <div class="nav-header">
-                        <a href=""><i class="fas fa-landmark"></i> Loaner</a>
+                            <button id='openBtn' class="menu-close" >
+                                    <div class='bar top'></div>
+                                    <div class='bar middle'></div>
+                                    <div class='bar bottom'></div>
+                            </button>
                     </div>
                     <div class="nav-sub" id="sub_nav">
                         <div class="admin-icons">
@@ -40,7 +44,7 @@
             </div>
         </header>
 
-        <div class="side-nav">
+        <div class="side-nav" id="mySidebar">
             <div class="image">
                 <img
                     src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads01&accessoriesType=Prescription01&hairColor=Black&facialHairType=BeardLight&facialHairColor=Black&clotheType=Hoodie&clotheColor=Blue02&eyeType=Default&eyebrowType=Default&mouthType=Smile&skinColor=Brown"
@@ -53,26 +57,31 @@
             </p>
             <div class="side-links">
                 <a href="./dashboard.html"
-                    ><div class="link active">
+                    ><div class="link">
                         <i class="fas fa-chalkboard"></i> Dashboard
                     </div></a
                 >
 
-                <a href="#"
+                <a href="#"  class="active"
                     ><div class="link">
                         <i class="fas fa-bullhorn"></i> Loan Requests
                     </div></a
                 >
-                <a href="./loan-status.html"
+                <a href="./repaid.html"
                     ><div class="link">
-                        <i class="fas fa-layer-group"></i> Loan Status
+                        <i class="fas fa-layer-group"></i> Repaid Loans
+                    </div></a
+                >
+                <a href="./current.html"
+                    ><div class="link">
+                        <i class="fas fa-layer-group"></i> Current Loans
                     </div></a
                 >
             </div>
         </div>
-        <div class="main-content">
+        <div class="main-content" id="main-content">
             <div class="card-header">
-                <h2>Thursday, 28th February, 2019</h2>
+                <span id="date"></span>
             </div>
             <div class="order-details">
                 <div class="hist">
@@ -675,6 +684,6 @@
         <footer class="my-footer text-center">
             <p>&copy; 2019 Loaner Limited</p>
         </footer>
-        <script src="assets/js/loans.js"></script>
+        <script src="assets/js/loans.js"></script>       
     </body>
 </html>

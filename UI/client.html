@@ -19,31 +19,30 @@
             <div class="banner">
                 <nav class="my-nav">
                         <div class="nav-header">
-                                <a href=""><i class="fas fa-landmark"></i> Loaner</a>
+                            <button id='openBtn' class="menu-close" >
+                                <div class='bar top'></div>
+                                <div class='bar middle'></div>
+                                <div class='bar bottom'></div>
+                        </button>
                             </div>
                     <div class="nav-sub" id="sub_nav">
                         <h4>Hello, Demola</h4>
                         <div class="dropdown">
-                            <button class="icon-btn" onclick="openNav()">
+                            <button class="icon-btn">
                                 <span><i class="fas fa-envelope"></i></span
                                 ><span class="badge">10</span>
                             </button>
-                            <div id="myDropdown" class="dropdown-content">
-                                <a href="#home">Home</a>
-                                <a href="#about">About</a>
-                                <a href="#contact">Contact</a>
-                            </div>
                         </div>
                     </div>
                 </nav>
             </div>
         </header>
-        <div class="dashboard-wrapper" id="side-flex">
-            <div class="side-nav">
+        <div class="dashboard-wrapper" id="main">
+            <div class="side-nav" id="mySidebar">
                 <div class="image">
                     <img
                         src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Prescription01&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=Default&mouthType=Smile&skinColor=Light"
-                    />
+                    alt="profile image" />
                 </div>
                 <h3>Demola Otedola</h3>
                 <p><span class="dot"></span>Online</p>
@@ -56,17 +55,15 @@
                 <div class="edit-profile">
                     <a href="./sign_up.html" id="del-btn">Delete Account</a>
                 </div>
+                <div class="align-center1">
+                <a href="#" class="banner-button bn-btn" id="banner-btn">
+                        Repayment History
+                </a>
             </div>
-            <div class="main-content">
+            </div>
+            <div class="main-content" id="main-content">
                 <div class="card-header">
-                    <h2>Monday, 28th February, 2019</h2>
-                </div>
-                <div class="align-center">
-                    <a href="#">
-                        <button class="banner-button" id="banner-btn">
-                            Eligibility Status
-                        </button>
-                    </a>
+                    <span id="date"></span>
                 </div>
                 <br />
                 <div class="card-wrapper">
@@ -94,11 +91,10 @@
                             <h3>Variable Rate Loans</h3>
                             <hr class="h-22" />
                             <p>
-                                Interest rates on variable-rate loans are tied to a benchmark rate set by banks. Depending on how the benchmark rate fluctuates, the rate on your loan — as well as your monthly payments and total interest costs — can rise or fall with these loans.
-
-                                One benefit is variable-rate loans typically carry lower APRs than fixed-rate loans. They may also carry a cap that limits how much your rate can change over a specific period and over the life of the loan.
-                                
-                                A variable-rate loan can make sense if your loan carries a short repayment term, as rates may rise but are unlikely to surge in the short-term.
+                                Most personal loans carry fixed rates, which means your rate and monthly payments (sometimes called installments) stay the same for the life of the loan.
+                                Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans. Having a fixed rate makes it easier to budget, as you don’t have to worry about your payments changing.
+                               Fixed-rate loans make sense if you want consistent payments each month.
+                               Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans.
                             </p>
                            
                             <div class="align-left">
@@ -116,10 +112,10 @@
                             <h3>Co-Sign Loans</h3>
                             <hr class="h-22" />
                             <p>
-                                This loan is for borrowers with thin or no credit histories who may not qualify for a loan on their own. A co-signer promises to repay the loan if the borrower doesn’t, and acts as a form of insurance for the lender.
-
-                                Adding a co-signer who has strong credit can improve your chances of qualifying and may get you a lower rate and more favorable terms on a loan.
-                                A co-signer promises to repay the loan if the borrower doesn’t, and acts as a form of insurance for the lender.
+                                Most personal loans carry fixed rates, which means your rate and monthly payments (sometimes called installments) stay the same for the life of the loan.
+                                Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans. Having a fixed rate makes it easier to budget, as you don’t have to worry about your payments changing.
+                               Fixed-rate loans make sense if you want consistent payments each month.
+                               Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans.
                             </p>
                             
                             <div class="align-left">
@@ -134,8 +130,10 @@
                             <h3>Payday Loans</h3>
                             <hr class="h-22" />
                             <p>
-                                    A payday loan is a type of unsecured loan, but it is typically repaid on the borrower’s next payday, rather than in installments over a period of time. Loan amounts tend to be a few hundred dollars or less.
-                                    Payday loans are short-term, high-interest — and risky — loans. Most borrowers wind up taking out additional loans when they can’t repay the first, trapping them in a debt cycle. That means interest charges mount quickly, and loans with APRs in the triple digits are not uncommon.
+                                Most personal loans carry fixed rates, which means your rate and monthly payments (sometimes called installments) stay the same for the life of the loan.
+                                Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans. Having a fixed rate makes it easier to budget, as you don’t have to worry about your payments changing.
+                               Fixed-rate loans make sense if you want consistent payments each month.
+                               Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans.
                                
                             </p>
                             
@@ -153,9 +151,10 @@
                             <h3>Pawnshop Loans</h3>
                             <hr class="h-22" />
                             <p>
-                                    This is a secured personal loan. You borrow against an asset, such as jewelry or electronics, which you leave with the pawnshop. If you don’t repay the loan, the pawnshop can sell your asset.
-
-                                    Rates for pawnshop loans are very high and can run to over 200% APR. But they’re likely lower than rates on payday loans, and you avoid damaging your credit,or being pursued by debt collectors.
+                                Most personal loans carry fixed rates, which means your rate and monthly payments (sometimes called installments) stay the same for the life of the loan.
+                                Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans. Having a fixed rate makes it easier to budget, as you don’t have to worry about your payments changing.
+                               Fixed-rate loans make sense if you want consistent payments each month.
+                               Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans.
                             </p>
                             
                             <div class="align-left">
@@ -170,8 +169,10 @@
                             <h3>Personal Line of Credit Loans</h3>
                             <hr class="h-22" />
                             <p>
-                                    A personal line of credit is revolving credit, more similar to a credit card than a personal loan. Rather than getting a lump sum of cash, you get access to a credit line from which you can borrow on an as-needed basis. You pay interest only on what you borrow.
-                                    A personal line of credit works best when you need to borrow for ongoing expenses or emergencies, rather than a one-time expense.
+                                Most personal loans carry fixed rates, which means your rate and monthly payments (sometimes called installments) stay the same for the life of the loan.
+                                Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans. Having a fixed rate makes it easier to budget, as you don’t have to worry about your payments changing.
+                               Fixed-rate loans make sense if you want consistent payments each month.
+                               Fixed-rate loans make sense if you want consistent payments each month and if you’re concerned about rising rates on long-term loans.
                             </p>
                            
                             <div class="align-left">
@@ -552,5 +553,7 @@
             <p>&copy; 2019 Loaner Limited</p>
         </footer>
         <script src="assets/js/client.js"></script>
+        <!-- <script src="assets/js/index.js"></script> -->
+
     </body>
 </html>
