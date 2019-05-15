@@ -1,16 +1,13 @@
-@import url('./dashboard.css');
 @import url('./sign_up.css');
 @import url('./modal.css');
 @import url('./tables.css');
+@import url('./dashboard.css');
 
 
 body {
     overflow-x: auto
 }
-.dashboard-wrapper {
-    background: #4066cb;
-    
-}
+
 .dot {
     /* border: solid 1px green; */
     width: 10px;
@@ -19,6 +16,9 @@ body {
     background: green;
     display: inline-block;
     margin-right: 5px;
+}
+.nav-header {
+    flex: 8
 }
 .details {
     display: flex;
@@ -30,6 +30,12 @@ body {
 .details span {
     margin: 8px 0 5px;
 }
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
 .side-nav a {
     padding: 0;
     text-decoration: none;
@@ -40,18 +46,21 @@ body {
     border: solid 1px #fbb03b;
     padding: 5px;
     border-radius: 2px;
-    margin: 30px 30px 10px;
 }
-
+.side-nav a:hover {
+    background: #fbb03b
+}
 .card-wrapper {
     width: 98%;
     margin: 0 auto;
     border: solid 0;
-    box-shadow: 0 7px 12px #5c5959;
-    background: #fbb03b;
+    box-shadow: 0 0 1px grey;
+    background: rgb(231, 227, 227)
 }
 .card-wrapper p {
     font-size: 14px;
+    text-align: justify;
+    padding: 10px
 }
 .card-header {
     color: #071e55;
@@ -61,11 +70,13 @@ body {
 }
 
 .cards {
-    box-shadow: 0 5px 8px #5c5959;
+    box-shadow: 0 0 1px #5c5959;
+    
 }
 .cards h3 {
-    padding: 10px 10px 0;
-    color: #071e55;
+  color: #071e55;
+  line-height: 14px;
+  font-size: 16px
 }
 .h-22 {
     color: #071e55;
@@ -84,10 +95,17 @@ body {
     height: 30px;
     font-size: 14px;
     border-radius: 2px;
+    width: 96%
+}
+.align-center1{
+    margin: 30px 0 150px 
 }
 
 .banner-button:hover {
     background: #fbb03b;
+}
+.bn-btn {
+    background: none;    
 }
 
 .form-flex {
@@ -223,13 +241,9 @@ a.side {
         margin: 0px 0 0 19px;
         font-size: 11px;
     }
-    .side-nav {
-        width: unset;
-        position: unset;
-    }
     .side-nav a {
-        margin: -15px 30px 10px 49px;
-        width: 50%;
+        margin: -15px 30px 10px 0;
+        width: 70%;
     }
     .sidebar {
         width: 0;
@@ -239,7 +253,7 @@ a.side {
         padding: 8px;
     }
     img {
-        margin: 62px 0 0px 50px;
+        margin: 0;
         height: 80px;
     }
     .banner-button {
@@ -247,7 +261,7 @@ a.side {
         height: 50px;
     }
     a#del-btn {
-        margin: 10px 0 0 55px;
+        margin: 10px 0 0 12px;
     }
     .main-content {
         margin: 62px 0 36px 5px;
@@ -263,6 +277,9 @@ a.side {
     .align-center {
         font-size: 15px;
         color: #071e55;
+    }
+    .align-center1 {
+        margin-left: 40px
     }
     .cards p {
         font-size: 13px;

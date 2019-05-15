@@ -9,6 +9,7 @@ const _middle = document.querySelector('.middle');
 const _bottom = document.querySelector('.bottom');
 const mobileBtn = document.querySelector('#openBtn');
 const sidebar = document.getElementById('mySidebar');
+const main = document.getElementById('main-content');
 const btn = document.getElementById('btn');
 const modal = document.getElementById('modal');
 const input = document.getElementsByClassName('form-controls')[0];
@@ -17,6 +18,7 @@ const months = document.getElementById('inpt2');
 const result = document.querySelector('.result');
 const estBtn = document.querySelector('.est-btn');
 const errMsg = document.querySelector('.err-output');
+const date = document.getElementById('date');
 
 window.addEventListener('load', () => {
   if (mobileBtn) {
@@ -24,19 +26,24 @@ window.addEventListener('load', () => {
       if (mobileBtn.classList.contains('menu-close')) {
         mobileBtn.classList.remove('menu-close');
         sidebar.style.width = '250px';
+        main.style.marginLeft = '150px';
         _top.style.transform = 'rotate(-.125turn)';
         _middle.style.visibility = 'hidden';
         _bottom.style.transform = 'rotate(.125turn)';
       } else {
         mobileBtn.classList.add('menu-close');
         sidebar.style.width = '0';
+        main.style.marginLeft = '0';
         _top.style.transform = 'none';
         _middle.style.visibility = 'visible';
         _bottom.style.transform = 'none';
       }
     });
   }
-
+  if (date) {
+    const newDate = new Date();
+    date.innerHTML = `<h3 style='color:#4066cb; text-align: center'>${newDate}</h3>`;
+  }
   if (input) {
     input.addEventListener('keyup', () => {
       btn.addEventListener('click', (e) => {
@@ -64,4 +71,5 @@ window.addEventListener('load', () => {
       result.innerHTML = `<p style='text-align:center; font-size: 18px'> &#8358;${sum}</p>`;
     });
   }
+
 });

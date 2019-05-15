@@ -15,7 +15,7 @@
 .modal-content {
     background-color: #fff;
     margin: 0 auto;
-    padding: 0 20px 20px;
+    padding: 10px 20px 20px;
     border: 0px solid #888;
     width: 70%;
     border-radius: 2px;
@@ -35,8 +35,9 @@ form label,
 .close {
     color: #3c4859;
     float: right;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
+    margin-right: 20px
 }
 
 .close:hover,

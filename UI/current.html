@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Loans</title>
+        <link rel="stylesheet" href="assets/css/loans.css" />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <header>
+            <div class="banner">
+                <nav class="my-nav">
+                    <div class="nav-header">
+                            <button id='openBtn' class="menu-close" >
+                                    <div class='bar top'></div>
+                                    <div class='bar middle'></div>
+                                    <div class='bar bottom'></div>
+                            </button>
+                    </div>
+                    <div class="nav-sub" id="sub_nav">
+                        <div class="admin-icons">
+                            <button class="icon-btn">
+                                <span><i class="fas fa-envelope"></i></span
+                                ><span class="badge">12</span>
+                            </button>
+                            <button class="icon-btn">
+                                <span><i class="fas fa-bell"></i></span
+                                ><span class="badge">11</span>
+                            </button>
+                            <button class="icon-btn">
+                                <span><i class="fas fa-flag"></i></span
+                                ><span class="badge">10</span>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="side-nav" id="mySidebar">
+            <div class="image">
+                <img
+                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads01&accessoriesType=Prescription01&hairColor=Black&facialHairType=BeardLight&facialHairColor=Black&clotheType=Hoodie&clotheColor=Blue02&eyeType=Default&eyebrowType=Default&mouthType=Smile&skinColor=Brown"
+                />
+            </div>
+            <h3>Admin</h3>
+            <p><span class="dot"></span>Online</p>
+            <p>
+                <a href="./sign_in.html" class="side">Logout</a>
+            </p>
+            <div class="side-links">
+                <a href="./dashboard.html"
+                    ><div class="link">
+                        <i class="fas fa-chalkboard"></i> Dashboard
+                    </div></a
+                >
+
+                <a href="./loan-apps.html"
+                    ><div class="link">
+                        <i class="fas fa-bullhorn"></i> Loan Requests
+                    </div></a
+                >
+                <a href="./repaid.html"
+                    ><div class="link">
+                        <i class="fas fa-layer-group"></i> Repaid Loans
+                    </div></a
+                >
+                <a href="#"  class="active"
+                    ><div class="link">
+                        <i class="fas fa-layer-group"></i> Current Loans
+                    </div></a
+                >
+            </div>
+        </div>
+        <div class="main-content" id="main-content">
+            <div class="card-header">
+                <span id="date"></span>
+            </div>
+            <div class="order-details">
+                <div class="hist">
+                    <h2>ALL APPROVED LOANS</h2>
+                </div>
+                <div class="table-wrapper">
+                    <table id="myTable">
+                        <thead>
+                            <tr>
+                                <th>LoanId</th>
+                                <th>FullName</th>
+                                <th>Phone No.</th>
+                                <th>Date Requested</th>
+                                <th>Date Approved</th>
+                                <th>Repay Status</th>
+                                <th>Amount (&#8358;)</th>
+                                <th>Loan Tenor (Months)</th>
+                                <th>Interest(%)</th>
+                                <th>Payment Installment (&#8358;)</th>
+                                <th>Balance (&#8358;)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#2021</td>
+                                <td>Promise Kojo</td>
+                                <td>08341734502</td>
+                                <td>20/3/2019</td>
+                                <td>28/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>30,000</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>20,000</td>
+                                <td>11,518.75</td>
+                                <td><button class="banner-button bttn6 btn1">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2467</td>
+                                <td>Kelvin Preye</td>
+                                <td>08245738291</td>
+                                <td>22/3/2019</td>
+                                <td>28/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>50,000</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>35,000</td>
+                                <td>17,552.67</td>
+                                <td><button class="banner-button bttn6 btn1">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2789</td>
+                                <td>Adamu Mohammed</td>
+                                <td>08341234291</td>
+                                <td>23/3/2019</td>
+                                <td>29/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>100,000</td>
+                                <td>12</td>
+                                <td>5</td>
+                                <td>50,000</td>
+                                <td>55,116.20</td>
+                                <td><button class="banner-button bttn6 btn1">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2841</td>
+                                <td>John Okoro</td>
+                                <td>08345678291</td>
+                                <td>20/3/2019</td>
+                                <td>28/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>50,000</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>30,000</td>
+                                <td>22,552.67</td>
+                                <td><button class="banner-button bttn6 btn1">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2935</td>
+                                <td>Musiliu Obanikoro</td>
+                                <td>08342389291</td>
+                                <td>21/3/2019</td>
+                                <td>27/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>55,000</td>
+                                <td>3</td>
+                                <td>5</td>
+                                <td>35,000</td>
+                                <td>25,734.32</td>
+                                <td><button class="banner-button bttn6 btn1">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2319</td>
+                                <td>Chris David</td>
+                                <td>08342309891</td>
+                                <td>23/3/2019</td>
+                                <td>30/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>80,000</td>
+                                <td>8</td>
+                                <td>5</td>
+                                <td>45,000</td>
+                                <td>39,088.60</td>
+                                <td><button class="banner-button bttn6 btn1">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2074</td>
+                                <td>Bolaji Johnson</td>
+                                <td>08342917291</td>
+                                <td>5/4/2019</td>
+                                <td>9/4/2019</td>
+                                <td class="red">Partly</td>
+                                <td>65,000</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>30,000</td>
+                                <td>38,318.47</td>
+                                <td><button class="banner-button bttn6 btn1">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2156</td>
+                                <td>Nora Pachok</td>
+                                <td>08342478291</td>
+                                <td>8/4/2019</td>
+                                <td>12/4/2019</td>
+                                <td class="red">Partly</td>
+                                <td>70,000</td>
+                                <td>5</td>
+                                <td>5</td>
+                                <td>25,000</td>
+                                <td>48,570.70</td>
+                                <td><button class="banner-button bttn6 btn1">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2467</td>
+                                <td>Kelvin Preye</td>
+                                <td>08245738291</td>
+                                <td>22/3/2019</td>
+                                <td>28/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>50,000</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>35,000</td>
+                                <td>17,552.67</td>
+                                <td><button class="banner-button bttn6">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2789</td>
+                                <td>Adamu Mohammed</td>
+                                <td>08341234291</td>
+                                <td>23/3/2019</td>
+                                <td>29/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>100,000</td>
+                                <td>12</td>
+                                <td>5</td>
+                                <td>50,000</td>
+                                <td>55,116.20</td>
+                                <td><button class="banner-button bttn6">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2841</td>
+                                <td>John Okoro</td>
+                                <td>08345678291</td>
+                                <td>20/3/2019</td>
+                                <td>28/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>50,000</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>30,000</td>
+                                <td>22,552.67</td>
+                                <td><button class="banner-button bttn6">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2935</td>
+                                <td>Musiliu Obanikoro</td>
+                                <td>08342389291</td>
+                                <td>21/3/2019</td>
+                                <td>27/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>55,000</td>
+                                <td>3</td>
+                                <td>5</td>
+                                <td>35,000</td>
+                                <td>25,734.32</td>
+                                <td><button class="banner-button bttn6">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2021</td>
+                                <td>Promise Kojo</td>
+                                <td>08341734502</td>
+                                <td>20/3/2019</td>
+                                <td>28/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>30,000</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>20,000</td>
+                                <td>11,518.75</td>
+                                <td><button class="banner-button bttn6">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2467</td>
+                                <td>Kelvin Preye</td>
+                                <td>08245738291</td>
+                                <td>22/3/2019</td>
+                                <td>28/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>50,000</td>
+                                <td>6</td>
+                                <td>5</td>
+                                <td>35,000</td>
+                                <td>17,552.67</td>
+                                <td><button class="banner-button bttn6">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                            <tr>
+                                <td>#2789</td>
+                                <td>Adamu Mohammed</td>
+                                <td>08341234291</td>
+                                <td>23/3/2019</td>
+                                <td>29/3/2019</td>
+                                <td class="red">Partly</td>
+                                <td>100,000</td>
+                                <td>12</td>
+                                <td>5</td>
+                                <td>50,000</td>
+                                <td>55,116.20</td>
+                                <td><button class="banner-button bttn6">
+                                        Send Reminder
+                                    </button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal1" class="modal">
+            <div class="modal-content md-con md">
+                <div class="modal-header">
+                    <span class="close close1">&times;</span>
+                    <h2>
+                        A Reminder of Due Monthly Installments Payment Has Been Sent to the Client's Mail
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <footer class="my-footer text-center">
+            <p>&copy; 2019 Loaner Limited</p>
+        </footer>
+        <script src="assets/js/loans.js"></script>
+    </body>
+</html>

@@ -225,7 +225,7 @@ a {
 }
 .info-wrapper {
     margin-top: 50px;
-    background: linear-gradient(8deg, #f8e9ce 88%, #fff calc(88% + 2px));
+    background: linear-gradient(8deg, #EBEEF9 88%, #fff calc(88% + 2px));
     color: #fff;
 }
 .info-image {
