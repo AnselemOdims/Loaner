@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-plusplus */
-
+/* eslint-disable no-underscore-dangle */
 const btn = document.getElementsByClassName('btn');
 const modal1 = document.getElementById('modal1');
 const span1 = document.getElementsByClassName('closer1')[0];
@@ -19,7 +19,37 @@ const modal5 = document.getElementById('modal5');
 const del = document.getElementById('del-btn');
 const span5 = document.getElementsByClassName('closer5')[0];
 const cancel1 = document.getElementById('cancel1');
+const date = document.getElementById('date');
+const mobileBtn = document.querySelector('#openBtn');
+const sidebar = document.getElementById('mySidebar');
+const main = document.getElementById('main-content');
+const _top = document.querySelector('.top');
+const _middle = document.querySelector('.middle');
+const _bottom = document.querySelector('.bottom');
 
+if (mobileBtn) {
+  mobileBtn.addEventListener('click', () => {
+    if (mobileBtn.classList.contains('menu-close')) {
+      mobileBtn.classList.remove('menu-close');
+      sidebar.style.width = '250px';
+      main.style.marginLeft = '150px';
+      _top.style.transform = 'rotate(-.125turn)';
+      _middle.style.visibility = 'hidden';
+      _bottom.style.transform = 'rotate(.125turn)';
+    } else {
+      mobileBtn.classList.add('menu-close');
+      sidebar.style.width = '0';
+      main.style.marginLeft = '0';
+      _top.style.transform = 'none';
+      _middle.style.visibility = 'visible';
+      _bottom.style.transform = 'none';
+    }
+  });
+}
+if (date) {
+  const newDate = new Date();
+  date.innerHTML = `<h3 style='color:#4066cb; text-align: center'>${newDate}</h3>`;
+}
 for (let i = 0; i < btn.length; i++) {
   btn[i].addEventListener('click', () => {
     modal1.style.display = 'block';

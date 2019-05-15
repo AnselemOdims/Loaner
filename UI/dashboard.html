@@ -18,19 +18,23 @@
             <div class="banner">
                 <nav class="my-nav">
                     <div class="nav-header">
-                        <a href=""><i class="fas fa-landmark"></i> Loaner</a>
+                            <button id='openBtn' class="menu-close" >
+                                    <div class='bar top'></div>
+                                    <div class='bar middle'></div>
+                                    <div class='bar bottom'></div>
+                            </button> 
                     </div>
                     <div class="nav-sub" id="sub_nav">
                         <div class="admin-icons">
-                            <button class="icon-btn" onclick="openNav()">
+                            <button class="icon-btn">
                                 <span><i class="fas fa-envelope"></i></span
                                 ><span class="badge">12</span>
                             </button>
-                            <button class="icon-btn" onclick="openNav()">
+                            <button class="icon-btn">
                                 <span><i class="fas fa-bell"></i></span
                                 ><span class="badge">11</span>
                             </button>
-                            <button class="icon-btn" onclick="openNav()">
+                            <button class="icon-btn">
                                 <span><i class="fas fa-flag"></i></span
                                 ><span class="badge">10</span>
                             </button>
@@ -40,21 +44,20 @@
                 </nav>
             </div>
         </header>
-        <div class="dashboard-wrapper" id="side-flex">
-        <div class="side-nav">
-            <div class="image">
+        <div class="dashboard-wrapper" >
+        <div class="side-nav" id="mySidebar">
+
                 <img
                     src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairDreads01&accessoriesType=Prescription01&hairColor=Black&facialHairType=BeardLight&facialHairColor=Black&clotheType=Hoodie&clotheColor=Blue02&eyeType=Default&eyebrowType=Default&mouthType=Smile&skinColor=Brown"
                 />
-            </div>
             <h3>Admin</h3>
             <p><span class="dot"></span>Online</p>
             <p>
                 <a href="./sign_in.html" class="side">Logout</a>
             </p>
             <div class="side-links">
-                <a href="#about"
-                    ><div class="link active">
+                <a href="#about" class="active"
+                    ><div class="link ">
                         <i class="fas fa-chalkboard"></i> Dashboard
                     </div></a
                 >
@@ -64,16 +67,21 @@
                         <i class="fas fa-bullhorn"></i> Loan Requests
                     </div></a
                 >
-                <a href="./loan-status.html"
+                <a href="./repaid.html"
                     ><div class="link">
-                        <i class="fas fa-layer-group"></i> Loan Status
+                        <i class="fas fa-layer-group"></i> Repaid Loans
+                    </div></a
+                >
+                <a href="./current.html"
+                    ><div class="link">
+                        <i class="fas fa-layer-group"></i> Current Loans
                     </div></a
                 >
             </div>
         </div>
-        <div class="main-content">
+        <div class="main-content" id="main-content">
             <div class="card-header">
-                <h2>Thursday, 28th February, 2019</h2>
+                <span id="date"></span>
             </div>
             <div class="card-flex">
                 <div class="cards ch-2 ch-21">

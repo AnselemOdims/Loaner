@@ -10,6 +10,7 @@ dotenv.config();
 
 const { expect } = chai;
 const adminPassword = process.env.ADMIN_PASSWORD;
+let adminToken;
 
 // Handle Sign Up
 describe('POST Sign Up Authentication', () => {
@@ -71,6 +72,25 @@ describe('POST Sign Up Authentication', () => {
         done(err);
       });
   });
+  it('should return error if firstname is less than 3 characters', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        firstName: 'od',
+        lastName: 'Anwuka',
+        email: 'anthony@gmail.com',
+        password: '12345678',
+        address: '3 Demurin Street, Ketu',
+        phoneNumber: '07045678932',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Firstname can not be less than 3 alphabetic characters');
+        done(err);
+      });
+  });
   it('should return error if user tries registering with an empty lastname', (done) => {
     chai
       .request(app)
@@ -87,6 +107,25 @@ describe('POST Sign Up Authentication', () => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
         expect(res.body.error).to.equal('A valid lastname must be included');
+        done(err);
+      });
+  });
+  it('should return error if lastname is less than 3 characters', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        firstName: 'Anthony',
+        lastName: 'An',
+        email: 'anthony@gmail.com',
+        password: '12345678',
+        address: '3 Demurin Street, Ketu',
+        phoneNumber: '07045678932',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Lastname can not be less than 3 alphabetic characters');
         done(err);
       });
   });
@@ -230,7 +269,7 @@ describe('POST Sign Up Authentication', () => {
       .send({
         firstName: 'Anthony',
         lastName: 'Anwuka',
-        email: 'anthony1gmail.com',
+        email: 'anthony#gmail#com',
         password: '12345678',
         address: '3 Demurin Street, Ketu',
         phoneNumber: '07045678932',
@@ -373,14 +412,13 @@ describe('POST Login Aunthentication', () => {
 });
 
 describe('PATCH User status', () => {
-  let adminToken;
   before((done) => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
       .send({ email: 'bayo@admin.com', password: `${adminPassword}` })
       .end((err, res) => {
-        adminToken = res.body.token;
+        adminToken = res.body.data.token;
         done(err);
       });
   });
@@ -482,7 +520,46 @@ describe('PATCH User status', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
-        expect(res.body.message).to.be.equal('All Users');
+        expect(res.body.message).to.be.equal('Users Retrieved Successfully!');
+        done(err);
+      });
+  });
+});
+
+describe('GET A Single User', () => {
+  it('should return user if inputs are correct', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users/1')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.equal('User Retrieved Successfully!');
+        done(err);
+      });
+  });
+  it('should return error if id is user is not found', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users/5')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('No User with that Id in the database');
+        done(err);
+      });
+  });
+  it('should return error if id is not a number', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/users/w')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('Wrong Id Value Passed');
         done(err);
       });
   });

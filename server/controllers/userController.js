@@ -21,9 +21,11 @@ class UserController {
     const userToken = await Helpers.generateToken({ id, email, isAdmin });
     return res.status(201).json({
       status: 201,
-      token: userToken,
       message: 'User Registration Successful!',
-      data: user,
+      data: {
+        token: userToken,
+        user,
+      },
     });
   }
 
@@ -41,9 +43,11 @@ class UserController {
     const userToken = await Helpers.generateToken({ id, email, isAdmin });
     return res.status(200).json({
       status: 200,
-      token: userToken,
       message: 'Login Successful!',
-      data: user,
+      data: {
+        token: userToken,
+        user,
+      },
     });
   }
 
@@ -70,11 +74,32 @@ class UserController {
    * @description - Gets all users
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
-   * @returns {object} - All users
+   * @returns {object} - JSON API Response
    */
   static async getUsers(req, res) {
     const users = await User.getAll();
-    return res.status(200).json({ status: 200, message: 'All Users', data: users });
+    return res.status(200).json({ 
+      status: 200, 
+      message: 'Users Retrieved Successfully!', 
+      data: users, 
+    });
+  }
+
+  /**
+   * @method getAUser
+   * @description - Get a single User
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object\
+   * @returns {object} - JSON API Response
+   */
+  static async getAUser(req, res) {
+    const { id } = req.params;
+    const user = await User.findById(Number(id));
+    return res.status(200).json({ 
+      status: 200, 
+      message: 'User Retrieved Successfully!', 
+      data: user, 
+    });
   }
 }
 

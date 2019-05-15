@@ -16,14 +16,11 @@ a{
     align-items: center;
     background: #fff
 }
-main {
-    background: linear-gradient(185deg, #4066CB 85%, #fff calc(85% + 2px));
-}
+
 .nav-sub {
     flex: 1
 }
 .welcome-phrase{
-    padding: 50px 0;
     width: 43%;
     margin: 0 0 0 0;
 }
@@ -73,7 +70,7 @@ input:focus:invalid {
     padding: 0.3em
 }
 .sidebar {
-    height: 0;
+    height: 32%;
 }
 
 .container-item p a:hover {

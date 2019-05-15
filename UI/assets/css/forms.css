@@ -67,7 +67,7 @@ input.form-controls {
     cursor: pointer;
 }
 .form-groups input:not([type='submit'])[value=''] {
-    height: 10px;
+    height: 20px;
     transition: height 0.3s;
 }
 
