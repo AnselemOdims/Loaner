@@ -1,14 +1,14 @@
-import LoanModel from '../models/loan';
+import LoanModel from './loan';
+import db from './db';
+import Helpers from '../utils/helpers';
 
+const { loans, repayments } = db;
 /**
  * @class Repayments
  * @description - The lon repayment class
  * @exports Repayments
  */
 class Repayments {
-  constructor() {
-    this.repayments = [];
-  }
 
   /**
    * @method create
@@ -17,35 +17,35 @@ class Repayments {
    * @param {object} data - The Request data
    * @returns {object} - The Repayment record
    */
-  async create(id, data) {
-    const loan = await LoanModel.loans.find(loans => loans.loanId === id);
-    const { paidAmount } = data; 
-    loan.balance -= paidAmount;   
+  static async create(id, data) {
+    const loan = await Helpers.findById(Number(id), loans);
+    const { paidAmount } = data;
+    loan.balance -= parseInt(paidAmount, 10);
     const repayment = {
-      id: this.repayments.length + 1,
-      loanId: loan.loanId,
+      id: repayments.length + 1,
+      loanId: loan.id,
       createdOn: new Date(),
       amount: loan.amount,
       monthlyInstallment: loan.monthlyInstallment,
       interest: loan.interest,
       paidAmount,
       balance: loan.balance,
-    }
-    this.repayments.push(repayment);
+    };
+    repayments.push(repayment);
     return repayment;
   }
 
   /**
    * @method getOne
    * @param {Number} id - The Repayment Id
-   * @returns {object} - The Specific repayment record 
+   * @returns {object} - The Specific repayment record
    */
-  async getOne(id) {
-    const loan = await LoanModel.loans.find(loans => loans.loanId === id);
-    const { loanId } = loan;
-    const repayment = await this.repayments.find(record => record.loanId === loanId);
+  static async getOne(value) {
+    const loan = await Helpers.findById(Number(value), loans);
+    const { id } = loan;
+    const repayment = await repayments.filter(repayments => repayments.loanId === id);
     return repayment;
   }
 }
 
-export default new Repayments();
+export default Repayments;

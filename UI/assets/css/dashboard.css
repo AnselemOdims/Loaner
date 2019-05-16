@@ -2,7 +2,7 @@
 @import url('./chart.css');
 
 body {
-    overflow-x: auto
+    overflow-x: hidden
 } 
 
 .nav-header {
@@ -303,9 +303,9 @@ hr {
     }
  }
  
-@media screen and (max-width: 736px) {
-    .side-nav {
-
+@media screen and (max-width: 780px) {
+    body {
+        overflow-x: hidden
     }
     .side-nav a {
         font-size: 18px;
@@ -315,7 +315,7 @@ hr {
     }
     .main-content {
         margin: 40px 5px 5px 5px;
-        width: 90%;
+        width: 120%;
     }
     .cards {
         height: 280px;
@@ -332,9 +332,9 @@ hr {
 }
 
 /* for large screens */
-@media screen and (min-width: 1025px) {
+@media screen and (max-width: 1025px) {
     body {
-        overflow-x: auto;
+        overflow-x: hidden;
     }
 }
 @media screen and (min-width: 2000px) {

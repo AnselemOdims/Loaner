@@ -1,5 +1,8 @@
 import LoanModel from '../models/loan';
-import UserModel from '../models/users';
+import Helpers from '../utils/helpers';
+import db from '../models/db';
+
+const { users, loans } = db;
 /**
  * @class loanValidation
  * @description - specifies which method is used to validate routes
@@ -15,7 +18,7 @@ class loanValidation {
    */
   static async validateInputs(req, res, next) {
     const { email } = req.user;
-    const user = await UserModel.findByMail(email);
+    const user = await Helpers.findByMail(email, users);
     const { status } = user;
     if (status !== 'verified') {
       return res
@@ -25,7 +28,7 @@ class loanValidation {
     const { tenor, amount } = await req.body;
     const values = [tenor, amount];
     for (let i = 0; i < values.length; i++) {
-      if (typeof values[i] !== 'number') {
+      if (Number.isNaN(Number(values[i]))) {
         return res
           .status(400)
           .json({ status: 400, error: 'Values must be in a number format' });
@@ -46,7 +49,7 @@ class loanValidation {
         .status(400)
         .json({ status: 400, error: 'Loan Amount should not be greater than 100000 Naira' });
     }
-    if (LoanModel.loans.find(loan => loan.email === email && loan.balance > 0)) {
+    if (loans.find(loan => loan.email === email && loan.balance > 0)) {
       return res
         .status(400)
         .json({ status: 400, error: 'You already applied for a loan' });
@@ -63,7 +66,7 @@ class loanValidation {
    */
   static async validateId(req, res, next) {
     const { id } = await req.params;
-    const loan = await LoanModel.getOne(Number(id));
+    const loan = await Helpers.findById(Number(id), loans);
     if (Number.isNaN(Number(id))) {
       return res
         .status(400)
@@ -88,7 +91,7 @@ class loanValidation {
   static async validateStatus(req, res, next) {
     const { status } = await req.body;
     const { id } = req.params;
-    const loan = await LoanModel.getOne(Number(id));
+    const loan = await Helpers.findById(Number(id), loans);
     if (loan.status === 'approved') {
       return res
         .status(400)
@@ -112,14 +115,14 @@ class loanValidation {
    */
   static async validateLoans(req, res, next) {
     if (req.url.includes('?')) {
-      const loans = await LoanModel.getAll();
+      const allLoans = await Helpers.findAll(loans);
       const { status, repaid } = req.query;
       const filters = {
         status,
         repaid,
       };
       const filterKeys = Object.keys(filters);
-      const loan = loans.filter(eachobj => filterKeys.every((eachKey) => {
+      const loan = allLoans.filter(eachobj => filterKeys.every((eachKey) => {
         if (!filters[eachKey].length) return false;
         return filters[eachKey].includes(eachobj[eachKey]);
       }));

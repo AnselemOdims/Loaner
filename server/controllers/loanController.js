@@ -1,4 +1,8 @@
 import Loans from '../models/loan';
+import Helpers from '../utils/helpers';
+import db from '../models/db';
+
+const { loans } = db;
 
 /**
  * @class loanController
@@ -27,10 +31,10 @@ class loanController {
    * @returns {object} - JSON API Response
    */
   static async retrieveLoans(req, res) {
-    const loans = await Loans.getAll();
-    return res.status(200).json({ status: 200, message: 'All Loan Applications', data: loans });
+    const loan = await Helpers.findAll(loans);
+    return res.status(200).json({ status: 200, message: 'All Loan Applications', data: loan });
   }
- 
+
   /**
    * @method getLoan
    * @description - Retrieve a specific loan
@@ -39,7 +43,7 @@ class loanController {
    */
   static async getLoan(req, res) {
     const { id } = req.params;
-    const loan = await Loans.getOne(Number(id));
+    const loan = await Helpers.findById(Number(id), loans);
     return res.status(200).json({ status: 200, message: 'Loan Retrieved Successfully', data: loan });
   }
 

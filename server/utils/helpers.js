@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 
+
 dotenv.config();
 
 const secretKey = process.env.SECRET_KEY;
@@ -13,6 +14,40 @@ const adminPassword = process.env.ADMIN_PASSWORD;
  * @exports Helpers
  */
 class Helpers {
+  /**
+  * @method findById
+  * @description - Method for getting a data by Id
+  * @param {Number} value - The data's id
+  * @param {object} db - The database
+  * @returns {object} - The data with the Id
+  */
+  static async findById(value, db) {
+    const data = await db.find(({ id }) => id === value);
+    return data;
+  }
+
+  /**
+   * @method findByMail
+   * @description - method for finding a data by email
+   * @param {string} mail - The data's email
+   * @param {object} db - The database
+   * @returns {object} - The data that matches that passed email
+   */
+  static async findByMail(mail, db) {
+    const data = db.find(({ email }) => email === mail);
+    return data;
+  }
+
+  /**
+   * @method findAll
+   * @description - method to get all users
+   * @param {object} db - The database
+   * @returns {object} - All users
+   */
+  static async findAll(db) {
+    return db;
+  }
+  
   /**
    * @method hashPassword
    * @description Hashes User password using bcrypt

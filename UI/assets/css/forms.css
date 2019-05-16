@@ -39,7 +39,7 @@ input.form-controls {
     width: 90%;
     display: block;
     padding: 3px 10px;
-    /* margin: 10px; */
+    margin: 0 auto;
     font-size: 1rem;
     color: #494d52;
     background-color: #fff;
@@ -53,7 +53,7 @@ input.form-controls {
 .form-btn {
     width: 94%;
     padding: 10px 20px;
-    margin-bottom: 10px;
+    margin: 0 auto;
     box-shadow: 30px 11px 30px #d2d2d2;
     font-family: Raleway;
     font-size: 20px;

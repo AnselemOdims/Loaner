@@ -1,5 +1,8 @@
 import User from '../models/users';
 import Helpers from '../utils/helpers';
+import db from '../models/db';
+
+const { users } = db;
 
 /**
  * @class UserValidation
@@ -77,7 +80,7 @@ class UserValidation {
   static async validateExistingUser(req, res, next) {
     let error;
     const { email } = req.body;
-    const singleUser = await User.findByMail(email);
+    const singleUser = await Helpers.findByMail(email, users);
     if (singleUser) {
       error = 'User with the email already exists';
     }
@@ -98,13 +101,13 @@ class UserValidation {
    */
   static async validateLogin(req, res, next) {
     const { email, password } = req.body;
-    const users = await User.findByMail(email);
-    if (!users) {
+    const user = await Helpers.findByMail(email, users);
+    if (!user) {
       return res
         .status(400)
         .json({ status: 400, error: 'Sorry, the email/password you provided is incorrect' });
     }
-    const verifyPassword = await Helpers.verifyPassword(password, users.password);
+    const verifyPassword = await Helpers.verifyPassword(password, user.password);
     if (!verifyPassword) {
       return res
         .status(400)
@@ -126,7 +129,7 @@ class UserValidation {
     const { email } = await req.params;
     const { status } = await req.body;
     const arr = ['verified', 'unverified'];
-    const user = await User.findByMail(email);
+    const user = await Helpers.findByMail(email, users);
     if (!email || !validate.email.test(email)) {
       error = 'The email you provided is not valid';
     } else if (!user) {
@@ -150,7 +153,7 @@ class UserValidation {
    */
   static async validateId(req, res, next) {
     const { id } = req.params;
-    const user = await User.findById(Number(id));
+    const user = await Helpers.findById(Number(id), users);
     if (Number.isNaN(Number(id))) {
       return res
         .status(400)
@@ -160,9 +163,9 @@ class UserValidation {
       return res
         .status(400)
         .json({ status: 400, error: 'No User with that Id in the database' });
-    } 
+    }
     return next();
-  }   
+  }
 }
 
 export default UserValidation;

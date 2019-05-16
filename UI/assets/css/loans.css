@@ -151,6 +151,6 @@ select:focus {
 
 @media screen and (max-width: 820px) {
     body {
-        overflow-x: auto
+        overflow-x: hidden
     }
 }
