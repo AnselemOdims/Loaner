@@ -1,31 +1,46 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import dotenv from 'dotenv';
 import app from '../../server';
+import users from './models/userModels';
 
 chai.use(chaiHttp);
 
-dotenv.config();
-
 const { expect } = chai;
-const adminPassword = process.env.ADMIN_PASSWORD;
 let adminToken;
-
+const {
+  valid,
+  emptyFirstName,
+  emptyLastName,
+  incompleteFirstName,
+  incompleteLastName,
+  emptyEmail,
+  emptyPassword,
+  emptyAddress,
+  emptyPhone,
+  shortPassword,
+  invalidFirstName,
+  invalidLastName,
+  invalidEmail,
+  invalidPhone,
+  login,
+  emptyLoginEmail,
+  emptyLoginPassword,
+  incompleteLoginPassword,
+  invalidLoginEmail,
+  incorrectPassword,
+  notRegistered,
+  adminLogin,
+  verified,
+  wrongStatus
+} = users;
 // Handle Sign Up
 describe('POST Sign Up Authentication', () => {
   it('should register a new user if details are correct', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(valid)
       .end((err, res) => {
         expect(res).to.have.status(201);
         expect(res.body.status).to.be.equal(201);
@@ -38,14 +53,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(valid)
       .end((err, res) => {
         expect(res).to.have.status(409);
         expect(res.body.status).to.be.equal(409);
@@ -57,14 +65,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: '',
-        lastName: 'Anwuka',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(emptyFirstName)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -76,14 +77,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'od',
-        lastName: 'Anwuka',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(incompleteFirstName)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -95,14 +89,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: '',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(emptyLastName)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -114,14 +101,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'An',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(incompleteLastName)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -133,14 +113,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: '',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(emptyEmail)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -152,14 +125,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: 'anthony1@gmail.com',
-        password: '',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(emptyPassword)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -171,14 +137,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '',
-        phoneNumber: '07045678932',
-      })
+      .send(emptyAddress)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -190,14 +149,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '',
-      })
+      .send(emptyPhone)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -209,14 +161,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: 'anthony1@gmail.com',
-        password: '123456',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(shortPassword)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -228,14 +173,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Ant77hony',
-        lastName: 'Anwuka',
-        email: 'anthony1@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(invalidFirstName)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -247,14 +185,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'An77wuka',
-        email: 'anthony1@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(invalidLastName)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -266,14 +197,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: 'anthony#gmail#com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(invalidEmail)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -285,14 +209,7 @@ describe('POST Sign Up Authentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'Anthony',
-        lastName: 'Anwuka',
-        email: 'anthony@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '070456789',
-      })
+      .send(invalidPhone)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -308,10 +225,7 @@ describe('POST Login Aunthentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({
-        email: 'anthony@gmail.com',
-        password: '12345678',
-      })
+      .send(login)
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
@@ -323,10 +237,7 @@ describe('POST Login Aunthentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({
-        email: '',
-        password: '12345678',
-      })
+      .send(emptyLoginEmail)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -338,10 +249,7 @@ describe('POST Login Aunthentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({
-        email: 'anthony@gmail.com',
-        password: '',
-      })
+      .send(emptyLoginPassword)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -353,10 +261,7 @@ describe('POST Login Aunthentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({
-        email: 'anthony@gmail.com',
-        password: '12345',
-      })
+      .send(incompleteLoginPassword)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -368,10 +273,7 @@ describe('POST Login Aunthentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({
-        email: 'anthony*gmail#com',
-        password: '12345',
-      })
+      .send(invalidLoginEmail)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -383,10 +285,7 @@ describe('POST Login Aunthentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({
-        email: 'anthony@gmail.com',
-        password: '123452816',
-      })
+      .send(incorrectPassword)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -398,10 +297,7 @@ describe('POST Login Aunthentication', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({
-        email: 'john@gmail.com',
-        password: '123452816',
-      })
+      .send(notRegistered)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -416,7 +312,7 @@ describe('PATCH User status', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({ email: 'bayo@admin.com', password: `${adminPassword}` })
+      .send(adminLogin)
       .end((err, res) => {
         adminToken = res.body.data.token;
         done(err);
@@ -425,9 +321,9 @@ describe('PATCH User status', () => {
   it('should return the verified user if details are correct', (done) => {
     chai
       .request(app)
-      .patch('/api/v1/anthony@gmail.com/verify')
+      .patch('/api/v1/users/anthony@gmail.com/verify')
       .set('x-access-token', `${adminToken}`)
-      .send({ status: 'verified' })
+      .send(verified)
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
@@ -439,7 +335,7 @@ describe('PATCH User status', () => {
   it('should return error if authorization header is incorrect', (done) => {
     chai
       .request(app)
-      .patch('/api/v1/anthony@gmail.com/verify')
+      .patch('/api/v1/users/anthony@gmail.com/verify')
       .set('x-accss-toke', `${adminToken}`)
       .send({ status: 'verified' })
       .end((err, res) => {
@@ -452,7 +348,7 @@ describe('PATCH User status', () => {
   it('should return error if authorization token is empty', (done) => {
     chai
       .request(app)
-      .patch('/api/v1/anthony@gmail.com/verify')
+      .patch('/api/v1/users/anthony@gmail.com/verify')
       .set('x-access-token', '')
       .send({ status: 'verified' })
       .end((err, res) => {
@@ -465,7 +361,7 @@ describe('PATCH User status', () => {
   it('should return error if a token is not authentic is passed', (done) => {
     chai
       .request(app)
-      .patch('/api/v1/anthony@gmail.com/verify')
+      .patch('/api/v1/users/anthony@gmail.com/verify')
       .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6InjeyRYB57')
       .send({ status: 'verified' })
       .end((err, res) => {
@@ -478,7 +374,7 @@ describe('PATCH User status', () => {
   it('should return error if email is not valid', (done) => {
     chai
       .request(app)
-      .patch('/api/v1//verify')
+      .patch('/api/v1/users//verify')
       .set('x-access-token', `${adminToken}`)
       .send({ status: 'verified' })
       .end((err, res) => {
@@ -489,7 +385,7 @@ describe('PATCH User status', () => {
   it('should return error if user does not exist', (done) => {
     chai
       .request(app)
-      .patch('/api/v1/anthon@gmail.com/verify')
+      .patch('/api/v1/users/anthon@gmail.com/verify')
       .set('x-access-token', `${adminToken}`)
       .send({ status: 'verified' })
       .end((err, res) => {
@@ -499,12 +395,12 @@ describe('PATCH User status', () => {
         done(err);
       });
   });
-  it('should return error if user does not exist', (done) => {
+  it('should return error if the status is not verified', (done) => {
     chai
       .request(app)
-      .patch('/api/v1/anthony@gmail.com/verify')
+      .patch('/api/v1/users/anthony@gmail.com/verify')
       .set('x-access-token', `${adminToken}`)
-      .send({ status: 'verif' })
+      .send(wrongStatus)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);

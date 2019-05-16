@@ -1,4 +1,8 @@
 import UserModel from './users';
+import db from './db';
+import Helpers from '../utils/helpers';
+
+const { users, loans } = db;
 
 /**
  * @class - Loan
@@ -6,9 +10,6 @@ import UserModel from './users';
  * @exports Loan
  */
 class Loan {
-  constructor() {
-    this.loans = [];
-  }
 
   /**
    * @method createLoans
@@ -17,16 +18,16 @@ class Loan {
    * @param {object} payload - The User payload
    * @returns {object} - The new loan application
    */
-  async createLoans(data, payload) {
+  static async createLoans(data, payload) {
     const { email } = payload;
-    const user = await UserModel.findByMail(email);
+    const user = await Helpers.findByMail(email, users);
     const { firstName, lastName } = user;
     const { tenor, amount } = data;
-    const interest = 0.05 * amount;
-    const balance = amount + interest;
-    const monthlyInstallment = balance / tenor;
+    const interest = 0.05 * parseInt(amount, 10);
+    const balance = parseInt(amount, 10) + interest;
+    const monthlyInstallment = balance / parseInt(tenor, 10);
     const loan = {
-      loanId: this.loans.length + 1,
+      id: loans.length + 1,
       firstName,
       lastName,
       email,
@@ -39,27 +40,7 @@ class Loan {
       interest,
       createdOn: new Date(),
     };
-    this.loans.push(loan);
-    return loan;
-  }
-
-  /**
-   * @method getAll
-   * @description - Retrieves all users
-   * @returns {object} - All loan applications
-   */
-  async getAll() {
-    const loans = await this.loans;
-    return loans;
-  }
-
-  /**
-   * @method getOne
-   * @param {Number} id - The Loan Id
-   * @returns {object} - The Specific loan
-   */
-  async getOne(id) {
-    const loan = await this.loans.find(({ loanId }) => loanId === id);
+    db.loans.push(loan);
     return loan;
   }
 
@@ -70,11 +51,11 @@ class Loan {
    * @param {object} data - The  Loan Status
    * @returns {object} - The Updated Loan
    */
-  async updateStatus(id, data) {
-    const loan = await this.getOne(id);
+  static async updateStatus(id, data) {
+    const loan = await Helpers.findById(id, loans);
     loan.status = data;
     return loan;
   }
 }
 
-export default new Loan();
+export default Loan;

@@ -1,35 +1,25 @@
 import Helpers from '../utils/helpers';
+import db from './db';
+
+const { users } = db;
 /**
  * @class User
  * @description specifies which function is used by the user controller
  * @exports User
  */
 class User {
-  constructor() {
-    this.users = [
-      {
-        id: 1,
-        firstName: 'Bayo',
-        lastName: 'Admin',
-        email: 'bayo@admin.com',
-        password: Helpers.adminPassword(),
-        isAdmin: true,
-      },
-    ];
-  }
-
   /**
    * @method createUser
    * @description A model for creating new users
    * @returns {object} - The created user information
    */
-  async createUser(data) {
+  static async createUser(data) {
     const {
       firstName, lastName, email, password, address, phoneNumber,
     } = data;
     const hashedPassword = await Helpers.hashPassword(password);
     const userInfo = {
-      id: this.users.length + 1,
+      id: users.length + 1,
       firstName,
       lastName,
       password: hashedPassword,
@@ -40,29 +30,8 @@ class User {
       isAdmin: false,
       registered: new Date(),
     };
-    this.users.push(userInfo);
+    db.users.push(userInfo);
     return userInfo;
-  }
-
-  /**
-   * @method findByMail
-   * @description - method for finding a user by email
-   * @returns {object} - The user that matches that passed email
-   */
-  async findByMail(mail) {
-    const user = this.users.find(({ email }) => email === mail);
-    return user;
-  }
-
-  /**
-   * @method findById
-   * @description - Method for getting a User from by Id
-   * @param {Number} value - The User's id
-   * @returns {bject} - The User with the Id
-   */
-  async findById(value) {
-    const user = this.users.find(({ id }) => id === value);
-    return user;
   }
 
   /**
@@ -70,22 +39,14 @@ class User {
    * @description - method used to verify the user
    * @param {string} mail - The User's email
    * @param {string} data - The Request status
+   * @param {object} storage - The storage database
    * @returns {object} - The verified user
    */
-  async verify(mail, data) {
-    const user = await this.findByMail(mail);
+  static async verify(mail, data, storage) {
+    const user = await Helpers.findByMail(mail, storage);
     user.status = data;
     return user;
   }
-
-  /**
-   * @method getAll
-   * @description - method to get all users
-   * @returns {object} - All users
-   */
-  async getAll() {
-    return this.users;
-  }
 }
 
-export default new User();
+export default User;

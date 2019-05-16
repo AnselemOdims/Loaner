@@ -63,7 +63,7 @@ window.addEventListener('load', () => {
       const x = principal.value;
       const y = months.value;
       if (isNaN(x) || isNaN(y)) {
-        errMsg.innerHTML = '<p style=\'color:red; text-align: center\'>Only NUMBERS are allowed. Please avoid using a letter or special characters</p>';
+        errMsg.innerHTML = '<p style=\'color:red; text-align: center\'>Only NUMBERS are allowed.</p>';
         return;
       }
       const amount = (Math.pow((0.05 / y + 1), y)) * x;

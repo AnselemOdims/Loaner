@@ -2,30 +2,39 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import dotenv from 'dotenv';
 import app from '../../server';
+import users from './models/userModels';
+import loans from './models/loanModels';
 
 chai.use(chaiHttp);
 
 dotenv.config();
 
 const { expect } = chai;
-const adminPassword = process.env.ADMIN_PASSWORD;
+
 let adminToken;
 let userToken;
-
+const { validUser, adminLogin, verified } = users;
+const {
+  validLoan,
+  excessTenor,
+  invalidTenor,
+  lowAmount,
+  excessAmount,
+  wrongStatus,
+  validStatus,
+  validAmount,
+  incorrectAmount,
+  excessRepayAmount,
+  invalidAmount,
+  zeroAmount,
+} = loans;
 // POST Loan Applications
 describe('POST Loan Apllications', () => {
   before((done) => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'James',
-        lastName: 'Gerrard',
-        email: 'james@gmail.com',
-        password: '12345678',
-        address: '3 Demurin Street, Ketu',
-        phoneNumber: '07045678932',
-      })
+      .send(validUser)
       .end((err, res) => {
         userToken = res.body.data.token;
         done(err);
@@ -35,7 +44,7 @@ describe('POST Loan Apllications', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({ email: 'bayo@admin.com', password: `${adminPassword}` })
+      .send(adminLogin)
       .send({ status: 'verified' })
       .end((err, res) => {
         adminToken = res.body.data.token;
@@ -45,23 +54,19 @@ describe('POST Loan Apllications', () => {
   before((done) => {
     chai
       .request(app)
-      .patch('/api/v1/james@gmail.com/verify')
+      .patch('/api/v1/users/anthony2@gmail.com/verify')
       .set('x-access-token', `${adminToken}`)
-      .send({ status: 'verified' })
+      .send(verified)
       .end((err, res) => {
         done(err);
       });
   });
   it('should create a new loan application if all inputs are correct', (done) => {
-    const values = {
-      tenor: 12,
-      amount: 50000,
-    };
     chai
       .request(app)
       .post('/api/v1/loans')
       .set('x-access-token', `${userToken}`)
-      .send(values)
+      .send(validLoan)
       .end((err, res) => {
         expect(res).to.have.status(201);
         expect(res.body.status).to.be.equal(201);
@@ -70,15 +75,11 @@ describe('POST Loan Apllications', () => {
       });
   });
   it('should return error if user already applied for a loan', (done) => {
-    const values = {
-      tenor: 12,
-      amount: 50000,
-    };
     chai
       .request(app)
       .post('/api/v1/loans')
       .set('x-access-token', `${userToken}`)
-      .send(values)
+      .send(validLoan)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -87,15 +88,11 @@ describe('POST Loan Apllications', () => {
       });
   });
   it('should return error if no token is provided', (done) => {
-    const values = {
-      tenor: 12,
-      amount: 50000,
-    };
     chai
       .request(app)
       .post('/api/v1/loans')
       .set('x-access-token', '')
-      .send(values)
+      .send(validLoan)
       .end((err, res) => {
         expect(res).to.have.status(401);
         expect(res.body.status).to.be.equal(401);
@@ -104,15 +101,11 @@ describe('POST Loan Apllications', () => {
       });
   });
   it('should return error if wrong token is provided', (done) => {
-    const values = {
-      tenor: 12,
-      amount: 50000,
-    };
     chai
       .request(app)
       .post('/api/v1/loans')
       .set('x-access-token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6InjeyRYB57')
-      .send(values)
+      .send(validLoan)
       .end((err, res) => {
         expect(res).to.have.status(500);
         expect(res.body.status).to.be.equal(500);
@@ -121,15 +114,11 @@ describe('POST Loan Apllications', () => {
       });
   });
   it('should return error if tenor is greater than 12', (done) => {
-    const values = {
-      tenor: 15,
-      amount: 50000,
-    };
     chai
       .request(app)
       .post('/api/v1/loans')
       .set('x-access-token', `${userToken}`)
-      .send(values)
+      .send(excessTenor)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -138,15 +127,11 @@ describe('POST Loan Apllications', () => {
       });
   });
   it('should return error if any of the value is not a number', (done) => {
-    const values = {
-      tenor: '',
-      amount: 50000,
-    };
     chai
       .request(app)
       .post('/api/v1/loans')
       .set('x-access-token', `${userToken}`)
-      .send(values)
+      .send(invalidTenor)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -155,15 +140,11 @@ describe('POST Loan Apllications', () => {
       });
   });
   it('should return error if amount is less than 5000', (done) => {
-    const values = {
-      tenor: 12,
-      amount: 4999,
-    };
     chai
       .request(app)
       .post('/api/v1/loans')
       .set('x-access-token', `${userToken}`)
-      .send(values)
+      .send(lowAmount)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -172,15 +153,11 @@ describe('POST Loan Apllications', () => {
       });
   });
   it('should return error if amount is greater than 100000', (done) => {
-    const values = {
-      tenor: 12,
-      amount: 100001,
-    };
     chai
       .request(app)
       .post('/api/v1/loans')
       .set('x-access-token', `${userToken}`)
-      .send(values)
+      .send(excessAmount)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -196,10 +173,7 @@ describe('GET All Loans', () => {
     chai
       .request(app)
       .post('/api/v1/auth/login')
-      .send({
-        email: 'bayo@admin.com',
-        password: '1234567890',
-      })
+      .send(adminLogin)
       .end((err, res) => {
         adminToken = res.body.data.token;
         done(err);
@@ -286,7 +260,7 @@ describe('PATCH Loan Status', () => {
       .request(app)
       .post('/api/v1/loans/1/repayment')
       .set('x-access-token', `${adminToken}`)
-      .send({ paidAmount: 4375 })
+      .send(validAmount)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -299,7 +273,7 @@ describe('PATCH Loan Status', () => {
       .request(app)
       .patch('/api/v1/loans/1')
       .set('x-access-token', `${adminToken}`)
-      .send({ status: 'not-approved' })
+      .send(wrongStatus)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -312,7 +286,7 @@ describe('PATCH Loan Status', () => {
       .request(app)
       .patch('/api/v1/loans/1')
       .set('x-access-token', `${adminToken}`)
-      .send({ status: 'approved' })
+      .send(validStatus)
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
@@ -320,12 +294,12 @@ describe('PATCH Loan Status', () => {
         done(err);
       });
   });
-  it('should update status if input is correct', (done) => {
+  it('should return error if loan has already been approved', (done) => {
     chai
       .request(app)
       .patch('/api/v1/loans/1')
       .set('x-access-token', `${adminToken}`)
-      .send({ status: 'approved' })
+      .send(validStatus)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -333,12 +307,12 @@ describe('PATCH Loan Status', () => {
         done(err);
       });
   });
-  it('should return error if id is not a number', (done) => {
+  it('should return error if params id is not a number', (done) => {
     chai
       .request(app)
       .patch('/api/v1/loans/w')
       .set('x-access-token', `${adminToken}`)
-      .send({ status: 'approved' })
+      .send(validStatus)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -406,7 +380,7 @@ describe('POST Repayment Record', () => {
       .request(app)
       .post('/api/v1/loans/1/repayment')
       .set('x-access-token', `${adminToken}`)
-      .send({ paidAmount: 4375 })
+      .send(validAmount)
       .end((err, res) => {
         expect(res).to.have.status(201);
         expect(res.body.status).to.be.equal(201);
@@ -419,7 +393,7 @@ describe('POST Repayment Record', () => {
       .request(app)
       .post('/api/v1/loans/1/repayment')
       .set('x-access-token', `${adminToken}`)
-      .send({ paidAmount: 2000 })
+      .send(incorrectAmount)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -427,12 +401,12 @@ describe('POST Repayment Record', () => {
         done(err);
       });
   });
-  it('should create a loan repayment record if input is correct', (done) => {
+  it('should return error if amount exceeds client\'s balance', (done) => {
     chai
       .request(app)
       .post('/api/v1/loans/1/repayment')
       .set('x-access-token', `${adminToken}`)
-      .send({ paidAmount: 70000 })
+      .send(excessRepayAmount)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -445,7 +419,7 @@ describe('POST Repayment Record', () => {
       .request(app)
       .post('/api/v1/loans/1/repayment')
       .set('x-access-token', `${adminToken}`)
-      .send({ paidAmount: 'w' })
+      .send(invalidAmount)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
@@ -458,7 +432,7 @@ describe('POST Repayment Record', () => {
       .request(app)
       .post('/api/v1/loans/1/repayment')
       .set('x-access-token', `${adminToken}`)
-      .send({ paidAmount: 0 })
+      .send(zeroAmount)
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);

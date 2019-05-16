@@ -43,7 +43,7 @@ a {
     min-height: 2px;
 }
 .banner-sec {   
-    min-height: 80vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,7 +51,8 @@ a {
 }
 .banner-img img {
     height: 500px;
-    width: 550px
+    width: 550px;
+    margin-bottom: 80px
 }
 .banner h1 {
     font-family: Raleway;
@@ -143,7 +144,7 @@ a {
     outline: none;
 }
 .welcome-phrase {
-    padding-top: 0px;
+    margin-bottom: 150px;
     width: 60%;
     -webkit-animation: pop-in 0.7s ease-out;
     animation: pop-in 0.7s ease-out;
@@ -283,11 +284,8 @@ a {
     border-radius: 4px;
     background: rgba(255, 255, 255, 0);
     border: solid 0 #fff;
-    box-shadow: 2px 4px 4px grey;
 }
-.calc-inputs:hover {
-   box-shadow: 3px 11px 28px grey;
-}
+
 .calc-inputs h1 {
     font-size: 16px
 }
@@ -298,19 +296,20 @@ a {
     color: #071e55
 }
 .inp-11{
-    width: 60%;
+    width: 80%;
     margin: 10px auto;
     height: 30px;
     border-radius: 3px;
-    border: solid 1px #071e55;
     font-size: 18px;
-    text-align: center
+    text-align: center;
+    border: solid 0;
+    box-shadow: 0 7px 21px #d2d2d2;
 }
 .inp-11:focus {
     outline: none
 }
 .calc-inputs button {
-    width: 60%;
+    width: 80%;
     margin: 30px auto;
     height: 50px;
     border-radius: 3px;
@@ -324,11 +323,12 @@ a {
 }
 .result {
     height: 40px;
-    width: 60%;
-    border: solid 1px #071e55;
+    width: 80%;
+    border: solid 0;
     margin: 0 auto;
     border-radius: 3px;
-    background: #fff
+    background: #fff;
+    box-shadow: 0 7px 21px #d2d2d2;
 }
 .reason {
     background: linear-gradient(187deg, #4066cb 90%, #fff calc(90% + 2px));
@@ -484,7 +484,9 @@ a {
         transform-origin: top right;
         padding: 1px
     }
-    
+    .calc-inputs label {
+        font-size: 11px
+    }
     .middle {
         margin-bottom: 4px;
         visibility: visible;
@@ -550,7 +552,7 @@ a {
     }
     .container p,
     .reason p {
-        font-size: 13px;
+        font-size: 8px;
         line-height: 17px;
     }
     .info-wrapper {

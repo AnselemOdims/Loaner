@@ -1,5 +1,8 @@
 import User from '../models/users';
 import Helpers from '../utils/helpers';
+import db from '../models/db';
+
+const { users } = db;
 
 /**
  * @class UserController
@@ -38,7 +41,7 @@ class UserController {
    */
   static async userLogin(req, res) {
     const { email } = await req.body;
-    const user = await User.findByMail(email);
+    const user = await Helpers.findByMail(email, users);
     const { id, isAdmin } = user;
     const userToken = await Helpers.generateToken({ id, email, isAdmin });
     return res.status(200).json({
@@ -61,7 +64,7 @@ class UserController {
   static async verifyUser(req, res) {
     const { email } = req.params;
     const { status } = req.body;
-    const verifiedUser = await User.verify(email, status);
+    const verifiedUser = await User.verify(email, status, users);
     return res.status(200).json({
       status: 200,
       message: 'User Verification Successful!',
@@ -77,11 +80,11 @@ class UserController {
    * @returns {object} - JSON API Response
    */
   static async getUsers(req, res) {
-    const users = await User.getAll();
-    return res.status(200).json({ 
-      status: 200, 
-      message: 'Users Retrieved Successfully!', 
-      data: users, 
+    const user = await Helpers.findAll(users);
+    return res.status(200).json({
+      status: 200,
+      message: 'Users Retrieved Successfully!',
+      data: user,
     });
   }
 
@@ -94,11 +97,11 @@ class UserController {
    */
   static async getAUser(req, res) {
     const { id } = req.params;
-    const user = await User.findById(Number(id));
-    return res.status(200).json({ 
-      status: 200, 
-      message: 'User Retrieved Successfully!', 
-      data: user, 
+    const user = await Helpers.findById(Number(id), users);
+    return res.status(200).json({
+      status: 200,
+      message: 'User Retrieved Successfully!',
+      data: user,
     });
   }
 }
