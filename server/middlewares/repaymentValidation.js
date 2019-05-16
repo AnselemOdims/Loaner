@@ -1,5 +1,9 @@
 import Repayments from '../models/repayment';
 import Loans from '../models/loan';
+import Helpers from '../utils/helpers';
+import db from '../models/db';
+
+const { loans, repayments } = db;
 
 /**
  * @class validateRepayment
@@ -17,7 +21,7 @@ class RepaymentValidation {
   static async validateRepayment(req, res, next) {
     const { paidAmount } = req.body;
     const { id } = req.params;
-    const loan = await Loans.getOne(Number(id));
+    const loan = await Helpers.findById(Number(id), loans);
     const { balance, status, monthlyInstallment } = loan;
     if (paidAmount <= 0) {
       return res
@@ -67,7 +71,7 @@ class RepaymentValidation {
    */
   static async validateRecord(req, res, next) {
     const { id } = req.params;
-    const loan = await Loans.getOne(Number(id));
+    const loan = await Helpers.findById(Number(id), loans);
     const { email } = loan;
     if (email !== req.user.email) {
       return res

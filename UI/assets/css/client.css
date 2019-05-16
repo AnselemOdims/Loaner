@@ -5,7 +5,7 @@
 
 
 body {
-    overflow-x: auto
+    overflow-x: hidden
 }
 
 .dot {
@@ -43,7 +43,7 @@ body {
     color: #fff;
     display: block;
     background: none;
-    border: solid 1px #fbb03b;
+    border: solid 0;
     padding: 5px;
     border-radius: 2px;
 }
