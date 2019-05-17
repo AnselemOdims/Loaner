@@ -9,7 +9,6 @@ const { loans, repayments } = db;
  * @exports Repayments
  */
 class Repayments {
-
   /**
    * @method create
    * @description - Creates a repayment record

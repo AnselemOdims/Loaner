@@ -55,9 +55,6 @@ table th {
     width: 1%;
     background: #4066cb;
 }
-table th:hover {
-    background: #fbb03b;
-}
 table td,
 table th {
     border: 1px solid #ddd;

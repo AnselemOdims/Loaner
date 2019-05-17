@@ -1,4 +1,3 @@
-import User from '../models/users';
 import Helpers from '../utils/helpers';
 import db from '../models/db';
 
