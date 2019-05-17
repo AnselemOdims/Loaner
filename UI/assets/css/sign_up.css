@@ -78,7 +78,7 @@ input:focus:invalid {
 }
 
 /* for small screens */
-@media screen and (max-width: 600px){
+@media screen and (max-width: 768px){
     .container-item {
         width: 232%;
 
@@ -91,6 +91,9 @@ input:focus:invalid {
     }
     .form-button {
         margin-top: 30px
+    }
+    .nav-item {
+        display: none
     }
 }
 

@@ -32,7 +32,7 @@ const {
   notRegistered,
   adminLogin,
   verified,
-  wrongStatus
+  wrongStatus,
 } = users;
 // Handle Sign Up
 describe('POST Sign Up Authentication', () => {

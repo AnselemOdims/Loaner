@@ -1,4 +1,3 @@
-import LoanModel from '../models/loan';
 import Helpers from '../utils/helpers';
 import db from '../models/db';
 

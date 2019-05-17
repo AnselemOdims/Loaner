@@ -9,6 +9,7 @@
     left: 0;
 }
 .nav-header {
+    display:flex;
     flex: 4;
     font-family: Show-gothic;
     padding: 2px 0;

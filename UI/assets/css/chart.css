@@ -3,7 +3,6 @@
 .igFrameBar {
     width: 400px;
     height: 350px;
-    /* position: absolute; */
     background: #fbb03b;
     margin: 20% auto 0px auto;
     transform: translate(0, -50%);
@@ -700,13 +699,13 @@
         height: 24%;
     }
 }
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 780px) {
     
     .chart {
         width: 94%;
     }
     .igFrameBar {
-        width: 290px;
+        width: 400px;
         height: 300px;
         margin: 25% 3px 0 3px;
     }

@@ -18,20 +18,38 @@
         <header>
             <div class="banner">
                 <nav class="my-nav">
-                        <div class="nav-header">
-                            <button id='openBtn' class="menu-close" >
-                                <div class='bar top'></div>
-                                <div class='bar middle'></div>
-                                <div class='bar bottom'></div>
+                    <div class="nav-header">
+                        <button id='openBtn' class="menu-close" >
+                            <div class='bar top'></div>
+                            <div class='bar middle'></div>
+                            <div class='bar bottom'></div>
                         </button>
+                        
+                            <a href="#" class="banner-button bn-btn" id="banner-btn">
+                                    View Repayment History
+                            </a>
+                       
                             </div>
+                            
                     <div class="nav-sub" id="sub_nav">
-                        <h4>Hello, Demola</h4>
+                        <h4>Welcome, Demola</h4>
+                        <p><a href="./sign_in.html">SignOut?</a></p>
                         <div class="dropdown">
-                            <button class="icon-btn">
+                            <button class="icon-btn dropbtn">
                                 <span><i class="fas fa-envelope"></i></span
                                 ><span class="badge">10</span>
                             </button>
+                            <div class="dropdown-content">
+                                <a href="#">Loan #123 Rejected</a>
+                                <a href="#">Loan #413 Approved</a>
+                                <a href="#">Loan #128 Approved</a>
+                                <a href="#">Loan #123 Rejected</a>
+                                <a href="#">Loan #413 Approved</a>
+                                <a href="#">Loan #128 Approved</a>
+                                <a href="#">Loan #123 Rejected</a>
+                                <a href="#">Loan #413 Approved</a>
+                                <a href="#">Loan #128 Approved</a>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -39,27 +57,29 @@
         </header>
         <div class="dashboard-wrapper" id="main">
             <div class="side-nav" id="mySidebar">
+                <div class="side-container">
                 <div class="image">
                     <img
                         src="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Prescription01&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=Default&mouthType=Smile&skinColor=Light"
-                    alt="profile image" />
+                     />
                 </div>
                 <h3>Demola Otedola</h3>
                 <p><span class="dot"></span>Online</p>
-                <p><a href="./sign_in.html">SignOut</a></p>
+                <p class="mobile-show"><a href="./sign_in.html">SignOut?</a></p>
                 <div class="details">
                     <span>demolaote@gmail.com</span>
                     <span>demolaote75</span>
                     <span>08137298342</span>
                 </div>
                 <div class="edit-profile">
-                    <a href="./sign_up.html" id="del-btn">Delete Account</a>
+                    <a href="#" id="del-btn">Delete Account</a>
                 </div>
-                <div class="align-center1">
+                <div class='mobile-show'>
                 <a href="#" class="banner-button bn-btn" id="banner-btn">
                         Repayment History
                 </a>
-            </div>
+               </div>
+               </div>
             </div>
             <div class="main-content" id="main-content">
                 <div class="card-header">
@@ -190,220 +210,41 @@
 
         <div id="modal1" class="modal">
             <!-- Modal content -->
-            <div class="modal-content">
+            <div class="modal-content client-mod">
                 <div class="formGroup1">
                     <div class="modal-header">
                         <span class="close closer1">&times;</span>
                         <h2>LOAN APPLICATION FORM</h2>
                         <hr class="h-22" />
                     </div>
-                    
-                    <form action="">
-                            <div class="form">
-                        <div class="form-flex">
-                            <div class="form-groups">
-                                <label for="first_name">First Name</label>
-                                <input
-                                    required
-                                    class="form-controls"
-                                    type="text"
-                                    name="first_name"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                    ;
-                                />
-                            </div>
-                            <div class="form-groups">
-                                <label for="last_name">Last Name</label>
-                                <input
-                                    class="form-controls"
-                                    type="text"
-                                    name="last_name"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                    ;
-                                />
-                            </div>
-                        </div>
-                        <div class="form-flex">
-                            <div class="form-groups">
-                                <label for="address">Home Address</label>
-                                <input
-                                    class="form-controls"
-                                    type="text"
-                                    name="address"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                />
-                            </div>
-                            <div class="form-groups">
-                                <label for="w-address">Work Address</label>
-                                <input
-                                    class="form-controls"
-                                    type="text"
-                                    name="w-address"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-flex">
-                            <div class="form-groups">
-                                <label for="phone_no">Phone No.</label>
-                                <input
-                                    class="form-controls"
-                                    type="number"
-                                    name="phone_no"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                />
-                            </div>
-                            <div class="form-groups">
-                                <label for="email">Email</label>
-                                <input
-                                    class="form-controls"
-                                    type="email"
-                                    name="email"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-flex">
-                            <div class="form-groups">
-                                <label for="kin">Next of Kin</label>
-                                <input
-                                    class="form-controls"
-                                    type="text"
-                                    name="kin"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                />
-                            </div>
-                            <div class="form-groups">
-                                <label for="phone_no"
-                                    >Next of Kin Phone No.</label
-                                >
-                                <input
-                                    class="form-controls"
-                                    type="number"
-                                    name="phone_no"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-flex">
-                            <div class="form-groups">
-                                <label for="surety">Surety Name</label>
-                                <input
-                                    class="form-controls"
-                                    type="text"
-                                    name="surety"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                />
-                            </div>
-                            <div class="form-groups">
-                                <label for="phone_no">Surety Phone No.</label>
-                                <input
-                                    class="form-controls"
-                                    type="number"
-                                    name="phone_no"
-                                    value=""
-                                    autocomplete="off"
-                                    onkeyup="this.setAttribute('value', this.value)"
-                                />
-                            </div>
-                        </div>
-                        <div class="form-flex">
-                            <div class="select-flex">
-                                <div class="h-11 h-13">
-                                    Loan Type:
-                                </div>
-                                <div class="styled-select blue semi-square">
-                                    <select>
-                                        <option>Fixed Rate Loan</option>
-                                        <option>Variable Rate Loan</option>
-                                        <option>Co-Sign Loan</option>
-                                        <option>Payday Loan</option>
-                                        <option>Pawnshop Loan</option>
-                                        <option>Personal Line of Credit</option>
-                                    </select>
-                                </div>
-                            </div>
-
+                    <span id='err'></span>
+                    <div class="form-flex"> 
                             <div class="select-flex">
                                 <div class="h-11">
-                                    Loan Duration:
+                                    Loan Amount 
                                 </div>
-                                <div class="styled-select blue semi-square">
-                                    <select>
-                                        <option>3 Months</option>
-                                        <option>6 Months</option>
-                                        <option>9 Months</option>
-                                        <option>12 Months</option>
-                                    </select>
+                                <div>
+                                    <input type='text' class='inputs inp-11' id='inpt1'/> 
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-flex">
-                            <div class="select-flex">
-                                <p class="h-11 ">Loan Amount</p>
-
-                                <div class="slidecontainer">
-                                    <input
-                                        type="range"
-                                        min="10000"
-                                        max="100000"
-                                        value="10000"
-                                        step="10000"
-                                        class="slider"
-                                        id="myRange1"
-                                    />
-                                    <p>Amount: &#8358;<span id="amount1"></span></p>
-                                </div>
-                            </div>
-                            <div class="select-flex">
-                                <p class="h-11 h-12">Installments Amount</p>
-
-                                <div class="slidecontainer">
-                                    <input
-                                        type="range"
-                                        min="1000"
-                                        max="10000"
-                                        value="1000"
-                                        step="1000"
-                                        class="slider"
-                                        id="myRange2"
-                                    />
-                                    <p>Amount: &#8358;<span id="amount2"></span></p>
-                                </div>
-                            </div>
-                        </div>
+                   
                         
+                            <div class="select-flex">
+                                <p class="h-11 ">Loan Tenor</p>
+                                <div>
+                                    <input type='text' class='inputs inp-11' id='inpt2'/>
+                                </div>
+                            </div>            
                             <input
                                 class="form-button"
                                 id="form-btn"
                                 type="submit"
                                 value="REQUEST"
                             />
-                        
-                    </div>
-                    </form>
-                
+                        </div> 
+                    </div>                
                 </div>
             </div>
-        </div>
         <div id="modal2" class="modal">
             <div class="modal-content md-con">
                 <div class="modal-header">

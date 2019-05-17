@@ -10,7 +10,6 @@ const { users, loans } = db;
  * @exports Loan
  */
 class Loan {
-
   /**
    * @method createLoans
    * @description - Creates a new loan application
