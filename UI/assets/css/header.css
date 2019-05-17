@@ -9,6 +9,7 @@
     left: 0;
 }
 .nav-header {
+    display:flex;
     flex: 4;
     font-family: Show-gothic;
     padding: 2px 0;
@@ -34,7 +35,7 @@
     color: #405263;
 }
 .nav-item {
-    padding: 18px 4px;
+    padding: 18px 10px;
     width: 74px;
     text-align: center;
     font-family: Open-sans-semibold;

@@ -2,6 +2,7 @@
 @import url('./modal.css');
 @import url('./tables.css');
 @import url('./dashboard.css');
+@import url('./dropdown.css');
 
 
 body {
@@ -18,7 +19,7 @@ body {
     margin-right: 5px;
 }
 .nav-header {
-    flex: 8
+    flex: 5
 }
 .details {
     display: flex;
@@ -97,17 +98,54 @@ body {
     border-radius: 2px;
     width: 96%
 }
-.align-center1{
-    margin: 30px 0 150px 
-}
 
 .banner-button:hover {
     background: #fbb03b;
 }
 .bn-btn {
-    background: none;    
+    background: #4066cb;
+    margin-left: 100px;
+    width: 200px  
 }
-
+.mobile-show {
+    display: none;
+    margin-top: 30px;
+}
+.nav-header a {
+    height: 20px;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    margin: 10px
+}
+.nav-header a:hover {
+    color: #fff;
+    background: #4066cb
+}
+.nav-sub a {
+    font-size: 13px;
+}
+.nav-sub a:hover {
+    color: #4066cb
+}
+.nav-sub p {
+    margin-top: 20px;
+    text-align: center
+}
+.nav-sub h4 {
+    margin-left: 22px
+}
+.side-container {
+    margin-bottom: 200px
+}
+.image img {
+    width: 130px;
+    height: 130px
+}
+#date {
+    margin: 0 auto
+}
 .form-flex {
     margin: 0 auto;
     display: flex;
@@ -129,25 +167,6 @@ input.form-controls {
     padding: 0;
     margin-right: 80px;
 }
-/* .select-flex {
-    display: flex
-} */
-.styled-select {
-    height: 29px;
-    overflow: hidden;
-    width: 330px;
-    margin: 10px 0 12px 60px;
-    background-color: #4066cb;
-}
-.styled-select select {
-    background: transparent;
-    border: none;
-    font-size: 14px;
-    height: 29px;
-    padding: 5px;
-    width: 330px;
-    color: #fff;
-}
 .h-11 {
     margin: 20px 135px 0 0;
 }
@@ -157,14 +176,7 @@ input.form-controls {
 .h-13 {
     margin: 20px 165px 0 0;
 }
-.semi-square {
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-}
-.styled-select select option {
-    background-color: #fbb03b;
-}
+
 .form-button {
     background: #4066cb;
     margin: 5px 0 0 60px;
@@ -235,14 +247,44 @@ a.side {
     text-align: center;
     margin: 0;
 }
-
+.client-mod {
+    width: 40%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+}
+.inp-11 {
+    width: 130%
+}
+.form-button {
+    margin-top: 20px;
+    width: 57%;
+    border-radius: 2px;
+    height: 40px
+}
+.form-button:hover {
+    background: #fbb03b
+}
+.form-flex {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+#err {
+    color: red;
+    margin: 0 auto
+}
+table {
+    width: 100%;
+    height: 340px
+}
 @media screen and (max-width: 736px) {
     .details {
         margin: 0px 0 0 19px;
         font-size: 11px;
     }
     .side-nav a {
-        margin: -15px 30px 10px 0;
+        margin: -13px 28px 11px 25px;
         width: 70%;
     }
     .sidebar {
@@ -252,20 +294,28 @@ a.side {
         font-size: 13px;
         padding: 8px;
     }
-    img {
+    .mobile-show {
+        display: block;
+        font-size: 14px
+    }
+    .image img {
         margin: 0;
-        height: 80px;
+        height: 120px;
+        width: 120px
     }
     .banner-button {
         width: 60%;
         height: 50px;
     }
     a#del-btn {
-        margin: 10px 0 0 12px;
+        margin: 10px 0 0 30px;
     }
     .main-content {
         margin: 62px 0 36px 5px;
         width: 90%;
+    }
+    .nav-header a, .nav-sub a{
+        display: none
     }
     .cards {
         height: unset;
@@ -297,9 +347,9 @@ a.side {
     .nav-sub {
         flex: 3;
     }
-    .modal-content {
-        width: 90%;
-        min-height: 100vh;
+    .client-mod {
+        width: 60%;
+        min-height: 50vh;
     }
     .modal-content h2 {
         font-size: 11px;
@@ -327,16 +377,6 @@ a.side {
     }
     .h-11 {
         margin: 20px 58px 0 0;
-    }
-    .styled-select select option {
-        width: 130px;
-    }
-    .styled-select select {
-        width: 130px;
-        font-size: 12px;
-    }
-    .slidecontainer {
-        margin: 10px 0 0 95px;
     }
     .form-button {
         margin: 5px 0 0 28px;

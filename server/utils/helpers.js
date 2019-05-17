@@ -47,7 +47,7 @@ class Helpers {
   static async findAll(db) {
     return db;
   }
-  
+
   /**
    * @method hashPassword
    * @description Hashes User password using bcrypt

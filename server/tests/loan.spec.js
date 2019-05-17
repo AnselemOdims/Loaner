@@ -28,6 +28,7 @@ const {
   invalidAmount,
   zeroAmount,
 } = loans;
+
 // POST Loan Applications
 describe('POST Loan Apllications', () => {
   before((done) => {
@@ -397,11 +398,13 @@ describe('POST Repayment Record', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('Paid amount can only be in multiples of the monthlyInstallment');
+        expect(res.body.error).to.be.equal(
+          'Paid amount can only be in multiples of the monthlyInstallment',
+        );
         done(err);
       });
   });
-  it('should return error if amount exceeds client\'s balance', (done) => {
+  it("should return error if amount exceeds client's balance", (done) => {
     chai
       .request(app)
       .post('/api/v1/loans/1/repayment')
@@ -410,7 +413,7 @@ describe('POST Repayment Record', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('Paid amount should not exceed the client\'s balance');
+        expect(res.body.error).to.be.equal("Paid amount should not exceed the client's balance");
         done(err);
       });
   });
@@ -445,7 +448,7 @@ describe('POST Repayment Record', () => {
       .request(app)
       .post('/api/v1/loans/1/repayment')
       .set('x-access-token', `${adminToken}`)
-      .send({ })
+      .send({})
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);

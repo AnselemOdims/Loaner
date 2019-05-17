@@ -26,6 +26,9 @@ const main = document.getElementById('main-content');
 const _top = document.querySelector('.top');
 const _middle = document.querySelector('.middle');
 const _bottom = document.querySelector('.bottom');
+const input1 = document.getElementById('inpt1');
+const input2 = document.getElementById('inpt2');
+const err = document.getElementById('err');
 
 if (mobileBtn) {
   mobileBtn.addEventListener('click', () => {
@@ -56,13 +59,28 @@ for (let i = 0; i < btn.length; i++) {
   });
 }
 
-span1.addEventListener('click', () => {
-  modal1.style.display = 'none';
-});
 
-formBtn.addEventListener('click', () => {
-  modal2.style.display = 'block';
-});
+if (formBtn) {
+  formBtn.addEventListener('click', () => {
+    if (input1.value === '' || input2.value === '') {
+      err.innerHTML = '<h3> Empty input(s) </h3>';
+      return;
+    }
+    if (Number.isNaN(Number(input1.value)) || Number.isNaN(Number(input2.value))) {
+      err.innerHTML = '<h3> Only Numbers are allowed </h3>';
+      return;
+    }
+    if (input2.value > 12) {
+      err.innerHTML = '<h3> Loan Tenor can not be more than 12months </h3>';
+      return;
+    }
+    err.style.display = 'none';
+    modal2.style.display = 'block';
+  });
+  span1.addEventListener('click', () => {
+    modal1.style.display = 'none';
+  });
+}
 span2.addEventListener('click', () => {
   modal2.style.display = 'none';
 });
@@ -110,16 +128,3 @@ window.addEventListener('click', (event) => {
     modal5.style.display = 'none';
   }
 });
-const slider1 = document.getElementById('myRange1');
-const output1 = document.getElementById('amount1');
-const slider2 = document.getElementById('myRange2');
-const output2 = document.getElementById('amount2');
-
-const slide1 = () => {
-  output1.innerHTML = slider1.value;
-};
-slider1.oninput = slide1;
-const slide2 = () => {
-  output2.innerHTML = slider2.value;
-};
-slider2.oninput = slide2;

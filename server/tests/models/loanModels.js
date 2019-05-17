@@ -28,15 +28,15 @@ const loans = {
   },
 
   wrongStatus: {
-    status: 'not-approved' 
+    status: 'not-approved',
   },
 
   validStatus: {
-    status: 'approved' 
+    status: 'approved',
   },
 
   validAmount: {
-    paidAmount: 4375, 
+    paidAmount: 4375,
   },
 
   incorrectAmount: {
@@ -44,16 +44,16 @@ const loans = {
   },
 
   excessRepayAmount: {
-    paidAmount: 70000, 
+    paidAmount: 70000,
   },
 
   invalidAmount: {
-    paidAmount: 'w' 
+    paidAmount: 'w',
   },
 
   zeroAmount: {
-    paidAmount: 0 
-  }
+    paidAmount: 0,
+  },
 };
 
 export default loans;
