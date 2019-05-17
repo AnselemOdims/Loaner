@@ -29,6 +29,9 @@ main {
     border: solid 0 #fff;
     overflow-x: hidden;
 }
+.nav-header a {
+    margin-top: 13px;
+}
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -42,8 +45,10 @@ a {
 .banner {
     min-height: 2px;
 }
-.banner-sec {   
+#hero {
     min-height: 100vh;
+}
+.banner-sec {   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,18 +134,15 @@ a {
     text-decoration: none;
 }
 .banner-button:hover {
-    /* width: 105%; */
     box-shadow: 3px 11px 28px #d2d2d2;
     cursor: pointer;
 }
 .banner-button:active {
-    /* width: 105%; */
     box-shadow: 3px 11px 28px #d2d2d2;
     transform: translateY(3px);
     border: none;
 }
 .banner-button:focus {
-    /* width: 105%; */
     outline: none;
 }
 .welcome-phrase {
@@ -457,8 +459,7 @@ a {
 /* For small screens */
 @media screen and (max-width: 755px) {
    .banner-sec {
-        min-height: 50vh;
-        display: flex;
+       display: flex;
         flex-direction: column;
     }
     .banner-img img {
@@ -630,19 +631,12 @@ a {
         width: unset
     }
 }
-@media screen and (min-width: 1440px) {
-    .banner-sec {
-        min-height: 55vh;
-    }
-}
 @media screen and (min-width: 2000px) {
     body {
         overflow-x: auto;
     }
-
     .banner-sec {
-        min-height: 55vh;
-        background-size: 1200px 800px;
+      background-size: 1200px 800px;
     }
     .wrapper {
         margin-top: 80px;

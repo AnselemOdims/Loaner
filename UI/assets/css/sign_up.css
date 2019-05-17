@@ -9,6 +9,9 @@ body{
 a{
     text-decoration: none;
 }
+main {
+    background: #4066cb
+}
 .banner-sec {
     min-height: 100vh;
     display: flex;
@@ -31,7 +34,6 @@ a{
   box-shadow: 0 7px 12px #5c5959;
   width: 100%;
   background: rgba(255, 255, 255, 0)
-  /* height: 400px */
 }
 .container-item p{
     padding: 3px 30px;

@@ -18,19 +18,16 @@ class loanValidation {
   static async validateInputs(req, res, next) {
     const { email } = req.user;
     const user = await Helpers.findByMail(email, users);
+    console.log(email);
     const { status } = user;
     if (status !== 'verified') {
-      return res
-        .status(400)
-        .json({ status: 400, error: 'User has not yet been verified' });
+      return res.status(400).json({ status: 400, error: 'User has not yet been verified' });
     }
     const { tenor, amount } = await req.body;
     const values = [tenor, amount];
     for (let i = 0; i < values.length; i++) {
       if (Number.isNaN(Number(values[i]))) {
-        return res
-          .status(400)
-          .json({ status: 400, error: 'Values must be in a number format' });
+        return res.status(400).json({ status: 400, error: 'Values must be in a number format' });
       }
     }
     if (tenor < 1 || tenor > 12) {
@@ -49,9 +46,7 @@ class loanValidation {
         .json({ status: 400, error: 'Loan Amount should not be greater than 100000 Naira' });
     }
     if (loans.find(loan => loan.email === email && loan.balance > 0)) {
-      return res
-        .status(400)
-        .json({ status: 400, error: 'You already applied for a loan' });
+      return res.status(400).json({ status: 400, error: 'You already applied for a loan' });
     }
     return next();
   }
@@ -67,14 +62,10 @@ class loanValidation {
     const { id } = await req.params;
     const loan = await Helpers.findById(Number(id), loans);
     if (Number.isNaN(Number(id))) {
-      return res
-        .status(400)
-        .json({ status: 400, error: 'Wrong Id Value Passed' });
+      return res.status(400).json({ status: 400, error: 'Wrong Id Value Passed' });
     }
     if (!loan) {
-      return res
-        .status(400)
-        .json({ status: 400, error: 'No loan with that Id' });
+      return res.status(400).json({ status: 400, error: 'No loan with that Id' });
     }
 
     return next();
@@ -92,15 +83,11 @@ class loanValidation {
     const { id } = req.params;
     const loan = await Helpers.findById(Number(id), loans);
     if (loan.status === 'approved') {
-      return res
-        .status(400)
-        .json({ status: 400, error: 'Loan has already been approved' });
+      return res.status(400).json({ status: 400, error: 'Loan has already been approved' });
     }
     const values = ['approved', 'rejected'];
     if (!values.includes(status)) {
-      return res
-        .status(400)
-        .json({ status: 400, error: 'Wrong status value passed' });
+      return res.status(400).json({ status: 400, error: 'Wrong status value passed' });
     }
     return next();
   }
@@ -126,13 +113,9 @@ class loanValidation {
         return filters[eachKey].includes(eachobj[eachKey]);
       }));
       if (loan.length === 0) {
-        return res
-          .status(400)
-          .json({ status: 400, error: 'No loan matches the given request' });
+        return res.status(400).json({ status: 400, error: 'No loan matches the given request' });
       }
-      return res
-        .status(200)
-        .json({ status: 200, data: loan });
+      return res.status(200).json({ status: 200, data: loan });
     }
     return next();
   }
