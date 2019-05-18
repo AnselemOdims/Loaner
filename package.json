@@ -7,7 +7,8 @@
     "start": "babel-node server.js",
     "dev-start": "nodemon --exec babel-node server.js",
     "lint": "eslint ./server --fix",
-    "test": "nyc --reporter=lcov --reporter=text mocha ./server/tests/**.js --require @babel/register --exit",
+    "db-init": "babel-node ./server/models/dbinit.js",
+    "test": "set NODE_ENV=test && npm run db-init && nyc --reporter=lcov --reporter=text mocha ./server/tests/**.js --require @babel/register --exit",
     "coveralls": "nyc --reporter=lcov --reporter=text mocha ./server/tests/**.js --require @babel/register --exit --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rn -rf ./coverage"
   },
   "engines": {
@@ -36,9 +37,11 @@
   "dependencies": {
     "bcrypt": "3.0.6",
     "body-parser": "1.19.0",
+    "cross-env": "^5.2.0",
     "dotenv": "7.0.0",
     "express": "4.16.4",
     "jsonwebtoken": "8.5.1",
+    "pg": "^7.11.0",
     "swagger-ui-express": "4.0.2",
     "yamljs": "0.3.0"
   },

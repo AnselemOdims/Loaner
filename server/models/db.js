@@ -1,19 +1,18 @@
-import Helpers from '../utils/helpers';
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
 
-// Database for storage of datas
+dotenv.config();
+
+// const { TESTDB_URL, DATABASE_URL } = process.env;
+let pool;
+if (process.env.NODE_ENV === 'test') {
+  pool = new Pool({ connectionString: process.env.TESTDB_URL });
+} else {
+  pool = new Pool({ connectionString: process.env.DATABASE_URL });
+}
+
 const db = {
-  users: [
-    {
-      id: 1,
-      firstName: 'Bayo',
-      lastName: 'Admin',
-      email: 'bayo@admin.com',
-      password: Helpers.adminPassword(),
-      isAdmin: true,
-    },
-  ],
-  loans: [],
-  repayments: [],
+  query: (text, params) => pool.query(text, params),
 };
 
 export default db;
