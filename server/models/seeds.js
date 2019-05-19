@@ -8,7 +8,7 @@ import db from './db';
 
 const seedTable = async () => {
   try {
-    const seedQuery = await db.query(seedAdmin);
+    const seedQuery = await db.query(`${seedAdmin}${seedUsers}`);
     console.log(seedQuery);
   } catch (err) {
     console.log(err.stack);

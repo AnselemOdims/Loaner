@@ -7,6 +7,7 @@ dotenv.config();
 
 const secretKey = process.env.SECRET_KEY;
 const adminPassword = process.env.ADMIN_PASSWORD;
+const userPassword = process.env.USER_PASSWORD;
 
 /**
  * @class Helpers
@@ -31,6 +32,16 @@ class Helpers {
    */
   static adminPassword() {
     const hashed = bcrypt.hashSync(adminPassword, 10);
+    return hashed;
+  }
+
+  /**
+   * @method userPassword
+   * @description Hashes the seeded user password using bcrypt
+   * @returns {string} - Hashed password
+   */
+  static userPassword() {
+    const hashed = bcrypt.hashSync(userPassword, 10);
     return hashed;
   }
 
