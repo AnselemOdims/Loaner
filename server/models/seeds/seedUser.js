@@ -24,6 +24,6 @@ const userSeed = `
            ('Promise', 'Osuji', 'promzy@gmail.com', '${user}', '10, Ago Palace Way, Lagos', 08967281027,false),
            ('John', 'Bala', 'john1@yahoo.com', '${user}', '3 Olaitan Street, Ojota', 08254678943, false),
            ('Promise', 'Osuji', 'promzy1@gmail.com', '${user}', '10, Ago Palace Way, Lagos', 08967281027,false), 
-           ('Ken', 'Chukwu', 'kenchuks1@gmail.com', '${user}', '45 Ikorodu Rd. Lagos', 08225378943,  false);`
+           ('Ken', 'Chukwu', 'kenchuks1@gmail.com', '${user}', '45 Ikorodu Rd. Lagos', 08225378943,  false);`;
 
 export default userSeed;

@@ -17,12 +17,10 @@ const {
   emptyEmail,
   emptyPassword,
   emptyAddress,
-  emptyPhone,
   shortPassword,
   invalidFirstName,
   invalidLastName,
   invalidEmail,
-  invalidPhone,
   login,
   emptyLoginEmail,
   emptyLoginPassword,
@@ -145,18 +143,6 @@ describe('POST Sign Up Authentication', () => {
         done(err);
       });
   });
-  it('should return error if user tries registering with an empty phone number', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/auth/signup')
-      .send(emptyPhone)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.equal('A valid phonenumber must be included');
-        done(err);
-      });
-  });
   it('should return error if user tries registering with a password less than 8 characters', (done) => {
     chai
       .request(app)
@@ -205,18 +191,6 @@ describe('POST Sign Up Authentication', () => {
         done(err);
       });
   });
-  it('should return error if user tries registering with an invalid phonenumber', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/auth/signup')
-      .send(invalidPhone)
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('A valid phonenumber must be included');
-        done(err);
-      });
-  });
 });
 
 // Login Tests
@@ -229,7 +203,7 @@ describe('POST Login Aunthentication', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
-        expect(res.body.message).to.equal('Login Successful!');
+        expect(res.body.message).to.equal('Log in Successful!');
         done(err);
       });
   });
@@ -327,8 +301,21 @@ describe('PATCH User status', () => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.status).to.be.equal(200);
-        expect(res.body.message).to.be.equal('User Verification Successful!');
+        expect(res.body.message).to.be.equal('Client has been verified successfully');
         expect(res.body.data.status).to.be.equal('verified');
+        done(err);
+      });
+  });
+  it('should return error if user is already verified', (done) => {
+    chai
+      .request(app)
+      .patch('/api/v1/users/anthony@gmail.com/verify')
+      .set('x-access-token', `${adminToken}`)
+      .send(verified)
+      .end((err, res) => {
+        expect(res).to.have.status(409);
+        expect(res.body.status).to.be.equal(409);
+        expect(res.body.error).to.be.equal('This User has already been Verified!');
         done(err);
       });
   });
@@ -391,7 +378,7 @@ describe('PATCH User status', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
-        expect(res.body.error).to.be.equal('No User with that email');
+        expect(res.body.error).to.be.equal('User is not registered yet');
         done(err);
       });
   });
@@ -456,6 +443,45 @@ describe('GET A Single User', () => {
         expect(res).to.have.status(400);
         expect(res.body.status).to.be.equal(400);
         expect(res.body.error).to.equal('Wrong Id Value Passed');
+        done(err);
+      });
+  });
+});
+
+describe('DELETE  A Single User', () => {
+  it('should delete a user', (done) => {
+    chai
+      .request(app)
+      .delete('/api/v1/users/anthony@gmail.com/delete')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.status).to.be.equal(200);
+        expect(res.body.message).to.equal('User Deleted Successfully!');
+        done(err);
+      });
+  });
+  it('should return error if email is invalid', (done) => {
+    chai
+      .request(app)
+      .delete('/api/v1/users/anthonygmail.com/delete')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('The email you provided is not valid');
+        done(err);
+      });
+  });
+  it('should return error if user is not registered', (done) => {
+    chai
+      .request(app)
+      .delete('/api/v1/users/demouser@gmail.com/delete')
+      .set('x-access-token', `${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.equal('User is not registered yet');
         done(err);
       });
   });

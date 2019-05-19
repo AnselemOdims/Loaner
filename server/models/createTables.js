@@ -6,7 +6,6 @@ const createUsersTable = `
     email VARCHAR(50) UNIQUE NOT NULL,
     password TEXT NOT NULL,
     address VARCHAR(200) NOT NULL,
-    phoneNumber NUMERIC,
     status VARCHAR(20) DEFAULT 'unverified',
     isAdmin BOOLEAN DEFAULT FALSE);`;
 
