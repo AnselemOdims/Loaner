@@ -1,7 +1,8 @@
 import Helpers from '../utils/helpers';
 import db from '../models/db';
+import queries from '../models/queries/userQueries';
 
-const { users } = db;
+const { getUserByEmail, getUserById } = queries;
 
 /**
  * @class UserValidation
@@ -20,7 +21,7 @@ class UserValidation {
     const validate = await Helpers.validate();
     let error;
     const {
-      firstName, lastName, address, phoneNumber,
+      firstName, lastName, address,
     } = await req.body;
     if (!firstName || !validate.name.test(firstName)) {
       error = 'A valid firstname must be included';
@@ -32,8 +33,6 @@ class UserValidation {
       error = 'Lastname can not be less than 3 alphabetic characters';
     } else if (!address || !validate.address.test(address)) {
       error = 'A valid address must be included';
-    } else if (!phoneNumber || !validate.phonenumber.test(phoneNumber)) {
-      error = 'A valid phonenumber must be included';
     }
     if (error) {
       return res
@@ -77,16 +76,17 @@ class UserValidation {
    * @param {function} next - The Next Function
    */
   static async validateExistingUser(req, res, next) {
-    let error;
     const { email } = req.body;
-    const singleUser = await Helpers.findByMail(email, users);
-    if (singleUser) {
-      error = 'User with the email already exists';
-    }
-    if (error) {
+    const findUser = await db.query(getUserByEmail, [email]);
+
+    // check for already existing user
+    if (findUser.rowCount > 0) {
       return res
         .status(409)
-        .json({ status: 409, error });
+        .json({
+          status: 409,
+          error: 'User with the email already exists',
+        });
     }
     return next();
   }
@@ -100,14 +100,18 @@ class UserValidation {
    */
   static async validateLogin(req, res, next) {
     const { email, password } = req.body;
-    const user = await Helpers.findByMail(email, users);
-    if (!user) {
+    const user = await db.query(getUserByEmail, [email]);
+
+    // check if user is registered
+    if (!user.rows.length) {
       return res
         .status(400)
         .json({ status: 400, error: 'Sorry, the email/password you provided is incorrect' });
     }
-    const verifyPassword = await Helpers.verifyPassword(password, user.password);
-    if (!verifyPassword) {
+    const verifyPassword = await Helpers.verifyPassword(password, user.rows[0].password);
+
+    // check if user email and password match
+    if (!user.rows[0] || !verifyPassword) {
       return res
         .status(400)
         .json({ status: 400, error: 'Sorry, the email/password you provided is incorrect' });
@@ -123,23 +127,50 @@ class UserValidation {
    * @param {function} next - The Next Function
    */
   static async validateStatus(req, res, next) {
-    let error;
-    const validate = await Helpers.validate();
     const { email } = await req.params;
     const { status } = await req.body;
-    const arr = ['verified', 'unverified'];
-    const user = await Helpers.findByMail(email, users);
-    if (!email || !validate.email.test(email)) {
-      error = 'The email you provided is not valid';
-    } else if (!user) {
-      error = 'No User with that email';
-    } else if (!arr.includes(status)) {
-      error = 'The status can either be verified or unverified';
-    }
-    if (error) {
+    const arr = ['verified'];
+    const user = await db.query(getUserByEmail, [email]);
+
+    // check if the request body is correct
+    if (!arr.includes(status)) {
       return res
         .status(400)
-        .json({ status: 400, error });
+        .json({ status: 400, error: 'The status can either be verified or unverified' });
+    }
+
+    // Check if user is already verified
+    if (user.rows[0].status === 'verified') {
+      return res
+        .status(409)
+        .json({ status: 409, error: 'This User has already been Verified!' });
+    }
+    return next();
+  }
+
+  /**
+   * @method validateUser
+   * @description validates a user
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @param {function} next - The next function
+   */
+  static async validateUser(req, res, next) {
+    const validate = await Helpers.validate();
+    const { email } = await req.params;
+    const user = await db.query(getUserByEmail, [email]);
+    // check if it is a valid email
+    if (!email || !validate.email.test(email)) {
+      return res
+        .status(400)
+        .json({ status: 400, error: 'The email you provided is not valid' });
+    }
+
+    // check if user is in the database
+    if (!user.rows.length) {
+      return res
+        .status(400)
+        .json({ status: 400, error: 'User is not registered yet' });
     }
     return next();
   }
@@ -152,13 +183,15 @@ class UserValidation {
    */
   static async validateId(req, res, next) {
     const { id } = req.params;
-    const user = await Helpers.findById(Number(id), users);
+    // check if id is a valid number
     if (Number.isNaN(Number(id))) {
       return res
         .status(400)
         .json({ status: 400, error: 'Wrong Id Value Passed' });
     }
-    if (!user) {
+    const user = await db.query(getUserById, [id]);
+    // check if user is in the database
+    if (!user.rows.length) {
       return res
         .status(400)
         .json({ status: 400, error: 'No User with that Id in the database' });

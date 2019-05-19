@@ -7,6 +7,7 @@ dotenv.config();
 
 const secretKey = process.env.SECRET_KEY;
 const adminPassword = process.env.ADMIN_PASSWORD;
+const userPassword = process.env.USER_PASSWORD;
 
 /**
  * @class Helpers
@@ -14,40 +15,6 @@ const adminPassword = process.env.ADMIN_PASSWORD;
  * @exports Helpers
  */
 class Helpers {
-  /**
-  * @method findById
-  * @description - Method for getting a data by Id
-  * @param {Number} value - The data's id
-  * @param {object} db - The database
-  * @returns {object} - The data with the Id
-  */
-  static async findById(value, db) {
-    const data = await db.find(({ id }) => id === value);
-    return data;
-  }
-
-  /**
-   * @method findByMail
-   * @description - method for finding a data by email
-   * @param {string} mail - The data's email
-   * @param {object} db - The database
-   * @returns {object} - The data that matches that passed email
-   */
-  static async findByMail(mail, db) {
-    const data = db.find(({ email }) => email === mail);
-    return data;
-  }
-
-  /**
-   * @method findAll
-   * @description - method to get all users
-   * @param {object} db - The database
-   * @returns {object} - All users
-   */
-  static async findAll(db) {
-    return db;
-  }
-
   /**
    * @method hashPassword
    * @description Hashes User password using bcrypt
@@ -65,6 +32,16 @@ class Helpers {
    */
   static adminPassword() {
     const hashed = bcrypt.hashSync(adminPassword, 10);
+    return hashed;
+  }
+
+  /**
+   * @method userPassword
+   * @description Hashes the seeded user password using bcrypt
+   * @returns {string} - Hashed password
+   */
+  static userPassword() {
+    const hashed = bcrypt.hashSync(userPassword, 10);
     return hashed;
   }
 

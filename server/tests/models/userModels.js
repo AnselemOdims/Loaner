@@ -13,7 +13,6 @@ const users = {
     email: 'anthony@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   validUser: {
@@ -22,7 +21,6 @@ const users = {
     email: 'anthony2@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   emptyFirstName: {
@@ -31,7 +29,6 @@ const users = {
     email: 'anthony@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   emptyLastName: {
@@ -40,7 +37,6 @@ const users = {
     email: 'anthony@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   incompleteFirstName: {
@@ -49,7 +45,6 @@ const users = {
     email: 'anthony@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   incompleteLastName: {
@@ -58,7 +53,6 @@ const users = {
     email: 'anthony@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   emptyEmail: {
@@ -67,7 +61,6 @@ const users = {
     email: '',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   emptyPassword: {
@@ -76,7 +69,6 @@ const users = {
     email: 'anthony1@gmail.com',
     password: '',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   emptyAddress: {
@@ -85,7 +77,6 @@ const users = {
     email: 'anthony@gmail.com',
     password: '12345678',
     address: '',
-    phoneNumber: '07045678932',
   },
 
   emptyPhone: {
@@ -94,7 +85,6 @@ const users = {
     email: 'anthony@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '',
   },
 
   shortPassword: {
@@ -103,7 +93,6 @@ const users = {
     email: 'anthony1@gmail.com',
     password: '123456',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   invalidFirstName: {
@@ -112,7 +101,6 @@ const users = {
     email: 'anthony1@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   invalidLastName: {
@@ -121,7 +109,6 @@ const users = {
     email: 'anthony1@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   invalidEmail: {
@@ -130,7 +117,6 @@ const users = {
     email: 'anthony#gmail#com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '07045678932',
   },
 
   invalidPhone: {
@@ -139,7 +125,6 @@ const users = {
     email: 'anthony@gmail.com',
     password: '12345678',
     address: '3 Demurin Street, Ketu',
-    phoneNumber: '070456789',
   },
 
   login: {
@@ -178,7 +163,7 @@ const users = {
   },
 
   adminLogin: {
-    email: 'bayo@admin.com',
+    email: 'anselemodims@gmail.com',
     password: `${adminPassword}`,
   },
 

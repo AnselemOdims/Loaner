@@ -10,6 +10,7 @@ const {
   validateLogin,
   validateStatus,
   validateId,
+  validateUser,
 } = UserValidation;
 
 const {
@@ -18,6 +19,7 @@ const {
   verifyUser,
   getUsers,
   getAUser,
+  deleteAUser,
 } = UserController;
 
 const { verifyAdmin } = AuthenticateUser;
@@ -43,6 +45,7 @@ auth.post(
 users.patch(
   '/:email/verify',
   verifyAdmin,
+  validateUser,
   validateStatus,
   verifyUser,
 );
@@ -54,6 +57,13 @@ users.get(
   verifyAdmin,
   validateId,
   getAUser,
+);
+
+users.delete(
+  '/:email/delete',
+  verifyAdmin,
+  validateUser,
+  deleteAUser,
 );
 
 export { auth, users };
