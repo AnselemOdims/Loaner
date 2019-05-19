@@ -425,7 +425,7 @@ describe('GET A Single User', () => {
   it('should return error if id is user is not found', (done) => {
     chai
       .request(app)
-      .get('/api/v1/users/5')
+      .get('/api/v1/users/100')
       .set('x-access-token', `${adminToken}`)
       .end((err, res) => {
         expect(res).to.have.status(400);
