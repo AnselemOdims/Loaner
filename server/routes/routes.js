@@ -11,6 +11,6 @@ router.get('/', (req, res) => {
 
 router.use('/auth', auth);
 router.use('/users', users);
-// router.use('/loans', loans);
+router.use('/loans', loans);
 
 export default router;

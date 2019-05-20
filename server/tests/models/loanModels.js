@@ -16,6 +16,9 @@ const loans = {
     tenor: '50w',
     amount: 50000,
   },
+  noTenor: {
+    amount: 50000,
+  },
 
   lowAmount: {
     tenor: 12,
@@ -33,6 +36,10 @@ const loans = {
 
   validStatus: {
     status: 'approved',
+  },
+
+  validRejectStatus: {
+    status: 'rejected',
   },
 
   validAmount: {

@@ -8,7 +8,7 @@
     "dev-start": "nodemon --exec babel-node server.js",
     "lint": "eslint ./server --fix",
     "db-init": "babel-node ./server/models/dbinit.js",
-    "test": "set NODE_ENV=test && npm run db-init && nyc --reporter=lcov --reporter=text mocha --timeout 10000 -c ./server/tests/**.js --require @babel/register --exit",
+    "test": "set NODE_ENV=test && npm run db-init && nyc --reporter=lcov --reporter=text mocha --timeout 100000 -c ./server/tests/**.js --require @babel/register --exit",
     "coveralls": "nyc --reporter=lcov --reporter=text mocha ./server/tests/**.js --require @babel/register --exit --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rn -rf ./coverage"
   },
   "engines": {

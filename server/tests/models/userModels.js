@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 
+
 dotenv.config();
 
 const adminPassword = process.env.ADMIN_PASSWORD;

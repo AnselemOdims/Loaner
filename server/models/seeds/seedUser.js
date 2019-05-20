@@ -3,7 +3,7 @@ import Helpers from '../../utils/helpers';
 
 dotenv.config();
 
-const user = Helpers.userPassword()
+const user = Helpers.userPassword();
 
 const userSeed = `
     INSERT INTO users (
