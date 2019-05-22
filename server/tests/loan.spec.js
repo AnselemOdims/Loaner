@@ -445,100 +445,58 @@ describe('GET Approved Loans', () => {
 });
 
 // POST Repayment Record
-// describe('POST Repayment Record', () => {
-//   it('should create a loan repayment record if input is correct', (done) => {
-//     chai
-//       .request(app)
-//       .post('/api/v1/loans/1/repayment')
-//       .set('x-access-token', `${adminToken}`)
-//       .send(validAmount)
-//       .end((err, res) => {
-//         expect(res).to.have.status(201);
-//         expect(res.body.status).to.be.equal(201);
-//         expect(res.body.message).to.be.equal('Loan repayment record created succesfully');
-//         done(err);
-//       });
-//   });
-//   it('should create a loan repayment record if input is correct', (done) => {
-//     chai
-//       .request(app)
-//       .post('/api/v1/loans/1/repayment')
-//       .set('x-access-token', `${adminToken}`)
-//       .send(incorrectAmount)
-//       .end((err, res) => {
-//         expect(res).to.have.status(400);
-//         expect(res.body.status).to.be.equal(400);
-//         expect(res.body.error).to.be.equal(
-//           'Paid amount can only be in multiples of the monthlyInstallment',
-//         );
-//         done(err);
-//       });
-//   });
-//   it("should return error if amount exceeds client's balance", (done) => {
-//     chai
-//       .request(app)
-//       .post('/api/v1/loans/1/repayment')
-//       .set('x-access-token', `${adminToken}`)
-//       .send(excessRepayAmount)
-//       .end((err, res) => {
-//         expect(res).to.have.status(400);
-//         expect(res.body.status).to.be.equal(400);
-//         expect(res.body.error).to.be.equal("Paid amount should not exceed the client's balance");
-//         done(err);
-//       });
-//   });
-//   it('should return error if paid amount is not a number', (done) => {
-//     chai
-//       .request(app)
-//       .post('/api/v1/loans/1/repayment')
-//       .set('x-access-token', `${adminToken}`)
-//       .send(invalidAmount)
-//       .end((err, res) => {
-//         expect(res).to.have.status(400);
-//         expect(res.body.status).to.be.equal(400);
-//         expect(res.body.error).to.be.equal('Paid amount must be in a number format');
-//         done(err);
-//       });
-//   });
-//   it('should return error if paid amount is zero', (done) => {
-//     chai
-//       .request(app)
-//       .post('/api/v1/loans/1/repayment')
-//       .set('x-access-token', `${adminToken}`)
-//       .send(zeroAmount)
-//       .end((err, res) => {
-//         expect(res).to.have.status(400);
-//         expect(res.body.status).to.be.equal(400);
-//         expect(res.body.error).to.be.equal('Paid amount should be more than zero');
-//         done(err);
-//       });
-//   });
-//   it('should return error if no paid amount', (done) => {
-//     chai
-//       .request(app)
-//       .post('/api/v1/loans/1/repayment')
-//       .set('x-access-token', `${adminToken}`)
-//       .send({})
-//       .end((err, res) => {
-//         expect(res).to.have.status(400);
-//         expect(res.body.status).to.be.equal(400);
-//         expect(res.body.error).to.be.equal('Paid amount has to specified');
-//         done(err);
-//       });
-//   });
-// });
+describe('POST Repayment Record', () => {
 
-// // GET Loan Repayment Record
-// describe('GET Loan Repayment Record', () => {
-//   it('should retrieve loan repayment record', (done) => {
-//     chai
-//       .request(app)
-//       .get('/api/v1/loans/1/repayments')
-//       .set('x-access-token', `${userToken}`)
-//       .end((err, res) => {
-//         expect(res).to.have.status(200);
-//         expect(res.body.status).to.be.equal(200);
-//         done(err);
-//       });
-//   });
-// });
+  it("should return error if amount exceeds client's balance", (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/loans/1/repayment')
+      .set('x-access-token', `${adminToken}`)
+      .send(excessRepayAmount)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal("The Paid Amount exceeds client debt!");
+        done(err);
+      });
+  });
+  it('should return error if paid amount is not a number', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/loans/1/repayment')
+      .set('x-access-token', `${adminToken}`)
+      .send(invalidAmount)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Paid amount must be in a number format');
+        done(err);
+      });
+  });
+  it('should return error if paid amount is zero', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/loans/1/repayment')
+      .set('x-access-token', `${adminToken}`)
+      .send(zeroAmount)
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Paid amount should be more than zero');
+        done(err);
+      });
+  });
+  it('should return error if no paid amount', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/loans/1/repayment')
+      .set('x-access-token', `${adminToken}`)
+      .send({})
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.status).to.be.equal(400);
+        expect(res.body.error).to.be.equal('Paid amount has to specified');
+        done(err);
+      });
+  });
+});

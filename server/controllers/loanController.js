@@ -10,7 +10,6 @@ const {
   getLoanById,
   queryAllLoans,
   changeLoanStatus,
-  updateBalance,
   updateRepaid,
 } = queries;
 

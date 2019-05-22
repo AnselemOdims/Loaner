@@ -70,21 +70,13 @@ loans.patch(
 );
 
 // Route to create a loan repayment record
-// loans.post(
-//   '/:id/repayment',
-//   verifyAdmin,
-//   validateId,
-//   validateRepayment,
-//   createRepayment,
-// );
+loans.post(
+  '/:id/repayment',
+  verifyAdmin,
+  validateId,
+  validateRepayment,
+  createRepayment,
+);
 
-// // Route to get repayment history
-// loans.get(
-//   '/:id/repayments',
-//   verifyUser,
-//   validateId,
-//   validateRecord,
-//   getRepayment,
-// );
 
 export { loans };
